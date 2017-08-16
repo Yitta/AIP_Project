@@ -1,37 +1,73 @@
 const express = require('express');
-const moviesJson = require('../data/movies.json');
+const models = require('../models');
 
 const router = express.Router();
 
-function getMovieById(id) {
-  return moviesJson.filter((movie) => {
-    return movie.id == id;
-  })[0];
-}
-
 /* GET all of the movies. */
 router.get('/', (req, res) => {
-  res.json(moviesJson);
+  models.movie
+    .findAll({
+      include: [{
+        model: models.genre
+      }]
+    })
+    .then((movies) => {
+      res.json(movies);
+    });
 });
 
 /* POST a new movie. */
 router.post('/', (req, res) => {
-  res.json(moviesJson);
+  models.movie
+    .create({
+      title: req.body.title,
+      releaseDate: req.body.releaseDate,
+      duration: req.body.duration,
+      synopsis: req.body.synopsis
+    })
+    .then((movies) => {
+      res.json(movies);
+    });
 });
 
 /* GET the movie with :id. */
 router.get('/:id', (req, res) => {
-  res.json(getMovieById(req.params.id));
+  models.movie
+    .findById(req.params.id)
+    .then((movie) => {
+      res.json(movie);
+    });
 });
 
 /* PUT the movie with :id. */
 router.put('/:id', (req, res) => {
-  res.json(getMovieById(req.params.id));
+  models.movie
+    .update({
+      title: req.body.title,
+      releaseDate: req.body.releaseDate,
+      duration: req.body.duration,
+      synopsis: req.body.synopsis
+    }, {
+      where: { id: req.params.id }
+    })
+    .then((result) => {
+      models.movie
+        .findById(req.params.id)
+          .then((movie) => {
+            res.json(movie);
+          });
+    });
 });
 
 /* DELETE the movie with :id. */
 router.delete('/:id', (req, res) => {
-  res.json(getMovieById(req.params.id));
+  models.movie
+    .destroy({
+      where: { id: req.params.id }
+    })
+    .then((result) => {
+      res.json({ success: true, message: "Movie deleted" });
+    });
 });
 
 module.exports = router;

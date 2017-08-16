@@ -3,8 +3,13 @@
 ## What you need
 
 You will need:
+- MySQL
 - Node.js: https://nodejs.org/en/
 - angular-cli: https://github.com/angular/angular-cli
+
+## Before you start
+
+Make sure you have MySQL running on port `3306`. If you would like to recreate the database, run `DROP DATABASE aip_movies;` then serve the project.
 
 ## How to run
 

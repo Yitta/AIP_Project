@@ -1,0 +1,71 @@
+[{
+  "model": "genre",
+  "keys": ["genre"],
+  "data": {
+    "genre": "action",
+    "movies": [1, 4, 5]
+  }
+}, {
+  "model": "genre",
+  "keys": ["genre"],
+  "data": {
+    "genre": "drama",
+    "movies": [1, 3]
+  }
+}, {
+  "model": "genre",
+  "keys": ["genre"],
+  "data": {
+    "genre": "history",
+    "movies": [1]
+  }
+}, {
+  "model": "genre",
+  "keys": ["genre"],
+  "data": {
+    "genre": "animation",
+    "movies": [2]
+  }
+}, {
+  "model": "genre",
+  "keys": ["genre"],
+  "data": {
+    "genre": "adventure",
+    "movies": [2, 4]
+  }
+}, {
+  "model": "genre",
+  "keys": ["genre"],
+  "data": {
+    "genre": "comedy",
+    "movies": [2]
+  }
+}, {
+  "model": "genre",
+  "keys": ["genre"],
+  "data": {
+    "genre": "horror",
+    "movies": [3]
+  }
+}, {
+  "model": "genre",
+  "keys": ["genre"],
+  "data": {
+    "genre": "fantasy",
+    "movies": [4]
+  }
+}, {
+  "model": "genre",
+  "keys": ["genre"],
+  "data": {
+    "genre": "mystery",
+    "movies": [5]
+  }
+}, {
+  "model": "genre",
+  "keys": ["genre"],
+  "data": {
+    "genre": "thriller",
+    "movies": [5]
+  }
+}]
