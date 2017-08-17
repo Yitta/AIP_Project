@@ -1,0 +1,73 @@
+<div class="container">
+
+<div>
+    <form class="form-horizontal" [formGroup]="userForm" (ngSubmit)="logForm()">
+        <div class="form-group">
+            <button class="btn btn-outline-info float-right" (click)="reset()">RESET</button>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Category:</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" formControlName="category">
+                <span *ngIf="userForm.controls.category.pristine" class="badge badge-light">Unchanged</span>
+                <span *ngIf="userForm.controls.category.dirty" class="badge badge-warning">Changed</span>
+                <span *ngIf="userForm.controls.category.valid" class="badge badge-success">Valid</span>
+                <div [hidden]="userForm.controls.category.valid || userForm.controls.name.pristine" class="alert alert-danger">
+                    <p *ngIf="userForm.controls.category.errors?.minlength">Min length is 3</p>
+                    <p *ngIf="userForm.controls.category.errors?.required">Category is Required</p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Title:</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" formControlName="name">
+                <span *ngIf="userForm.controls.name.pristine" class="badge badge-light">Unchanged</span>
+                <span *ngIf="userForm.controls.name.dirty" class="badge badge-warning">Changed</span>
+                <span *ngIf="userForm.controls.name.valid" class="badge badge-success">Valid</span>
+                <div [hidden]="userForm.controls.name.valid || userForm.controls.name.pristine" class="alert alert-danger">
+                    <p *ngIf="userForm.controls.name.errors?.minlength">Min length is 3</p>
+                    <p *ngIf="userForm.controls.name.errors?.required">Title is Required</p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Discount:</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" formControlName="discount">
+                <span *ngIf="userForm.controls.discount.pristine" class="badge badge-light">Unchanged</span>
+                <span *ngIf="userForm.controls.discount.dirty" class="badge badge-warning">Changed</span>
+                <span *ngIf="userForm.controls.discount.valid" class="badge badge-success">Valid</span>
+                <div [hidden]="userForm.controls.discount.valid || userForm.controls.discount.pristine" class="alert alert-danger">
+                    <p *ngIf="userForm.controls.discount.errors?.minlength || userForm.controls.discount.errors?.maxlength">Length of Discount is between 2 to 4</p>
+                    <p *ngIf="userForm.controls.discount.errors?.required">Discount is required</p>
+                </div>
+            </div>
+        </div>
+
+        <fieldset formGroupName="detail">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Description:</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" type="text" formControlName="description"></textarea>
+                    <div [hidden]="userForm.controls.detail.controls.description.valid || userForm.controls.detail.controls.description.pristine" class="alert alert-danger">
+                        <p *ngIf="userForm.controls.detail.controls.description.errors?.required">Description is required</p>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+
+        <button type="submit" class="btn btn-outline-info float-right">Save</button>
+
+        <div class="row">
+            
+            <div class="col-sm-10">
+                <p class="error-msg">{{msg}}</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <p>{{changeMsg | json}}</p>
+        </div>
+    </form>
+</div>
+</div>

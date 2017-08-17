@@ -1,14 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
+import { routes } from './app.routes';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { TemplateFormsComponent } from './item-detail/item-detail.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { AddFormsComponent } from './add-form/add-form.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TemplateFormsComponent,
+    HomePageComponent,
+    AddFormsComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(routes),
+    FormsModule,
+    ReactiveFormsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
