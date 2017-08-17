@@ -5,14 +5,14 @@ import { AppComponent } from './app.component';
 import { routes } from './app.routes';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { TemplateFormsComponent } from './item-detail/item-detail.component';
+import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { AddFormsComponent } from './add-form/add-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TemplateFormsComponent,
+    ItemDetailComponent,
     HomePageComponent,
     AddFormsComponent
   ],

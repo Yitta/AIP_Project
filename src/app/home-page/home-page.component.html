@@ -1,60 +1,48 @@
 <!--The content below is only a placeholder and can be replaced.-->
-    <section class="jumbotron text-center">
-      <div class="container">
-        <h1 class="jumbotron-heading">Find Discount For YOU</h1>
-        <p class="lead text-muted">Something short and leading about the collection below—its name, the content, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
-      </div>
-    </section>
+<section class="jumbotron text-center">
+  <div class="container">
+    <h1 class="jumbotron-heading">Find Discount For YOU</h1>
+    <p class="lead text-muted">Something short and leading about the collection below—its name, the content, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
+  </div>
+</section>
 
-    <div class="container">
-      <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-        <form class="form-inline">
-          <input class="form-control mr-sm-2" type="text" placeholder="Keywords" aria-label="Search">
-          <input class="form-control mr-sm-2" type="text" placeholder="Category" aria-label="Search">
-          <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      </nav>
-    </div>
+<div class="container">
 
-    <div class="album text-muted">
-      <div class="container">
-      <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-end">
-          <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1">Previous</a>
+  <nav class="navbar navbar-light" style="background-color: #e3f2fd; margin-bottom: 20px; padding: 20px 5%">
+    <form class="form-inline">
+      <input class="form-control mr-sm-2" type="text" placeholder="Keywords" aria-label="Search">
+      <input class="form-control mr-sm-2" type="text" placeholder="Category" aria-label="Search">
+      <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </nav>
+
+  <div class="row row-offcanvas row-offcanvas-right">
+    <div class="col-12 col-md-9">
+      <div class="row" *ngIf="movies">
+        <div class="col-6 col-lg-6" *ngFor="let movie of movies" (click)="selectMovie(movie)"
+  [class.active]="movie === activeMovie" routerLink='/item-detail'>
+  <img class="card-img-top" src="https://lorempixel.com/900/500?r=1" alt="Card image cap">
+          <h4 style="margin-top: 10px">{{ movie.data.title }}<span class="badge badge-pill badge-warning float-right">{{ movie.data.duration}} off</span></h4>
+          <h6 class="card-subtitle mb-2 text-muted">${{ movie.data.duration}}</h6>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-info" routerLink='/item-detail' role="button">View details &raquo;</a></p>
+        </div><!--/span-->
+      </div><!--/row-->
+    </div><!--/span-->
+
+    <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
+      <div *ngIf="movies">
+        <ul class="list-group users-list">
+          <li class="list-group-item" style="background-color: #e3f2fd;">Category</li>
+          <li class="list-group-item"  *ngFor="let movie of movies" (click)="selectMovie(movie)"
+            [class.active]="movie === activeMovie">
+             {{ movie.data.title }}
           </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#">Next</a>
+          <li class="list-group-item"><button type="button" class="btn btn-outline-info float-right" routerLink='/add-form'>Add New Discount</button>
           </li>
         </ul>
-      </nav>
-        <div class="row" style="margin: 0">
-        <div class="row col-8" *ngIf="movies">
-          <div class="card" *ngFor="let movie of movies" (click)="selectMovie(movie)"
-      [class.active]="movie === activeMovie">
-            <img class="card-img-top" src="https://lorempixel.com/900/500?r=1" alt="Card image cap">
-            <h4 class="card-title">{{ movie.data.title }}<span class="badge badge-pill badge-danger" style="margin-left: 10px">{{ movie.data.duration}}</span></h4>
-            <p class="card-text">{{ movie.data.synopsis}}</p>
-          </div>
-          
-        </div>
-        <div class="col-4">
-          <div *ngIf="movies">
-            <ul class="list-group users-list">
-              <li class="list-group-item list-group-item-info">Category</li>
-              <li class="list-group-item"  *ngFor="let movie of movies" (click)="selectMovie(movie)"
-                [class.active]="movie === activeMovie">
-                 {{ movie.data.title }}
-              </li>
-              <li class="list-group-item"><button type="button" class="btn btn-outline-info float-right" routerLink='/add-form'>Add New Discount</button>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
       </div>
     </div>
+
+  </div>
+</div>

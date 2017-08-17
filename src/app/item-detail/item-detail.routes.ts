@@ -1,10 +1,10 @@
 import { Route } from '@angular/router';
-import { TemplateFormsComponent } from './item-detail.component';
+import { ItemDetailComponent } from './item-detail.component';
 
 
-export const TemplateFormsRoutes: Route[] = [
+export const ItemDetailRoutes: Route[] = [
     {
-        path: 'detail-item',
-        component: TemplateFormsComponent
+        path: 'item-detail',
+        component: ItemDetailComponent
     }
 ];

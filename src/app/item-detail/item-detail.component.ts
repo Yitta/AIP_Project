@@ -1,56 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-// import { MobileValidator } from '../validators/mobile.validator';
 
 @Component({
-    selector: 'template-form',
+    selector: 'item-detail',
     templateUrl: './item-detail.component.html',
     styleUrls: ['./item-detail.component.css']
 })
-export class TemplateFormsComponent {
-    user: any;
-    active: Boolean = true;
-    errorMsg: String;
-    nameErrorMsg: String;
-    constructor() {
-        this.user = {
-            name: '张三',
-            mobile: 13800138001,
-            address: {
-                city: '北京',
-                street: '朝阳望京...'
-            }
-        };
-    }
-    logForm(theForm: NgForm) {
-        if (theForm.invalid) {
-            this.errorMsg = 'validation errors!';
-            if (theForm.controls['name'].errors) {
-                this.nameErrorMsg = 'name error:' + JSON.stringify(theForm.controls['name'].errors);
-            } else {
-                this.nameErrorMsg = null;
-            }
-        } else {
-            this.errorMsg = null;
-            this.nameErrorMsg = null;
-        }
-        console.log(theForm.value);
-    }
+export class ItemDetailComponent {
+   movies = [
+{
+  "model": "movie",
+  "keys": ["id"],
+  "data": {
+    "id": 3,
+    "title": "It",
+    "releaseDate": "2017-09-08",
+    "duration": 135,
+    "synopsis": "In the Town of Derry, the local kids are disappearing one by one, leaving behind bloody remains. In a place known as 'The Barrens', a group of seven kids are united by their horrifying and strange encounters with an evil clown and their determination to kill It.",
+    "genre": ["drama", "horror"]
+  }
+}]
 
-    create() {
-        this.user = {
-            address: {}
-        };
-        this.active = false;
-        setTimeout(() => this.active = true, 0);
-        return false;
-    }
-    reset(theForm: NgForm) {
-        theForm.reset();
-        return false;
-    }
-    diagnostic(model) {
-        console.log(JSON.stringify(model));
-    }
+  activeMovie;
+
+  selectMovie(movie) {
+    this.activeMovie = movie;
+    console.log(this.activeMovie);
+  }
  }
