@@ -28,14 +28,10 @@ const mysqlDb = mysql.createConnection({
 });
 mysqlDb.connect((err) => {
   console.log("Connected");
-  mysqlDb.query('CREATE DATABASE IF NOT EXISTS aip_movies', (err, result) => {
+  mysqlDb.query('CREATE DATABASE IF NOT EXISTS cheap_cheep', (err, result) => {
     if (err) throw err;
     models.sequelize.sync().then(() => {
-      console.log('Database created!');
-      sequelizeFixtures.loadFile('./server/data/*.json', models)
-        .then(() => {
-          console.log('Database seeded.');
-        })
+      console.log('Database ready!');
     });
   });
 });

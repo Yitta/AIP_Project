@@ -5,7 +5,7 @@ const forwarded = require('forwarded-http/lib/middleware');
 const router = express.Router();
 
 const endpoints = [
-  { name : 'movies' }
+  { name: 'discounts', auth: false }
 ]
 
 router.use(forwarded(), (req, res, next) => {
