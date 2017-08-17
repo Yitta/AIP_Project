@@ -1,6 +1,6 @@
 module.exports = {
     development: {
-      url: 'mysql://root@localhost:3306/aip_movies',
+      url: 'mysql://root@localhost:3306/cheap_cheep',
       dialect: 'mysql'
     },
       production: {
