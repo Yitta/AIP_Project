@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-
-
+import { NgbdDatepickerRange } from '../components/datepicker-range/datepicker-range.component';
+import { DiscountsService } from '../discounts.service';
 
 @Component({
     selector: 'add-form',
@@ -13,36 +13,40 @@ export class AddFormsComponent implements OnInit {
     msg: String;
     changeMsg: any;
 
-    constructor(private formBuilder: FormBuilder) {}
+    constructor(private formBuilder: FormBuilder, private discountsService: DiscountsService) {}
 
     ngOnInit() {
         this.userForm = this.formBuilder.group({
-            category: ['please enter a Category', [Validators.required, Validators.minLength(3)]],
-            name: ['please enter a Name', [Validators.required, Validators.minLength(3)]],
-            discount: ['5%', [Validators.required, Validators.minLength(2), Validators.maxLength(4)]],
-            detail: this.formBuilder.group({
-                description: ['please enter the Description', Validators.required],
-                img: ['URL', Validators.required]
-            })
+            category: ['please enter a Category', [Validators.required, Validators.minLength(5)]],
+            title: ['please enter a Name', [Validators.required, Validators.minLength(5)]],
+            discount: ['$5 off', [Validators.required, Validators.minLength(6), Validators.maxLength(9)]],
+            description: ['please enter the Description', Validators.required],
+            isOnline: [true, Validators.required],
+            isInPerson: [true, Validators.required],
+            isCoupon: [true, Validators.required],
         });
-        const detail$ = <FormGroup>this.userForm.controls['detail'];
-        const city$ = detail$.controls['description'];
-        const street$ = detail$.controls['img'];
 
 
         this.userForm.valueChanges.subscribe(x => this.changeMsg = { event: 'Form DATA CHANGED', object: x });
     }
 
-    logForm(NgForm) {
+    logForm(discount) {
         if (this.userForm.invalid) {
             this.msg = 'validation errors!';
         } else {
             this.msg = null;
         }
+        discount =  JSON.stringify(this.userForm.value);
+        console.log(discount);
+        this.discountsService.createDiscounts(discount).subscribe(discounts => {
+            console.log(discounts);            
+        });
         console.log(this.userForm.value);
     }
 
     reset() {
         this.userForm.reset();
     }
- }
+
+
+}

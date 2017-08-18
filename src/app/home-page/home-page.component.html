@@ -18,25 +18,25 @@
 
   <div class="row row-offcanvas row-offcanvas-right">
     <div class="col-12 col-md-9">
-      <div class="row" *ngIf="movies">
-        <div class="col-6 col-lg-6" *ngFor="let movie of movies" (click)="selectMovie(movie)"
-  [class.active]="movie === activeMovie" routerLink='/item-detail'>
+      <div class="row" *ngIf="discounts">
+        <div class="col-6 col-lg-6" *ngFor="let discount of discounts" (click)="selectDiscount(discount)"
+  [class.active]="discount === activeDiscount" routerLink='/item-detail'>
   <img class="card-img-top" src="https://lorempixel.com/900/500?r=1" alt="Card image cap">
-          <h4 style="margin-top: 10px">{{ movie.data.title }}<span class="badge badge-pill badge-warning float-right">{{ movie.data.duration}} off</span></h4>
-          <h6 class="card-subtitle mb-2 text-muted">${{ movie.data.duration}}</h6>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <h4 style="margin-top: 10px">{{ discount.title }}<span class="badge badge-pill badge-warning float-right">{{ discount.discount }}</span></h4>
+          <h6 class="card-subtitle mb-2 text-muted">Start from{{ discount.start }}</h6>
+          <p>{{ discount.description}}</p>
           <p><a class="btn btn-info" routerLink='/item-detail' role="button">View details &raquo;</a></p>
         </div><!--/span-->
       </div><!--/row-->
     </div><!--/span-->
 
     <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
-      <div *ngIf="movies">
+      <div *ngIf="discounts">
         <ul class="list-group users-list">
           <li class="list-group-item" style="background-color: #e3f2fd;">Category</li>
-          <li class="list-group-item"  *ngFor="let movie of movies" (click)="selectMovie(movie)"
-            [class.active]="movie === activeMovie">
-             {{ movie.data.title }}
+          <li class="list-group-item"  *ngFor="let discount of discounts" (click)="selectDiscount(discount)"
+            [class.active]="discount === activeDiscount">
+             {{ discount.title }}
           </li>
           <li class="list-group-item"><button type="button" class="btn btn-outline-info float-right" routerLink='/add-form'>Add New Discount</button>
           </li>
