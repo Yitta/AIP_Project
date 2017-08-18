@@ -23,7 +23,7 @@
   [class.active]="discount === activeDiscount" routerLink='/item-detail'>
   <img class="card-img-top" src="https://lorempixel.com/900/500?r=1" alt="Card image cap">
           <h4 style="margin-top: 10px">{{ discount.title }}<span class="badge badge-pill badge-warning float-right">{{ discount.discount }}</span></h4>
-          <h6 class="card-subtitle mb-2 text-muted">Start from{{ discount.start }}</h6>
+          <h6 class="card-subtitle mb-2 text-muted">Start from {{ discount.start }}</h6>
           <p>{{ discount.description}}</p>
           <p><a class="btn btn-info" routerLink='/item-detail' role="button">View details &raquo;</a></p>
         </div><!--/span-->

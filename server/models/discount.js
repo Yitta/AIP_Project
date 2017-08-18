@@ -21,8 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     start: {
-      type: DataTypes.DATE,
-      allowNull: false,
+      type: DataTypes.DATE
     },
     end: {
       type: DataTypes.DATE
@@ -43,8 +42,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING
     },
     status: {
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.STRING
     },
     category: {
       type: DataTypes.STRING

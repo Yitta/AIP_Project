@@ -36,12 +36,14 @@ export class AddFormsComponent implements OnInit {
         } else {
             this.msg = null;
         }
+        
         discount =  JSON.stringify(this.userForm.value);
-        console.log(discount);
+        
         this.discountsService.createDiscounts(discount).subscribe(discounts => {
             console.log(discounts);            
         });
         console.log(this.userForm.value);
+        alert('Success!');
     }
 
     reset() {
