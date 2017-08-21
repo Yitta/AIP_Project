@@ -92,7 +92,7 @@
 
         <div class="form-group">
           <div class="col-sm-10">
-            <button type="submit" class="btn btn-outline-info float-right"  style="margin-left: 20px">Save</button>
+            <button [disabled]="!userForm.valid"  type="submit" class="btn btn-outline-info float-right"  style="margin-left: 20px">Save</button>
             <button class="btn btn-outline-info float-right" (click)="reset()">RESET</button>
           </div>
         </div>

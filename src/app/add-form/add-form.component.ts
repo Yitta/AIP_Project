@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { NgbdDatepickerRange } from '../components/datepicker-range/datepicker-range.component';
 import { DiscountsService } from '../discounts.service';
+import { Location } from '@angular/common';
 
 @Component({
     selector: 'add-form',
@@ -13,7 +14,7 @@ export class AddFormsComponent implements OnInit {
     msg: String;
     changeMsg: any;
 
-    constructor(private formBuilder: FormBuilder, private discountsService: DiscountsService) {}
+    constructor(private formBuilder: FormBuilder, private discountsService: DiscountsService, private location: Location) {}
 
     ngOnInit() {
         this.userForm = this.formBuilder.group({
@@ -33,17 +34,18 @@ export class AddFormsComponent implements OnInit {
     logForm(discount) {
         if (this.userForm.invalid) {
             this.msg = 'validation errors!';
+            
         } else {
             this.msg = null;
+            discount =  JSON.stringify(this.userForm.value);
+        
+            this.discountsService.createDiscounts(discount).subscribe(discounts => {
+                console.log(discounts);            
+            });
+            console.log(this.userForm.value);
+            alert('Success!');
+            this.location.back();
         }
-        
-        discount =  JSON.stringify(this.userForm.value);
-        
-        this.discountsService.createDiscounts(discount).subscribe(discounts => {
-            console.log(discounts);            
-        });
-        console.log(this.userForm.value);
-        alert('Success!');
     }
 
     reset() {

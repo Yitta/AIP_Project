@@ -39,8 +39,8 @@ export class NgbdDatepickerRange {
 
   hoveredDate: NgbDateStruct;
 
-  fromDate: {year: number, month: number, day: number};
-  toDate: {year: number, month: number, day: number};
+  fromDate: NgbDateStruct;
+  toDate: NgbDateStruct;
 
   constructor(calendar: NgbCalendar) {
     this.fromDate = calendar.getToday();
