@@ -52,5 +52,5 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
-  return discount;
+  return student;
 }
