@@ -47,6 +47,8 @@ module.exports = (sequelize, DataTypes) => {
     category: {
       type: DataTypes.STRING
     }
+  }, {
+    underscored: true,
   });
 
   return discount;
