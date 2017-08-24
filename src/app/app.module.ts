@@ -32,4 +32,4 @@ import { DiscountsService } from './discounts.service';
   providers: [DiscountsService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

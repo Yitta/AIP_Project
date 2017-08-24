@@ -37,7 +37,7 @@ export class AddFormsComponent implements OnInit {
         this.userForm.valueChanges.subscribe(x => this.changeMsg = { event: 'Form DATA CHANGED', object: x });
     }
 
-    logForm(discount) {
+    submitForm(discount) {
         if (this.userForm.invalid) {
             this.msg = 'validation errors!';
             alert('Validation errors!')
@@ -45,9 +45,8 @@ export class AddFormsComponent implements OnInit {
             this.msg = null;
             discount =  JSON.stringify(this.userForm.value);
             this.discountsService.createDiscounts(discount).subscribe(discounts => {
-                console.log(discounts);            
+                //TODO            
             });
-            console.log(this.userForm.value);
             alert('Success!');
             this.location.back();
         }

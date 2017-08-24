@@ -6,21 +6,20 @@ import 'rxjs/add/operator/map';
 export class DiscountsService {
     private headers = new Headers({'Content-Type': 'application/json'});
 
-    constructor(private http: Http) { }
+    constructor(private http: Http) {}
     
       getDiscounts() {
         return this.http.get('/api/discounts')
-          .map(res => res.json());
+                   .map(res => res.json());
       }
     
       saveDiscounts(discount) {
         return this.http.put(`/api/discounts`, discount)
-          .map(res => res.json());
+                   .map(res => res.json());
       }
 
       createDiscounts(discount) {
-        return this.http
-          .post(`/api/discounts`, discount, {headers: this.headers})
-          .map(res => res.json());
+        return this.http.post(`/api/discounts`, discount, {headers: this.headers})
+                   .map(res => res.json());
       }
 }
