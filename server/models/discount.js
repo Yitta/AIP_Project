@@ -47,7 +47,13 @@ module.exports = (sequelize, DataTypes) => {
     category: {
       type: DataTypes.STRING
     }
+  }, {
+    underscored: true,
   });
+
+  discount.associate = function(models) {
+    models.discount.hasMany(models.comment);
+  };
 
   return discount;
 }
