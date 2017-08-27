@@ -1,16 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
   const student = sequelize.define('student', {
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      isEmail: true,
-      unique: true
-    },
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
-    },
     firstName: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -42,15 +31,12 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     }
   }, {
-    underscored: true,
-    validate: {
-      isUTSEmail() {
-        if (!this.email.endsWith('uts.edu.au')) {
-          throw('You must have a valid UTS email.')
-        }
-      }
-    }
+    underscored: true
   });
+
+  student.associate = function(models) {
+    models.student.belongsTo(models.user);
+  };
 
   return student;
 }

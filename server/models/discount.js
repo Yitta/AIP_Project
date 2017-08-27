@@ -51,5 +51,9 @@ module.exports = (sequelize, DataTypes) => {
     underscored: true,
   });
 
+  discount.associate = function(models) {
+    models.discount.hasMany(models.comment);
+  };
+
   return discount;
 }
