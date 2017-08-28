@@ -36,7 +36,7 @@ mysqlDb.connect((err) => {
           defaults: {
             email: 'admin@cheapcheep.life',
             username: 'admin',
-            passwordHash: '$2a$10$n1zFNg5qgpJgDpASiZP0au9WOgtgv6fC4SBRCiW8bz5awo4b96jAG',
+            passwordHash: '21232F297A57A5A743894A0E4A801FC3',
             accountType: 'admin'
           },
         })
