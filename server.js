@@ -27,11 +27,19 @@ const mysqlDb = mysql.createConnection({
   password: null
 });
 mysqlDb.connect((err) => {
-  console.log("Connected");
+  console.log('Connected');
   mysqlDb.query('CREATE DATABASE IF NOT EXISTS cheap_cheep', (err, result) => {
     if (err) throw err;
     models.sequelize.sync().then(() => {
-      console.log('Database ready!');
+      models.user.findOrCreate({
+          where: { username: 'admin' },
+          defaults: {
+            email: 'admin@cheapcheep.life',
+            username: 'admin',
+            passwordHash: '$2a$10$n1zFNg5qgpJgDpASiZP0au9WOgtgv6fC4SBRCiW8bz5awo4b96jAG',
+            accountType: 'admin'
+          },
+        })
     });
   });
 });
