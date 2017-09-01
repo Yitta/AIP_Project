@@ -3,6 +3,10 @@ module.exports = (sequelize, DataTypes) => {
     comment: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    rate: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   }, {
     underscored: true

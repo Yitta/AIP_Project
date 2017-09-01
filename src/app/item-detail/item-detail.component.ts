@@ -8,6 +8,9 @@ import { NgForm } from '@angular/forms';
 })
 
 export class ItemDetailComponent {
+  public isCollapsed = false;
+  currentRate = 0;
+
   movies = [
     {
       "model": "movie",
