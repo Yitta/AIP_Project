@@ -63,23 +63,7 @@
   </div>
   <div id="addCommentCollapse" [ngbCollapse]="isCollapsed">
       <div class="card">
-        <div class="card-header">Write down your Comment</div>
-        <div class="card-body">
-          <h5>Rating Here: {{currentRate}}</h5>
-          <ngb-rating [(rate)]="currentRate">
-              <ng-template let-fill="fill">
-                <span class="star" [class.filled]="fill === 100">&#9733;</span>
-              </ng-template>
-          </ngb-rating>
-          <hr>
-          <h5>Comment Here:</h5>
-          <div class="container">
-            <form>
-              <textarea class="form-control" rows="3"></textarea>
-              <button  type="submit" class="btn btn-outline-info float-right"  style="margin-top: 20px">Submint</button>
-            </form>
-          </div>        
-        </div>
+        <comment-form></comment-form>
       </div>
     </div>
   <hr>

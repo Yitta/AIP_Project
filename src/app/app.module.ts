@@ -11,6 +11,7 @@ import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { AddFormsComponent } from './add-form/add-form.component';
 import { NgbdDatepickerRange } from './components/datepicker-range/datepicker-range.component';
+import { CommentFormComponent } from './components/comment-form/comment-form.component'
 import { DiscountsService } from './discounts.service';
 
 @NgModule({
@@ -19,7 +20,8 @@ import { DiscountsService } from './discounts.service';
     ItemDetailComponent,
     HomePageComponent,
     AddFormsComponent,
-    NgbdDatepickerRange
+    NgbdDatepickerRange,
+    CommentFormComponent
   ],
   imports: [
     BrowserModule,
