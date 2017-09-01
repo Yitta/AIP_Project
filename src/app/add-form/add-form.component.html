@@ -1,95 +1,94 @@
 <div class="container">
-    <div class="card" style=" margin-top: 30px">
-        <div class="card-header">Create New Discount Item</div>
-        <form style="padding: 20px" class="form-horizontal" [formGroup]="userForm" 
-                                                            (ngSubmit)="submitForm()">
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Category:</label>
-                <div class="col-sm-10">
-                    <input class="form-control" type="text" formControlName="category">
-                    <span *ngIf="userForm.controls.category.pristine" class="badge badge-light">Unchanged</span>
-                    <span *ngIf="userForm.controls.category.dirty" class="badge badge-primary">Changed</span>
-                    <span *ngIf="userForm.controls.category.valid" class="badge badge-success">Valid</span>
-                    <div [hidden]="userForm.controls.category.valid || userForm.controls.category.pristine" class="alert alert-danger">
-                        <p *ngIf="userForm.controls.category.errors?.minlength">Min length is 5</p>
-                        <p *ngIf="userForm.controls.category.errors?.required">Category is Required</p>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Title:</label>
-                <div class="col-sm-10">
-                    <input class="form-control" type="text" formControlName="title">
-                    <span *ngIf="userForm.controls.title.pristine" class="badge badge-light">Unchanged</span>
-                    <span *ngIf="userForm.controls.title.dirty" class="badge badge-primary">Changed</span>
-                    <span *ngIf="userForm.controls.title.valid" class="badge badge-success">Valid</span>
-                    <div [hidden]="userForm.controls.title.valid || userForm.controls.title.pristine" class="alert alert-danger">
-                        <p *ngIf="userForm.controls.title.errors?.minlength">Min length is 5</p>
-                        <p *ngIf="userForm.controls.title.errors?.required">Title is Required</p>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Discount:</label>
-                <div class="col-sm-10">
-                    <input class="form-control" type="text" formControlName="discount">
-                    <span *ngIf="userForm.controls.discount.pristine" class="badge badge-light">Unchanged</span>
-                    <span *ngIf="userForm.controls.discount.dirty" class="badge badge-primary">Changed</span>
-                    <span *ngIf="userForm.controls.discount.valid" class="badge badge-success">Valid</span>
-                    <div [hidden]="userForm.controls.discount.valid || userForm.controls.discount.pristine" class="alert alert-danger">
-                        <p *ngIf="userForm.controls.discount.errors?.minlength || userForm.controls.discount.errors?.maxlength">Length of Discount is between 1 to 3</p>
-                        <p *ngIf="userForm.controls.discount.errors?.required">Discount is required</p>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="exampleFormControlSelect1">Discount Type:</label>
-                <div class="col-sm-10">
-                    <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" formControlName="isOnline">
-                        Online
-                    </label>
-                </div>
-                <div class="col-sm-10">
-                    <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" formControlName="isInPerson">
-                        In Person
-                    </label>
-                </div>
-                <div class="col-sm-10">
-                    <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" formControlName="isCoupon">
-                        Coupon
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="date">Valid Date:</label>
-                <div class="col-sm-10">
-                    <ngbd-datepicker-range id="date"></ngbd-datepicker-range>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="exampleFormControlFile1">Picture:</label>
-                <div class="col-sm-10">
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Description:</label>
-                <div class="col-sm-10">
-                    <textarea class="form-control" type="text" formControlName="description"></textarea>
-                    <div [hidden]="userForm.controls.description.valid || userForm.controls.description.pristine" class="alert alert-danger">
-                        <p *ngIf="userForm.controls.description.errors?.required">Description is required</p>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-10">
-                    <button [disabled]="!userForm.valid"  type="submit" class="btn btn-outline-info float-right"  style="margin-left: 20px">Save</button>
-                    <button class="btn btn-outline-info float-right" (click)="reset()">RESET</button>
-                </div>
-            </div>
-        </form>
-    </div>
+  <div class="card" style=" margin-top: 30px">
+    <div class="card-header">Create New Discount Item</div>
+    <form style="padding: 20px" class="form-horizontal" [formGroup]="userForm" (ngSubmit)="submitForm()">
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Category:</label>
+        <div class="col-sm-10">
+          <input class="form-control" type="text" formControlName="category">
+          <span *ngIf="userForm.controls.category.pristine" class="badge badge-light">Unchanged</span>
+          <span *ngIf="userForm.controls.category.dirty" class="badge badge-primary">Changed</span>
+          <span *ngIf="userForm.controls.category.valid" class="badge badge-success">Valid</span>
+          <div [hidden]="userForm.controls.category.valid || userForm.controls.category.pristine" class="alert alert-danger">
+            <p *ngIf="userForm.controls.category.errors?.minlength">Min length is 5</p>
+            <p *ngIf="userForm.controls.category.errors?.required">Category is Required</p>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Title:</label>
+        <div class="col-sm-10">
+          <input class="form-control" type="text" formControlName="title">
+          <span *ngIf="userForm.controls.title.pristine" class="badge badge-light">Unchanged</span>
+          <span *ngIf="userForm.controls.title.dirty" class="badge badge-primary">Changed</span>
+          <span *ngIf="userForm.controls.title.valid" class="badge badge-success">Valid</span>
+          <div [hidden]="userForm.controls.title.valid || userForm.controls.title.pristine" class="alert alert-danger">
+            <p *ngIf="userForm.controls.title.errors?.minlength">Min length is 5</p>
+            <p *ngIf="userForm.controls.title.errors?.required">Title is Required</p>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Discount:</label>
+        <div class="col-sm-10">
+          <input class="form-control" type="text" formControlName="discount">
+          <span *ngIf="userForm.controls.discount.pristine" class="badge badge-light">Unchanged</span>
+          <span *ngIf="userForm.controls.discount.dirty" class="badge badge-primary">Changed</span>
+          <span *ngIf="userForm.controls.discount.valid" class="badge badge-success">Valid</span>
+          <div [hidden]="userForm.controls.discount.valid || userForm.controls.discount.pristine" class="alert alert-danger">
+            <p *ngIf="userForm.controls.discount.errors?.minlength || userForm.controls.discount.errors?.maxlength">Length of Discount is between 1 to 3</p>
+            <p *ngIf="userForm.controls.discount.errors?.required">Discount is required</p>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="exampleFormControlSelect1">Discount Type:</label>
+        <div class="col-sm-10">
+          <label class="form-check-label">
+              <input type="checkbox" class="form-check-input" formControlName="isOnline">
+              Online
+          </label>
+        </div>
+        <div class="col-sm-10">
+          <label class="form-check-label">
+              <input type="checkbox" class="form-check-input" formControlName="isInPerson">
+              In Person
+          </label>
+        </div>
+        <div class="col-sm-10">
+          <label class="form-check-label">
+              <input type="checkbox" class="form-check-input" formControlName="isCoupon">
+              Coupon
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="date">Valid Date:</label>
+        <div class="col-sm-10">
+          <ngbd-datepicker-range id="date"></ngbd-datepicker-range>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="exampleFormControlFile1">Picture:</label>
+        <div class="col-sm-10">
+          <input type="file" class="form-control-file" id="exampleFormControlFile1">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Description:</label>
+        <div class="col-sm-10">
+          <textarea class="form-control" type="text" formControlName="description"></textarea>
+          <div [hidden]="userForm.controls.description.valid || userForm.controls.description.pristine" class="alert alert-danger">
+            <p *ngIf="userForm.controls.description.errors?.required">Description is required</p>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-10">
+          <button [disabled]="!userForm.valid" type="submit" class="btn btn-outline-info float-right" style="margin-left: 20px">Save</button>
+          <button class="btn btn-outline-info float-right" (click)="reset()">RESET</button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>

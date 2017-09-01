@@ -13,6 +13,8 @@ import { AddFormsComponent } from './add-form/add-form.component';
 import { NgbdDatepickerRange } from './components/datepicker-range/datepicker-range.component';
 import { CommentFormComponent } from './components/comment-form/comment-form.component'
 import { DiscountsService } from './discounts.service';
+import { SignupFormComponent } from './signup-form/signup-form.component';
+import { LoginFormComponent } from './login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -21,8 +23,10 @@ import { DiscountsService } from './discounts.service';
     HomePageComponent,
     AddFormsComponent,
     NgbdDatepickerRange,
-    CommentFormComponent
-  ],
+    CommentFormComponent,
+    SignupFormComponent,
+    LoginFormComponent
+],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),

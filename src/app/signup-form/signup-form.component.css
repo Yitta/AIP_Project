@@ -1,0 +1,15 @@
+.cardBg {
+    background-color: #e3f2fd;
+    max-width: 760px;
+    padding: 60px 100px 100px 100px;
+    margin: 30px auto;
+}
+
+.img {
+    margin: 0 10px 15px 0;
+}
+
+.btnStyle {
+    margin: 10px 0;
+    float: right;
+}
