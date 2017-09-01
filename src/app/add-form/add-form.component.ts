@@ -25,10 +25,10 @@ export class AddFormsComponent implements OnInit {
    */
   ngOnInit() {
     this.userForm = this.formBuilder.group({
-      category: ['please enter a Category', [Validators.required, Validators.minLength(5)]],
-      title: ['please enter a Name', [Validators.required, Validators.minLength(5)]],
-      discount: ['$5 off', [Validators.required, Validators.minLength(6), Validators.maxLength(9)]],
-      description: ['please enter the Description', Validators.required],
+      category: [null, [Validators.required, Validators.minLength(5)]],
+      title: [null, [Validators.required, Validators.minLength(5)]],
+      discount: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(9)]],
+      description: [null, Validators.required],
       isOnline: [true, Validators.required],
       isInPerson: [true, Validators.required],
       isCoupon: [true, Validators.required],

@@ -11,13 +11,13 @@
     <h5 class="margin">Comment Here:</h5>
     <div class="container">
       <textarea class="form-control" rows="3" [(ngModel)]="commentForm.comment" name="comment" required #comment="ngModel"></textarea>
-      <span *ngIf="comment.pristine" class="badge badge-pill badge-light">unchanged</span>
+      <span *ngIf="comment.pristine" class="badge badge-pill badge-danger">invalid</span>
       <span *ngIf="comment.dirty" class="badge badge-pill badge-primary">changed</span>
       <span *ngIf="comment.valid" class="badge badge-pill badge-success">valid</span>
       <div [hidden]="comment.valid || comment.pristine" class="alert alert-danger">
           <p *ngIf="comment.errors?.required">Comment is required</p>
       </div>
-      <button type="submint" class="btn btn-info float-right" style="margin: 20px 0">Submint</button>
+      <button [disabled]="!userForm.valid" type="submint" class="btn btn-info float-right" style="margin: 20px 0">Submint</button>
     </div>
   </div>
 </form>

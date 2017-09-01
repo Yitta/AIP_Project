@@ -1,13 +1,12 @@
-<div class="container">
-  <div class="card" style=" margin-top: 30px">
-    <div class="card-header">Create New Discount Item</div>
+
+  <div class=" cardStyle" style=" margin-top: 30px">
+    <h4 class="fontStyle"><img src="../assets/form.svg" width="30" height="30" class="d-inline-block align-top img" alt="">Create New Discount Item</h4>
     <form style="padding: 20px" class="form-horizontal" [formGroup]="userForm" (ngSubmit)="submitForm()">
       <div class="form-group">
         <label class="col-sm-2 control-label">Category:</label>
         <div class="col-sm-10">
-          <input class="form-control" type="text" formControlName="category">
+          <input class="form-control" type="text" formControlName="category" placeholder="please enter the Category">
           <span *ngIf="userForm.controls.category.pristine" class="badge badge-light">Unchanged</span>
-          <span *ngIf="userForm.controls.category.dirty" class="badge badge-primary">Changed</span>
           <span *ngIf="userForm.controls.category.valid" class="badge badge-success">Valid</span>
           <div [hidden]="userForm.controls.category.valid || userForm.controls.category.pristine" class="alert alert-danger">
             <p *ngIf="userForm.controls.category.errors?.minlength">Min length is 5</p>
@@ -18,9 +17,8 @@
       <div class="form-group">
         <label class="col-sm-2 control-label">Title:</label>
         <div class="col-sm-10">
-          <input class="form-control" type="text" formControlName="title">
+          <input class="form-control" type="text" formControlName="title" placeholder="please enter the Name">
           <span *ngIf="userForm.controls.title.pristine" class="badge badge-light">Unchanged</span>
-          <span *ngIf="userForm.controls.title.dirty" class="badge badge-primary">Changed</span>
           <span *ngIf="userForm.controls.title.valid" class="badge badge-success">Valid</span>
           <div [hidden]="userForm.controls.title.valid || userForm.controls.title.pristine" class="alert alert-danger">
             <p *ngIf="userForm.controls.title.errors?.minlength">Min length is 5</p>
@@ -31,9 +29,8 @@
       <div class="form-group">
         <label class="col-sm-2 control-label">Discount:</label>
         <div class="col-sm-10">
-          <input class="form-control" type="text" formControlName="discount">
+          <input class="form-control" type="text" formControlName="discount" placeholder="eg. $5 off">
           <span *ngIf="userForm.controls.discount.pristine" class="badge badge-light">Unchanged</span>
-          <span *ngIf="userForm.controls.discount.dirty" class="badge badge-primary">Changed</span>
           <span *ngIf="userForm.controls.discount.valid" class="badge badge-success">Valid</span>
           <div [hidden]="userForm.controls.discount.valid || userForm.controls.discount.pristine" class="alert alert-danger">
             <p *ngIf="userForm.controls.discount.errors?.minlength || userForm.controls.discount.errors?.maxlength">Length of Discount is between 1 to 3</p>
@@ -42,7 +39,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label class="col-sm-2 control-label" for="exampleFormControlSelect1">Discount Type:</label>
+        <label class="col-sm-4 control-label" for="exampleFormControlSelect1">Discount Type:</label>
         <div class="col-sm-10">
           <label class="form-check-label">
               <input type="checkbox" class="form-check-input" formControlName="isOnline">
@@ -77,7 +74,9 @@
       <div class="form-group">
         <label class="col-sm-2 control-label">Description:</label>
         <div class="col-sm-10">
-          <textarea class="form-control" type="text" formControlName="description"></textarea>
+          <textarea class="form-control" type="text" formControlName="description" placeholder="please enter the Description"></textarea>
+          <span *ngIf="userForm.controls.description.pristine" class="badge badge-light">Unchanged</span>
+          <span *ngIf="userForm.controls.description.valid" class="badge badge-success">Valid</span>
           <div [hidden]="userForm.controls.description.valid || userForm.controls.description.pristine" class="alert alert-danger">
             <p *ngIf="userForm.controls.description.errors?.required">Description is required</p>
           </div>
@@ -91,4 +90,3 @@
       </div>
     </form>
   </div>
-</div>
