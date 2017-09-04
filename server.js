@@ -1,13 +1,14 @@
 const express = require('express');
+const passport = require('passport');
 const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
 const api = require('./server/routes/api');
 const models = require('./server/models');
-const mysql = require('mysql2');
-const sequelizeFixtures = require('sequelize-fixtures');
+const mysql = require('./server/config/db');
 
 const app = express();
+const database = mysql.database;
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'dist')));
@@ -21,14 +22,9 @@ app.get('*', (req, res) => {
 const port = process.env.PORT || '3000';
 app.set('port', port);
 
-const mysqlDb = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: null
-});
-mysqlDb.connect((err) => {
+database.connect((err) => {
   console.log('Connected');
-  mysqlDb.query('CREATE DATABASE IF NOT EXISTS cheap_cheep', (err, result) => {
+  database.query('CREATE DATABASE IF NOT EXISTS cheap_cheep', (err, result) => {
     if (err) throw err;
     models.sequelize.sync().then(() => {
       models.user.findOrCreate({
