@@ -1,4 +1,3 @@
-import { Discount } from './Discount';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CommentFormComponent } from '../components/comment-form/comment-form.component';
