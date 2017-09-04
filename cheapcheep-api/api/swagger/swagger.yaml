@@ -1,0 +1,398 @@
+swagger: "2.0"
+info:
+  description: "This is the API documentation for CheapCheep"
+  version: "1.0.0"
+  title: "CheapCheep"
+host: "localhost:3000"
+basePath: "/api"
+tags:
+- name: "discount"
+  description: "Discount operations"
+- name: "user"
+  description: "User operations"
+- name: "student"
+  description: "Student operations"
+- name: "business"
+  description: "Business operations"
+- name: "admin"
+  description: "Admin operations"
+- name: "coming soon"
+  description: "Operations not yet implemented"
+schemes:
+- "http"
+paths:
+  /discounts:
+    get:
+      tags:
+      - "discount"
+      summary: "Get all discounts"
+      operationId: "getDiscounts"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "startAt"
+        in: "query"
+        type: "integer"
+        required: false
+      - name: "max"
+        description: "max number of results to return"
+        in: "query"
+        type: "integer"
+        required: false
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/ListOfDiscounts"
+        500:
+          description: "Internal server error"
+    post:
+      tags:
+      - "discount"
+      summary: "Add a new discount to the website"
+      operationId: "addDiscount"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Discount object to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/Discount"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Discount"
+        500:
+          description: "Internal server error"
+  /discount/{discountId}:
+    get:
+      tags:
+      - "discount"
+      summary: "Find discount by id"
+      operationId: "getDiscountById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "discountId"
+        in: "path"
+        description: "Id of discount"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Discount"
+        400:
+          description: "Invalid id supplied"
+        404:
+          description: "Discount not found"
+        500:
+          description: "Internal server error"
+    put:
+      tags:
+      - "discount"
+      summary: "Find discount by id"
+      operationId: "editDiscountById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "discountId"
+        in: "path"
+        description: "Id of discount"
+        required: true
+        type: "integer"
+      - in: "body"
+        name: "body"
+        description: "Discount object to be edited"
+        required: true
+        schema:
+          $ref: "#/definitions/Discount"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Discount"
+        400:
+          description: "Invalid id supplied"
+        404:
+          description: "Discount not found"
+        500:
+          description: "Internal server error"
+    delete:
+      tags:
+      - "discount"
+      summary: "Find discount by id"
+      operationId: "deleteDiscountById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "discountId"
+        in: "path"
+        description: "Id of discount"
+        required: true
+        type: "integer"
+      responses:
+        204:
+          description: "successful operation"
+        400:
+          description: "Invalid id supplied"
+        404:
+          description: "Discount not found"
+        500:
+          description: "Internal server error"
+  /discounts/{discountId}/comments:
+    get:
+      tags:
+      - "discount"
+      summary: "Find comments on a discount by id"
+      operationId: "getDiscountComments"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "discountId"
+        in: "path"
+        description: "Id of discount"
+        required: true
+        type: "integer"
+      - name: "startAt"
+        in: "query"
+        type: "integer"
+        required: false
+      - name: "max"
+        description: "max number of results to return"
+        in: "query"
+        type: "integer"
+        required: false
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/ListOfComments"
+        500:
+          description: "Internal server error"
+    post:
+      tags:
+      - "discount"
+      summary: "Find discount by id"
+      operationId: "createDiscountComment"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "discountId"
+        in: "path"
+        description: "Id of discount"
+        required: true
+        type: "integer"
+      - in: "body"
+        name: "body"
+        description: "Comment object to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/Comment"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Comment"
+        400:
+          description: "Invalid id supplied"
+        404:
+          description: "Discount not found"
+        500:
+          description: "Internal server error"
+  /user:
+    post:
+      tags:
+      - "user"
+      - "coming soon"
+      summary: "Create user"
+      description: "This is called when signing up a new user"
+      operationId: "createUser"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "User object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        200:
+          description: "successful operation"
+  /user/login:
+    get:
+      tags:
+      - "user"
+      - "coming soon"
+      summary: "Logs user into the system"
+      operationId: "loginUser"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "query"
+        description: "The user name for login"
+        required: true
+        type: "string"
+      - name: "password"
+        in: "query"
+        description: "The password for login in clear text"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successful operation"
+        400:
+          description: "Invalid username/password supplied"
+  /user/logout:
+    get:
+      tags:
+      - "user"
+      - "coming soon"
+      summary: "Logs out current logged in user session"
+      operationId: "logoutUser"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Successful operation"
+        500:
+          description: "Internal server error"
+definitions:
+  User:
+    type: "object"
+    required:
+    - "email"
+    - "passwordHash"
+    - "username"
+    - "accountType"
+    properties:
+      id:
+        type: "integer"
+      email:
+        type: "string"
+        example: "admin@cheapcheep.life"
+      passwordHash:
+        type: "string"
+      username:
+        type: "string"
+        example: "admin"
+      accountType:
+        type: "string"
+        description: "account type"
+        enum:
+        - "student"
+        - "business"
+        - "admin"
+  ListOfDiscounts:
+    type: "object"
+    properties:
+      startAt:
+        type: "integer"
+        description: "Start index of search"
+      total:
+        type: "integer"
+        description: "Total results in db"
+      max:
+        type: "integer"
+        description: "Results returned"
+      discounts:
+        type: "array"
+        description: "Discounts for current page"
+        items:
+          $ref: "#/definitions/Discount"
+  Discount:
+    type: "object"
+    required:
+    - "title"
+    - "isOnline"
+    - "isInPerson"
+    - "isCoupon"
+    - "start"
+    properties:
+      id:
+        type: "integer"
+      title:
+        type: "string"
+        example: "$0.50 Off Banh Mi"
+      discount:
+        type: "string"
+        example: "$0.50 off"
+      isOnline:
+        type: "boolean"
+      isInPerson:
+        type: "boolean"
+      isCoupon:
+        type: "boolean"
+      start: 
+        type: "string"
+        format: "date"
+      end:
+        type: "string"
+        format: "date"
+      url:
+        type: "string"
+        example: "http://www.cheapcheep.life"
+      address:
+        type: "string"
+        example: "123 Fake Street Sydney NSW 2000"
+      couponCodes:
+        type: "string"
+        example: "ABC123"
+      description:
+        type: "string"
+        example: "Present your valid student card to receive $0.50 off 1 roll."
+      finePrint:
+        type: "string"
+        example: "Valid for 1 roll per day."
+      status:
+        type: "string"
+        description: "Discount status"
+        enum:
+        - "active"
+        - "inactive"
+      category:
+        type: "string"
+        example: "Food"
+  ListOfComments:
+    type: "object"
+    properties:
+      startAt:
+        type: "integer"
+        description: "Start index of search"
+      total:
+        type: "integer"
+        description: "Total results in db"
+      max:
+        type: "integer"
+        description: "Results returned"
+      discounts:
+        type: "array"
+        description: "Comments for current page"
+        items:
+          $ref: "#/definitions/Comment"
+  Comment:
+    type: "object"
+    required:
+    - "discountId"
+    - "userId"
+    - "comment"
+    properties:
+      id:
+        type: "integer"
+      discountId:
+        type: "integer"
+      userId:
+        type: "integer"
+      comment:
+        type: "string"
