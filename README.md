@@ -45,5 +45,25 @@ To contribute to this project we should abide by some coding and contributing pr
 
 ### Back-end
 - Separate routes by object: Don’t forget to identify it in routes/api.js!
-- Document your APIs! (Coming soon)
+- Document your APIs! (In progress)
 - Avoid using raw queries if possible
+
+## CheapCheep API Documentation
+
+Swagger used to document CheapCheep APIs
+
+### Installing dependencies
+
+  `npm install -g swagger`
+
+This will install swagger globally.
+
+### How to view and/or edit
+
+  Open `cheapcheep-api` in terminal and run
+
+  `swagger project edit`
+
+This will start an express server and open the editor in your browser.
+
+The documentation will be loaded from `api/swagger/swagger.yaml` and changes are saved instantly.
