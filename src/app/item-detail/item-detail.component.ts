@@ -1,6 +1,10 @@
+import { Discount } from './Discount';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { CommentFormComponent } from '../components/comment-form/comment-form.component'
+import { CommentFormComponent } from '../components/comment-form/comment-form.component';
+import { ActivatedRoute, Router, Params, ParamMap } from '@angular/router';
+import { DiscountsService } from '../discounts.service';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
     selector: 'item-detail',
@@ -8,29 +12,27 @@ import { CommentFormComponent } from '../components/comment-form/comment-form.co
     styleUrls: ['./item-detail.component.css']
 })
 
-export class ItemDetailComponent {
-  public isCollapsed = false;
-  currentRate = 0;
+export class ItemDetailComponent implements OnInit {
+  discount;
+  constructor(private activatedRoute: ActivatedRoute, 
+              private router: Router,
+              private discountsService:DiscountsService){}
+  
+  /**
+   * get discounet id from discount list
+   * then give this id to local itemId
+   */
+  ngOnInit(){
+    this.activatedRoute.paramMap
+    .switchMap((params: ParamMap) => this.discountsService.getDiscount(+params.get('id')))
+    .subscribe(discount => {
+      this.discount = discount;
+    });
+    
+  }
 
-  movies = [
-    {
-      "model": "movie",
-      "keys": ["id"],
-      "data": {
-        "id": 3,
-        "title": "It",
-        "releaseDate": "2017-09-08",
-        "duration": 135,
-        "synopsis": "In the Town of Derry, the local kids are disappearing one by one, leaving behind bloody remains. In a place known as 'The Barrens', a group of seven kids are united by their horrifying and strange encounters with an evil clown and their determination to kill It.",
-        "genre": ["drama", "horror"]
-      }
-    }
-  ]
+  public isCollapsed = true;
 
   activeMovie;
 
-  selectMovie(movie) {
-    this.activeMovie = movie;
-    //TODO
-  }
 }
