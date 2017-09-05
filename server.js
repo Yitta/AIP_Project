@@ -5,9 +5,14 @@ const bodyParser = require('body-parser');
 const api = require('./server/routes/api');
 const models = require('./server/models');
 const mysql = require('mysql2');
-const sequelizeFixtures = require('sequelize-fixtures');
+var cors = require("cors");  
 
 const app = express();
+
+// Setting up cross origin calls
+app.use(cors({
+  origin: [new RegExp('http://127.0.0.1:*')] // remove in prods
+}))
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'dist')));
