@@ -15,6 +15,7 @@ import { CommentFormComponent } from './components/comment-form/comment-form.com
 import { DiscountsService } from './discounts.service';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { LoginFormComponent } from './login-form/login-form.component';
     NgbdDatepickerRange,
     CommentFormComponent,
     SignupFormComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    AdminPageComponent
 ],
   imports: [
     BrowserModule,

@@ -1,3 +1,4 @@
+import { AdminPageRoute } from './admin-page/admin-page.routes';
 import { Routes } from '@angular/router';
 import { ItemDetailRoutes } from './item-detail/item-detail.routes';
 import { HomePageRoutes } from './home-page/home-page.routes';
@@ -15,6 +16,7 @@ export const routes: Routes = [
     ...ItemDetailRoutes,
     ...AddFormsRoutes,
     ...SignupFormRoute,
-    ...LoginFormRoute
+    ...LoginFormRoute,
+    ...AdminPageRoute
     
 ];
