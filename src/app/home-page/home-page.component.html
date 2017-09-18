@@ -36,9 +36,9 @@
         <ul class="list-group users-list">
           <li class="list-group-item" style="background-color: #e3f2fd;">Category</li>
           <li class="list-group-item"  *ngFor="let discount of discounts" 
-                                       (click)="selectDiscount(discount)"
+                                       (click)="selectDiscountCategory(discount)"
                                        [class.active]="discount === activeDiscount">
-             {{ discount.title }}
+             {{ discount.category }}
           </li>
           <li class="list-group-item">
             <button type="button" class="btn btn-outline-info float-right" routerLink='/add-form'>Add New Discount</button>

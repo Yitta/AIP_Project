@@ -3,6 +3,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { NgbdDatepickerRange } from '../components/datepicker-range/datepicker-range.component';
 import { DiscountsService } from '../discounts.service';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'add-form',
@@ -17,6 +18,7 @@ export class AddFormsComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private discountsService: DiscountsService,
+              private router: Router,
               private location: Location) {}
 
   /**
@@ -48,7 +50,7 @@ export class AddFormsComponent implements OnInit {
         //TODO            
       });
       alert('Success!');
-      this.location.back();
+      this.router.navigate(['/home-page']);
     }
   }
 
