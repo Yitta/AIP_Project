@@ -1,23 +1,42 @@
-const express = require('express');
-const path = require('path');
-const http = require('http');
-const bodyParser = require('body-parser');
 const api = require('./server/routes/api');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const cors = require('cors');
+const env = require('dotenv').load();
+const express = require('express');
+const http = require('http');
 const models = require('./server/models');
-const mysql = require('mysql2');
-var cors = require("cors");  
+const morgan = require('morgan');
+const mysql = require('./server/config/database');
+const passport = require('passport');
+const path = require('path');
+const session = require('express-session');
 
 const app = express();
+const database = mysql.database;
 
 // Setting up cross origin calls
 app.use(cors({
-  origin: [new RegExp('http://127.0.0.1:*')] // remove in prods
+  origin: [new RegExp('http://127.0.0.1:*')] // remove in prod
 }))
 
+app.use(morgan('dev'));
+
+app.use(cookieParser());
+
+// Set the server to return json as default
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 app.use(express.static(path.join(__dirname, 'dist')));
 
+// Required for passport.js auth
+app.use(session({ secret: 'supersecrettoken', resave: true, saveUninitialized:true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use('/api', api);
+require('./server/middleware/passport.js')(passport, models.user);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
@@ -26,27 +45,8 @@ app.get('*', (req, res) => {
 const port = process.env.PORT || '3000';
 app.set('port', port);
 
-const mysqlDb = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: null
-});
-mysqlDb.connect((err) => {
+database.connect((err) => {
   console.log('Connected');
-  mysqlDb.query('CREATE DATABASE IF NOT EXISTS cheap_cheep', (err, result) => {
-    if (err) throw err;
-    models.sequelize.sync().then(() => {
-      models.user.findOrCreate({
-          where: { username: 'admin' },
-          defaults: {
-            email: 'admin@cheapcheep.life',
-            username: 'admin',
-            passwordHash: '21232F297A57A5A743894A0E4A801FC3',
-            accountType: 'admin'
-          },
-        })
-    });
-  });
 });
 
 const server = http.createServer(app);
