@@ -10,6 +10,7 @@ import { AuthenticationService } from '../authentication.service';
 })
 export class LoginFormComponent implements OnInit {
   loginForm: any;
+  errorMsg: string;
 
   constructor(private router: Router,
               private authenticationService: AuthenticationService) {
@@ -24,19 +25,18 @@ export class LoginFormComponent implements OnInit {
 
   handleLogin(theForm:NgForm){
     var userInfo = JSON.stringify(theForm.value);
-    this.authenticationService.login(userInfo).subscribe(res => {
-      console.log("userInfo: ", res);
+    this.authenticationService.login(userInfo).subscribe(resUserData => {
+      console.log("userInfo: ", resUserData);
       console.log("login data", theForm.value);
-      if(res.accountType == "admin") {
+      if(resUserData.accountType == "admin") {
         console.log("hello, admin");
         this.router.navigate(['/admin-page']);
-      } else if(res.accountType == "business" || res.accountType == "student") {
+      } else if(resUserData.accountType == "business" || resUserData.accountType == "student") {
         console.log("hello, other user");
         this.router.navigate(['/home-page']);
-      } else {
-        alert('Invalid user information!')
-      }           
-    });
+      }       
+    },
+    resLoginError => alert("Invaild Login"));
 
     
     
