@@ -47,6 +47,10 @@ app.set('port', port);
 
 database.connect((err) => {
   console.log('Connected');
+  database.query('CREATE DATABASE IF NOT EXISTS cheap_cheep', (err, result) => {
+    if (err) throw err;
+    models.sequelize.sync();
+  });
 });
 
 const server = http.createServer(app);
