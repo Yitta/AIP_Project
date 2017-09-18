@@ -25,17 +25,20 @@ export class LoginFormComponent implements OnInit {
   handleLogin(theForm:NgForm){
     var userInfo = JSON.stringify(theForm.value);
     this.authenticationService.login(userInfo).subscribe(res => {
-      //TODO            
+      console.log("userInfo: ", res);
+      console.log("login data", theForm.value);
+      if(res.accountType == "admin") {
+        console.log("hello, admin");
+        this.router.navigate(['/admin-page']);
+      } else if(res.accountType == "business" || res.accountType == "student") {
+        console.log("hello, other user");
+        this.router.navigate(['/home-page']);
+      } else {
+        alert('Invalid user information!')
+      }           
     });
-    alert('Success!');
-    console.log("login data", theForm.value);
-    if(theForm.value.username == "admin" && theForm.value.password == "admin") {
-      console.log("hello, admin");
-      this.router.navigate(['/admin-page']);
-    } else {
-      console.log("hello, other user");
-      this.router.navigate(['/home-page']);
-    }
+
+    
     
   }
 

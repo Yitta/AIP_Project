@@ -11,7 +11,7 @@ export class AuthenticationService {
 
   /* Login function. */
   login(userInfo) {
-    return this.http.post(`/api/user/login`, userInfo, { headers: this.headers })
+    return this.http.post(`/api/users/login`, userInfo, { headers: this.headers })
       .map(res => res.json());
   }
 }
