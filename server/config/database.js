@@ -6,4 +6,7 @@ const database = mysql.createConnection({
   password: null
 });
 
-module.exports = { database };
+module.exports = { 
+  database, 
+  url: 'mysql://root@localhost:3306/cheap_cheep'
+};

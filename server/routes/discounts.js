@@ -1,5 +1,6 @@
 const express = require('express');
 const models = require('../models');
+const isLoggedIn = require('../middleware/isLoggedIn');
 
 const router = express.Router();
 
@@ -22,7 +23,7 @@ router.get('/', (req, res) => {
 
 /* POST a new discount. */
 // TODO: Edit this so only admins and businesses can access
-router.post('/', (req, res) => {
+router.post('/', isLoggedIn, (req, res) => {
   models.discount
     .create(req.body)
     .then((discount) => res.status(201).json(discount));
@@ -37,7 +38,7 @@ router.get('/:id', (req, res) => {
 
 /* PUT edit a discount */
 // TODO: Edit this so only admins and the person who created the discount can access
-router.put('/:id', (req, res) => {
+router.put('/:id', isLoggedIn, (req, res) => {
   models.discount
     .update(
       req.body,
@@ -48,7 +49,7 @@ router.put('/:id', (req, res) => {
 
 /* DELETE a discount */
 // TODO: Edit this so only admins and the person who created the discount can access
-router.delete('/:id', (req, res) => {
+router.delete('/:id', isLoggedIn, (req, res) => {
   models.movie
     .destroy({
       where: { id: req.params.id }
@@ -73,7 +74,7 @@ router.get('/:id/comments', (req, res) => {
     }));
 });
 
-router.post('/:id/comments', (req, res) => {
+router.post('/:id/comments', isLoggedIn, (req, res) => {
   models.comment
     .create({
       discount_id: req.params.id,
