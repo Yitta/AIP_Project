@@ -33,11 +33,20 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
-  user.prototype.setPassword = function(password) {
+  user.prototype.getUser = function() {
+    var user = this.toJSON();
+    delete user.passwordHash;
+    return user;
+  };
+
+  user.prototype.generateHash = function(password) {
     this.passwordHash = bcrypt.hashSync(password);
     return this;
   };
+
   user.prototype.validatePassword = function(password) {
+    console.log(password);
+    console.log(this.passwordHash);
     return bcrypt.compareSync(password, this.passwordHash);
   };
 
