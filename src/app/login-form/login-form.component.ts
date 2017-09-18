@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-login-form',
@@ -10,7 +11,8 @@ import {NgForm} from '@angular/forms';
 export class LoginFormComponent implements OnInit {
   loginForm: any;
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private authenticationService: AuthenticationService) {
     this.loginForm = {
       username: '',
       password: ''
@@ -21,6 +23,11 @@ export class LoginFormComponent implements OnInit {
   }
 
   handleLogin(theForm:NgForm){
+    var userInfo = JSON.stringify(theForm.value);
+    this.authenticationService.login(userInfo).subscribe(res => {
+      //TODO            
+    });
+    alert('Success!');
     console.log("login data", theForm.value);
     if(theForm.value.username == "admin" && theForm.value.password == "admin") {
       console.log("hello, admin");

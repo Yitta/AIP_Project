@@ -13,6 +13,7 @@ import { AddFormsComponent } from './add-form/add-form.component';
 import { NgbdDatepickerRange } from './components/datepicker-range/datepicker-range.component';
 import { CommentFormComponent } from './components/comment-form/comment-form.component'
 import { DiscountsService } from './discounts.service';
+import { AuthenticationService } from './authentication.service';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
@@ -24,7 +25,8 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
     HomePageComponent,
     AddFormsComponent,
     NgbdDatepickerRange,
-    CommentFormComponent,
+    CommentFormComponent
+,
     SignupFormComponent,
     LoginFormComponent,
     AdminPageComponent
@@ -37,7 +39,7 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
     HttpModule,
     NgbModule.forRoot() 
   ],
-  providers: [DiscountsService],
+  providers: [DiscountsService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
