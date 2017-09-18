@@ -1,18 +1,23 @@
 module.exports = {
-    development: {
-      url: 'mysql://root@localhost:3306/cheap_cheep',
-      dialect: 'mysql'
-    },
-      production: {
-      url: process.env.DATABASE_URL,
-      dialect: 'mysql'
-    },
-      staging: {
-      url: process.env.DATABASE_URL,
-      dialect: 'mysql'
-    },
-      test: {
-      url: process.env.DATABASE_URL,
-      dialect: 'mysql'
-    }
+  development: {
+    username: 'root',
+    password: null,
+    database: 'cheap_cheep',
+    host: 'localhost',
+    dialect: 'mysql'
+  },
+  production: {
+    username: '',
+    password: null,
+    database: '',
+    host: '',
+    dialect: 'mysql'
+  },
+  test: {
+    username: '',
+    password: null,
+    database: '',
+    host: '',
+    dialect: 'mysql'
+  }
 };

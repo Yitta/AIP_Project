@@ -21,10 +21,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     start: {
-      type: DataTypes.DATE
+      type: DataTypes.DATEONLY
     },
     end: {
-      type: DataTypes.DATE
+      type: DataTypes.DATEONLY
     },
     url: {
       type: DataTypes.STRING
