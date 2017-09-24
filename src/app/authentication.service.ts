@@ -11,8 +11,30 @@ export class AuthenticationService {
 
   constructor(private http: Http) { }
 
-  /* Login function. */
+  /* User Login function. */
   login(userInfo) {
+    return this.http.post(`/api/users/login`, userInfo, { headers: this.headers })
+      .map(res => {
+        let user = res.json();
+        if (user) {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          localStorage.setItem('currentUser', JSON.stringify(user));
+        }
+        return user;
+      })
+      .catch(this._errorHandler);
+  }
+
+  /* User Logout function. */
+  logout() {
+    return this.http.get(`/api/users/logout`, { headers: this.headers })
+      .map(res => {localStorage.removeItem('currentUser');
+      })
+      .catch(this._errorHandler);
+  }
+
+  /* User sign up function. */
+  signup(userInfo) {
     return this.http.post(`/api/users/login`, userInfo, { headers: this.headers })
       .map(res => res.json())
       .catch(this._errorHandler);
@@ -21,5 +43,13 @@ export class AuthenticationService {
   _errorHandler(error: Response) {
     console.error(error);
     return Observable.throw(error || "server error");
+  }
+
+  getAuthenticationState() {
+    if(localStorage.getItem('currentUser')){
+      return true;
+    }else{
+      return false;
+    }
   }
 }

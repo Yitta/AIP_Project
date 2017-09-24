@@ -29,11 +29,11 @@ export class LoginFormComponent implements OnInit {
       console.log("userInfo: ", resUserData);
       console.log("login data", theForm.value);
       if(resUserData.accountType == "admin") {
-        console.log("hello, admin");
         this.router.navigate(['/admin-page']);
+        window.location.reload();
       } else if(resUserData.accountType == "business" || resUserData.accountType == "student") {
-        console.log("hello, other user");
         this.router.navigate(['/home-page']);
+        window.location.reload();
       }       
     },
     resLoginError => alert("Invaild Login"));

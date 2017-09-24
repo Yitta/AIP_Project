@@ -1,3 +1,4 @@
+import { AuthGuard } from './auth.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -17,6 +18,7 @@ import { AuthenticationService } from './authentication.service';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
+import { AuthenticationStateComponent } from './components/authentication-state/authentication-state.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
     HomePageComponent,
     AddFormsComponent,
     NgbdDatepickerRange,
-    CommentFormComponent
+    CommentFormComponent,
+    AuthenticationStateComponent
 ,
     SignupFormComponent,
     LoginFormComponent,
@@ -39,7 +42,7 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
     HttpModule,
     NgbModule.forRoot() 
   ],
-  providers: [DiscountsService, AuthenticationService],
+  providers: [DiscountsService, AuthenticationService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
