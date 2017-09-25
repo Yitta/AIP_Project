@@ -7,16 +7,16 @@ import { SignupFormRoute } from './signup-form/signup-form.routes';
 import { LoginFormRoute } from './login-form/login-form.routes'
 
 export const routes: Routes = [
-    {
-        path: '',
-        redirectTo: '/home-page',
-        pathMatch: 'full'
-    },
     ...HomePageRoutes,
     ...ItemDetailRoutes,
     ...AddFormsRoutes,
     ...SignupFormRoute,
     ...LoginFormRoute,
-    ...AdminPageRoute
+    ...AdminPageRoute,
+    {
+        path: '**',
+        redirectTo: '/home-page',
+        pathMatch: 'full'
+    },
     
 ];

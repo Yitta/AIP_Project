@@ -32,14 +32,11 @@ export class LoginFormComponent implements OnInit {
         this.router.navigate(['/admin-page']);
         window.location.reload();
       } else if(resUserData.accountType == "business" || resUserData.accountType == "student") {
-        this.router.navigate(['/home-page']);
         window.location.reload();
+        this.router.navigate(['/home-page']);
       }       
     },
-    resLoginError => alert("Invaild Login"));
-
-    
-    
+    resLoginError => alert(resLoginError));
   }
 
 }

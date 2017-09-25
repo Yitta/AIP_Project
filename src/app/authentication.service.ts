@@ -28,28 +28,29 @@ export class AuthenticationService {
   /* User Logout function. */
   logout() {
     return this.http.get(`/api/users/logout`, { headers: this.headers })
-      .map(res => {localStorage.removeItem('currentUser');
+      .map(res => {
+        localStorage.removeItem('currentUser');
       })
       .catch(this._errorHandler);
   }
 
   /* User sign up function. */
   signup(userInfo) {
-    return this.http.post(`/api/users/login`, userInfo, { headers: this.headers })
+    return this.http.post(`/api/users/signup`, userInfo, { headers: this.headers })
       .map(res => res.json())
       .catch(this._errorHandler);
   }
 
+  /* Handle error message. */
   _errorHandler(error: Response) {
     console.error(error);
     return Observable.throw(error || "server error");
   }
 
-  getAuthenticationState() {
-    if(localStorage.getItem('currentUser')){
-      return true;
-    }else{
-      return false;
-    }
+  /* sign up as different type account. (need confirm endpoint and data structure)*/
+  signupType(userInfo) {
+    return this.http.post(`/api/users/signup`, userInfo, { headers: this.headers })
+      .map(res => res.json())
+      .catch(this._errorHandler);
   }
 }
