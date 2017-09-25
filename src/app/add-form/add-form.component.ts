@@ -46,11 +46,12 @@ export class AddFormsComponent implements OnInit {
     } else {
       this.msg = null;
       discount = JSON.stringify(this.userForm.value);
-      this.discountsService.createDiscounts(discount).subscribe(discounts => {
-        //TODO            
-      });
-      alert('Success!');
-      this.router.navigate(['/home-page']);
+      console.log(discount)
+      this.discountsService.createDiscounts(discount).subscribe(resDiscount => {
+        alert('Success!');
+        this.router.navigate(['/home-page']);            
+      },
+      resLoginError => alert(resLoginError));
     }
   }
 

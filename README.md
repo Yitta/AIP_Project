@@ -14,7 +14,19 @@ Make sure you have MySQL running on port `3306`. If you would like to recreate t
 
 ## How to run
 
-Run  `npm run build` to serve the project, typically at http://localhost:3000.
+- Clone this repository using this command in terminal (Git):
+
+`git clone https://github.com/Yitta/AIP_Project.git`
+- Change the current directory to the file repository using this command in terminal (Node):
+
+`cd AIP_Project`
+- Install the required node modules using this command in terminal (Node):
+
+`npm install`
+-  serve the project using this command in terminal (Node):
+
+`npm run build` 
+- The project would typically run at http://localhost:3000.
 
 ## Project principles
 
