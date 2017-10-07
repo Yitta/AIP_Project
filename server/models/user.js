@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       isEmail: true,
       unique: true
     },
-    passwordHash: {
+    password: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     accountType: {
       type: DataTypes.ENUM,
       allowNull: false,
+      field: 'account_type',
       values: ['student', 'business', 'admin']
     },
   }, {
@@ -35,23 +36,21 @@ module.exports = (sequelize, DataTypes) => {
 
   user.prototype.getUser = function() {
     var user = this.toJSON();
-    delete user.passwordHash;
+    delete user.password;
     return user;
   };
 
   user.prototype.generateHash = function(password) {
-    this.passwordHash = bcrypt.hashSync(password);
+    this.password = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
     return this;
   };
 
   user.prototype.validatePassword = function(password) {
-    console.log(password);
-    console.log(this.passwordHash);
-    return bcrypt.compareSync(password, this.passwordHash);
+    return bcrypt.compareSync(password, this.password);
   };
 
   user.associate = function(models) {
-    models.user.hasMany(models.comment);
+    models.user.hasMany(models.rating);
   };
 
   return user;

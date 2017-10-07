@@ -1,7 +1,7 @@
+const bCrypt = require('bcrypt-nodejs');
 const models = require('../models');
 
 module.exports = function(passport, user) {
-  const User = user;
   const LocalStrategy = require('passport-local').Strategy;
 
   passport.serializeUser((user, done) => done(null, user.id));
@@ -23,28 +23,52 @@ module.exports = function(passport, user) {
       passwordField: 'password',
       passReqToCallback: true
     }, (req, email, password, done) => {
-      models.user
-        .findOne({ where: { email: email } })
-        .then((user) => {
-          if (user) {
-            done(null, false, { error: 'Email in use' });
-          } else {
-            const newUser = models.user.build({
-              email: email,
-              passwordHash: '',
-              username: req.body.username,
-              accountType: req.body.accountType
-            });
-            newUser.generateHash(password);
-            newUser.save()
-              .then((user, created) => {
-                if (!user) {
-                  done(null, false);
-                }
-                done(null, user.getUser());
-              })
-          }
-        })
+      if (req.body.accountType === 'admin') {
+        done(null, false, { message: 'You are unauthorized to make an admin account' });
+      } else {
+        models.user
+          .findOne({
+            where: { 
+              $or: [
+                { email: email },
+                { username: req.body.username }
+              ]
+            }
+          })
+          .then((user) => {
+            if (user) {
+              if (user.email === email) {
+                done(null, false, { message: 'Email already in use' });
+              }
+              if (user.username === req.body.username) {
+                done(null, false, { message: 'Usernmae already in use' });
+              }
+            } else {
+              // Create the user
+              const newUser = models.user.build({
+                email: email,
+                password: '',
+                username: req.body.username,
+                accountType: req.body.accountType
+              });
+
+              // Hash that password
+              newUser.generateHash(password);
+
+              // Save the user
+              newUser.save()
+                .then((user, created) => {
+                  if (!user) {
+                    done(null, false);
+                  }
+                  done(null, user.getUser());
+                })
+                .catch((err) => {
+                  done(null, false, { message: err });
+                });
+            }
+          });
+      }
     }
   ));
 
@@ -58,11 +82,9 @@ module.exports = function(passport, user) {
           if (!user) {
             return done(null, false, { error: 'User does not exist' });
           }
-
           if (!user.validatePassword(password)) {
             return done(null, false, { error: 'Incorrect password' });
           }
-
           return done(null, user.getUser());
         })
         .catch((err) => {

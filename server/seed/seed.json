@@ -1,0 +1,87 @@
+[
+  {
+    "model": "user",
+    "data": {
+      "username": "admin",
+      "email": "admin@cheapcheep.life",
+      "password": "admin",
+      "accountType": "admin"
+    }
+  },
+  {
+    "model": "user",
+    "data": {
+      "username": "testBusiness1",
+      "email": "business1@test.com",
+      "password": "password",
+      "accountType": "business"
+    }
+  },
+  {
+    "model": "user",
+    "data": {
+      "username": "testBusiness2",
+      "email": "business2@test.com",
+      "password": "password",
+      "accountType": "business"
+    }
+  },
+  {
+    "model": "user",
+    "data": {
+      "username": "testStudent1",
+      "email": "student1@test.uts.edu.au",
+      "password": "password",
+      "accountType": "student"
+    }
+  },
+  {
+    "model": "user",
+    "data": {
+      "username": "testStudent2",
+      "email": "student2@test.uts.edu.au",
+      "password": "password",
+      "accountType": "student"
+    }
+  },
+  {
+    "model": "discount",
+    "data": {
+      "creatorId": 2,
+      "title": "Test Discount 1",
+      "discount": "$1 off",
+      "isOnline": true,
+      "isInPerson": false,
+      "isCoupon": true,
+      "start": null,
+      "end": null,
+      "url": "http://business1.com.au",
+      "address": null,
+      "couponCodes": "ABC123",
+      "description": "$1 off any purchase with coupon",
+      "finePrint": "Can only be used once per day",
+      "status": "active",
+      "category": "Clothes"
+    }
+  },
+  {
+    "model": "discount",
+    "data": {
+      "creatorId": 3,
+      "title": "Test Discount 2",
+      "discount": "25% off",
+      "isOnline": false,
+      "isInPerson": true,
+      "isCoupon": false,
+      "start": null,
+      "end": null,
+      "url": null,
+      "address": "200 George Street Sydney NSW 2000",
+      "couponCodes": null,
+      "description": "25% off selected dishes. See in store for details.",
+      "finePrint": "Must present student ID",
+      "status": "active",
+      "category": "Food"
+    }
+  }
+]

@@ -1,5 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
   const discount = sequelize.define('discount', {
+    creatorId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      field: "creator_id"
+    },
     title: {
       type: DataTypes.STRING,
       allowNull: false
@@ -10,15 +15,18 @@ module.exports = (sequelize, DataTypes) => {
     },
     isOnline: {
       type: DataTypes.BOOLEAN,
-      allowNull: false
+      allowNull: false,
+      field: 'is_online'
     },
     isInPerson: {
       type: DataTypes.BOOLEAN,
-      allowNull: false
+      allowNull: false,
+      field: 'is_in_person'
     },
     isCoupon: {
       type: DataTypes.BOOLEAN,
-      allowNull: false
+      allowNull: false,
+      field: 'is_coupon'
     },
     start: {
       type: DataTypes.DATEONLY
@@ -34,12 +42,14 @@ module.exports = (sequelize, DataTypes) => {
     },
     couponCodes: {
       type: DataTypes.STRING,
+      field: 'coupon_codes'
     },
     description: {
       type: DataTypes.STRING
     },
     finePrint: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      field: 'fine_print'
     },
     status: {
       type: DataTypes.STRING
@@ -48,11 +58,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING
     }
   }, {
-    underscored: true,
+    underscored: true
   });
 
   discount.associate = function(models) {
-    models.discount.hasMany(models.comment);
+    models.discount.hasMany(models.rating);
+    models.discount.belongsTo(models.user, { foreignKey: 'creatorId' });
   };
 
   return discount;

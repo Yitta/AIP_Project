@@ -1,13 +1,13 @@
-var fs        = require('fs');
-var path      = require('path');
-var Sequelize = require('sequelize');
-var basename  = path.basename(module.filename);
-var env       = process.env.NODE_ENV || 'development';
-var config    = require(__dirname + '/../config/config')[env];
-var sequelize = new Sequelize(config.database, config.username, config.password, config);
-var db        = {};
+const fs = require('fs');
+const path = require('path');
+const Sequelize = require('sequelize');
+const basename = path.basename(module.filename);
+const env = process.env.NODE_ENV || 'development';
+const config = require(__dirname + '/../config/config')[env];
+const sequelize = new Sequelize(config.database, config.username, config.password, config);
+const db = {};
 
-//Load all the models
+// Load all the models
 fs
   .readdirSync(__dirname)
   .filter(function(file) {
@@ -24,7 +24,7 @@ Object.keys(db).forEach(function(modelName) {
   }
 });
 
-//Export the db Object
+// Export the db Object
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
