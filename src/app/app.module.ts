@@ -7,6 +7,8 @@ import { routes } from './app.routes';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpModule } from '@angular/http';
+import { AgmCoreModule } from '@agm/core';
+import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 
 import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -19,6 +21,7 @@ import { SignupFormComponent } from './signup-form/signup-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { AuthenticationStateComponent } from './components/authentication-state/authentication-state.component';
+import {MapComponent} from './components/map/map.component'
 
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ import { AuthenticationStateComponent } from './components/authentication-state/
     AddFormsComponent,
     NgbdDatepickerRange,
     CommentFormComponent,
-    AuthenticationStateComponent
+    AuthenticationStateComponent,
+    MapComponent
 ,
     SignupFormComponent,
     LoginFormComponent,
@@ -40,7 +44,11 @@ import { AuthenticationStateComponent } from './components/authentication-state/
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    NgbModule.forRoot() 
+    NgbModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo'
+    }),
+    AgmSnazzyInfoWindowModule 
   ],
   providers: [DiscountsService, AuthenticationService, AuthGuard],
   bootstrap: [AppComponent]
