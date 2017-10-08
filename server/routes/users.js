@@ -1,27 +1,36 @@
 const express = require('express');
 const models = require('../models');
-const passport = require('passport');
+const isLoggedIn = require('../middleware/isLoggedIn');
+const checkRole = require('../middleware/checkRole');
 
 const router = express.Router();
 
-/* POST a new user. */
-router.post('/signup', passport.authenticate('local-signup'), (req, res) => res.status(201).json(req.user));
-
-/* POST user login */
-router.post('/login', passport.authenticate('local-login'), (req, res) => res.json(req.user));
-
-/* GET user logout */
-router.get('/logout', (req, res) => {
-  req.session.destroy(() => {
-    res.json({ message: "logged out" });
-  });
+/* GET all users. */
+router.get('/', isLoggedIn, checkRole.isAdmin, (req, res) => {
+  const startAt = req.query.startAt || 0;
+  const max = Math.min(25, req.query.max || 25);
+  models.users
+    .findAndCountAll({
+      offset: startAt,
+      limit: max
+    })
+    .then((results) => res.json({
+      startAt: startAt,
+      total: results.count,
+      max: max,
+      users: results.rows
+    }));
 });
 
-/* GET a user */
-router.get('/:id', (req, res) => {
-  models.user
-    .findById(req.params.id)
-    .then((user) => res.json(user));
+/* DELETE a user */
+// TODO: Edit this so only admins and the person who created the discount can access
+// TODO: Delete associated data
+router.delete('/:id', isLoggedIn, (req, res) => {
+  models.movie
+    .destroy({
+      where: { id: req.params.id }
+    })
+    .then((result) => res.status(204));
 });
 
 module.exports = router;

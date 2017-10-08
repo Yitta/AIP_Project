@@ -5,8 +5,8 @@ const forwarded = require('forwarded-http/lib/middleware');
 const router = express.Router();
 
 const endpoints = [
+  { name: 'auth' },
   { name: 'discounts' },
-  { name: 'users' },
   { name: 'students' }
 ]
 
