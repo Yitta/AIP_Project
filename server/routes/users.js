@@ -23,10 +23,9 @@ router.get('/', isLoggedIn, checkRole.isAdmin, (req, res) => {
 });
 
 /* DELETE a user */
-// TODO: Edit this so only admins and the person who created the discount can access
 // TODO: Delete associated data
-router.delete('/:id', isLoggedIn, (req, res) => {
-  models.movie
+router.delete('/:id', isLoggedIn, checkRole.isAdmin, (req, res) => {
+  models.users
     .destroy({
       where: { id: req.params.id }
     })
