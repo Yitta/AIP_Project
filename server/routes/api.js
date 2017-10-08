@@ -7,7 +7,8 @@ const router = express.Router();
 const endpoints = [
   { name: 'auth' },
   { name: 'discounts' },
-  { name: 'students' }
+  { name: 'students' },
+  { name: 'users' }
 ]
 
 router.use(forwarded(), (req, res, next) => {
