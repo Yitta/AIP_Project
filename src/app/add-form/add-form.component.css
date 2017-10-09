@@ -9,3 +9,19 @@
 .error-msg {
     color: red;
 }
+
+.cardStyle {
+  margin:30px auto;
+  max-width: 700px;
+  border: 2px solid #17a2b8;
+  padding: 30px 40px;
+  border-radius: 5px
+}
+
+.fontStyle {
+  color: #17a2b8;
+}
+
+.img {
+  margin: 0 10px 15px 0;
+}

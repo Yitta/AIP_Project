@@ -21,6 +21,21 @@ To set up the database and seed some data, run `npm run seed`. It is recommended
 Run  `npm run build` to serve the project, typically at http://localhost:3000. This will refresh when there are changes to the API layer, however you will need to restart it for front-end changes.
 
 If you are solely editing the front-end, run `ng serve` to enable auto refresh.
+=======
+- Clone this repository using this command in terminal (Git):
+
+`git clone https://github.com/Yitta/AIP_Project.git`
+- Change the current directory to the file repository using this command in terminal (Node):
+
+`cd AIP_Project`
+- Install the required node modules using this command in terminal (Node):
+
+`npm install`
+-  serve the project using this command in terminal (Node):
+
+`npm run build` 
+- The project would typically run at http://localhost:3000.
+>>>>>>> comment-login
 
 ## Project principles
 

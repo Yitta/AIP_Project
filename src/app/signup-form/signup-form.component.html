@@ -1,0 +1,135 @@
+<div class="container">
+  <div class="cardBg">
+    <div class="form-inline">
+      <img src="../assets/user.svg" width="30" height="30" class="d-inline-block align-top img" alt="">
+      <h4>Sing Up</h4>
+    </div>
+    <form (ngSubmit)="handleSignup(signupForm)" #signupForm="ngForm">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="firstname" class="col-form-label">Username *</label>
+          <input type="text" class="form-control" id="firstname" placeholder="Username" name="username" required [(ngModel)]="signupForm.username"
+            #username="ngModel">
+          <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
+            <p *ngIf="username.errors?.required">Username is required</p>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputPassword4" class="col-form-label">Password *</label>
+          <input type="password" class="form-control" id="inputPassword4" placeholder="Password" name="password" required [(ngModel)]="signupForm.password" #password="ngModel">
+          <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+              <p *ngIf="password.errors?.required">Password is required</p>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputEmail4" class="col-form-label">Account Type *</label>
+          <select class="form-control" id="select" ngbTooltip="If you sign up as a student Account, you must use UTS email to register."
+            placement="bottom" name="accountType" required [(ngModel)]="signupForm.accountType" #accountType="ngModel">
+            <option value="student">Student</option>
+            <option value="business">Business</option>
+          </select>
+          <div [hidden]="accountType.valid || accountType.pristine" class="alert alert-danger">
+              <p *ngIf="accountType.errors?.required">Account Type is required</p>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputEmail4" class="col-form-label">Email *</label>
+          <input type="email" class="form-control" id="inputEmail4" ngbTooltip="If you sign up as a student Account, you must use UTS email to register."
+            placement="bottom" placeholder="Email" name="email" required [(ngModel)]="signupForm.email" #email="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+          <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+            <p *ngIf="email.errors?.required">Email is required</p>
+            <p *ngIf="email.errors?.pattern">Invalid Email Address</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- <hr>
+
+      <p>Account Type *</p>
+
+      <ngb-accordion [closeOthers]="true">
+        <ngb-panel id="static-1">
+          <ng-template ngbPanelTitle>
+            <span class="badge badge-info">Student</span>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <form>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="firstname" class="col-form-label">First Name *</label>
+                  <input type="text" class="form-control" id="firstname" placeholder="First Name">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4" class="col-form-label">Last Name *</label>
+                  <input type="text" class="form-control" id="inputPassword4" placeholder="Last Name">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="gender" class="col-form-label">Gender *</label>
+                  <select id="gender" class="form-control">
+                      <option selected>Choose...</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="dob" class="col-form-label">Date of Birth *</label>
+                  <input type="date" class="form-control" id="dob" placeholder="">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="los" class="col-form-label">Level of Study *</label>
+                  <select id="los" class="form-control">
+                      <option selected>Choose...</option>
+                      <option value="undergraduate">Undergraduate</option>
+                      <option value="postgraduate">Postgraduate</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="egy" class="col-form-label">Expected Graduation Year *</label>
+                  <input type="text" class="form-control" id="egy" placeholder="">
+                </div>
+              </div>
+            </form>
+          </ng-template>
+        </ngb-panel>
+
+        <ngb-panel id="static-2">
+          <ng-template ngbPanelTitle>
+            <span class="badge badge-info">Business</span>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <form>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="companyname" class="col-form-label">Company Name *</label>
+                  <input type="text" class="form-control" id="companyname" placeholder="Company Name">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="contactNumber" class="col-form-label">Contact Number *</label>
+                  <input type="text" class="form-control" id="contactNumber" placeholder="Contact Number">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputAddress2" class="col-form-label">Address *</label>
+                <input type="text" class="form-control" id="inputAddress2" placeholder="123 Gegroge Street">
+              </div>
+              <div class="form-group">
+                <label for="url" class="col-form-label">Official Url</label>
+                <input type="text" class="form-control" id="url" placeholder="Official Url">
+              </div>
+            </form>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion> -->
+
+      <h6><a href="/log-in" class="linkStyle formStyle">Already have an account?<img width="20" height="20" class="d-inline-block align-top" src="../../assets/on.svg"/></a></h6>
+      <button [disabled]="!signupForm.valid" type="submit" class="btn btn-info btnStyle">Sign Up</button>
+    </form>
+  </div>
+</div>

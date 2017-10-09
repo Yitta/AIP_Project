@@ -13,16 +13,16 @@ export class HomePageComponent {
 
   activeDiscount;
 
-  constructor(private DiscountsService: DiscountsService, 
+  constructor(private discountsService: DiscountsService, 
               private router: Router) {}
   
   ngOnInit() {
-    this.DiscountsService.getDiscounts().subscribe(discounts => {
+    this.discountsService.getDiscountList().subscribe(discounts => {
       this.discounts = discounts.discounts;
     });
   }
 
   selectDiscount(discount) {
-    this.activeDiscount = discount;
+    this.router.navigate(['/home-page', discount.id]);
   }
 }
