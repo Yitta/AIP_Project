@@ -26,10 +26,24 @@ export class DiscountsService {
                    .map(res => res.json());
       }
 
-      /* GET a discount */
+      /* GET a discount */ 
       getDiscount(id: number) {
         const url = `/api/discounts/${id}`;
         return this.http.get(url)
+        .map((res: Response) => res.json());
+      }
+      
+      /* DELETE a discount */
+      deleteDiscount(id: number){
+        const url = `/api/discounts/${id}`;
+        return this.http.delete(url)
+        .map((res: Response) => res.json());
+      }
+
+      /* PUT edit a discount */
+      editDiscount(id: number){
+        const url = `/api/discounts/${id}`;
+        return this.http.delete(url)
         .map((res: Response) => res.json());
       }
 }
