@@ -22,7 +22,7 @@ Run  `npm run build` to serve the project, typically at http://localhost:3000. T
 
 If you are solely editing the front-end, run `ng serve` to enable auto refresh.
 
-###Detail Instruction
+### Detail Instruction
 - Clone this repository using this command in terminal (Git):
 
 `git clone https://github.com/Yitta/AIP_Project.git`
