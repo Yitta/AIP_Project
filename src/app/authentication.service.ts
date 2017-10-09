@@ -13,7 +13,7 @@ export class AuthenticationService {
 
   /* User Login function. */
   login(userInfo) {
-    return this.http.post(`/api/users/login`, userInfo, { headers: this.headers })
+    return this.http.post(`/api/auth/login`, userInfo, { headers: this.headers })
       .map(res => {
         let user = res.json();
         if (user) {
@@ -27,7 +27,7 @@ export class AuthenticationService {
 
   /* User Logout function. */
   logout() {
-    return this.http.get(`/api/users/logout`, { headers: this.headers })
+    return this.http.get(`/api/auth/logout`, { headers: this.headers })
       .map(res => {
         localStorage.removeItem('currentUser');
       })
@@ -36,7 +36,7 @@ export class AuthenticationService {
 
   /* User sign up function. */
   signup(userInfo) {
-    return this.http.post(`/api/users/signup`, userInfo, { headers: this.headers })
+    return this.http.post(`/api/auth/signup`, userInfo, { headers: this.headers })
       .map(res => res.json())
       .catch(this._errorHandler);
   }
