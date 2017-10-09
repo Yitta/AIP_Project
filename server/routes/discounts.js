@@ -1,6 +1,7 @@
 const express = require('express');
 const models = require('../models');
 const isLoggedIn = require('../middleware/isLoggedIn');
+const checkRole = require('../middleware/checkRole');
 
 const router = express.Router();
 
@@ -22,10 +23,12 @@ router.get('/', (req, res) => {
 });
 
 /* POST a new discount. */
-// TODO: Edit this so only admins and businesses can access
-router.post('/', isLoggedIn, (req, res) => {
+router.post('/', isLoggedIn, checkRole.isNotStudent, (req, res) => {
+  const discountJson = req.body;
+  discountJson.creatorId = req.user.id;
+
   models.discount
-    .create(req.body)
+    .create(discountJson)
     .then((discount) => res.status(201).json(discount));
 });
 
@@ -37,30 +40,49 @@ router.get('/:id', (req, res) => {
 });
 
 /* PUT edit a discount */
-// TODO: Edit this so only admins and the person who created the discount can access
-router.put('/:id', isLoggedIn, (req, res) => {
+router.put('/:id', isLoggedIn, checkRole.isNotStudent, (req, res) => {
+  // Check if user is discount owner or admin
   models.discount
-    .update(
-      req.body,
-      { where: { id: req.params.id } }
-    )
-    .then((discount) => res.json(discount));
+    .findById(req.params.id)
+    .then((discount) => {
+      if (discount.creatorId === req.user.id || req.user.accountType === 'admin') {
+        models.discount
+          .update(req.body, {
+            where: { id: req.params.id }
+          })
+          .then(() => {
+            models.discount
+              .findById(req.params.id)
+              .then((updatedDiscount) => res.json(updatedDiscount));
+          });
+      } else {
+        res.status(401).json({ message: `Unauthorized - Can't edit this discount.` });
+      }
+    });
 });
 
 /* DELETE a discount */
-// TODO: Edit this so only admins and the person who created the discount can access
 router.delete('/:id', isLoggedIn, (req, res) => {
-  models.movie
-    .destroy({
-      where: { id: req.params.id }
-    })
-    .then((result) => res.status(204));
+  models.discount
+    .findById(req.params.id)
+    .then((discount) => {
+      // Check if user is discount owner or admin
+      if (discount.creatorId === req.user.id || req.user.accountType === 'admin') {
+        models.discount
+          .destroy({
+            where: { id: req.params.id }
+          })
+          .then((result) => res.status(204).json({ message: 'Successfully deleted.' }));
+      } else {
+        res.status(401).json({ message: `Unauthorized - Can't delete this discount.` });
+      }
+  });
 });
 
-router.get('/:id/comments', (req, res) => {
+router.get('/:id/ratings', (req, res) => {
   const startAt = req.query.startAt || 0;
   const max = Math.min(25, req.query.max || 25);
-  models.comment
+  models.rating
     .findAndCountAll({
       where: { discount_id: req.params.id },
       offset: startAt,
@@ -74,11 +96,13 @@ router.get('/:id/comments', (req, res) => {
     }));
 });
 
-router.post('/:id/comments', isLoggedIn, (req, res) => {
-  models.comment
+/* POST a discount */
+router.post('/:id/ratings', isLoggedIn, checkRole.isStudent, (req, res) => {
+  models.rating
     .create({
       discount_id: req.params.id,
-      user_id: req.body.userId,
+      user_id: req.user.id,
+      rating: req.body.rating,
       comment: req.body.comment
     })
     .then((comment) => res.status(201).json(comment));

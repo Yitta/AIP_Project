@@ -10,10 +10,18 @@ You will need:
 
 ## Before you start
 
-Make sure you have MySQL running on port `3306`. If you would like to recreate the database, run `DROP DATABASE aip_movies;` then serve the project.
+Make sure you have MySQL running on port `3306`.
 
 ## How to run
 
+To set up the database and seed some data, run `npm run seed`. It is recommended to do this when the model has been changed.
+
+ **WARNING:** If you have already created a database of the same name eg. `cheapcheep_dev`, this will delete that database and all data contained. You have been warned.
+
+Run  `npm run build` to serve the project, typically at http://localhost:3000. This will refresh when there are changes to the API layer, however you will need to restart it for front-end changes.
+
+If you are solely editing the front-end, run `ng serve` to enable auto refresh.
+=======
 - Clone this repository using this command in terminal (Git):
 
 `git clone https://github.com/Yitta/AIP_Project.git`
@@ -27,6 +35,7 @@ Make sure you have MySQL running on port `3306`. If you would like to recreate t
 
 `npm run build` 
 - The project would typically run at http://localhost:3000.
+>>>>>>> comment-login
 
 ## Project principles
 

@@ -3,7 +3,7 @@ function isLoggedIn(req, res, next) {
     return next();
   }
 
-  res.status(401).json({ error: 'Unauthorized' });
+  res.status(401).json('Unauthorized - Not logged in');
 }
 
 module.exports = isLoggedIn;
