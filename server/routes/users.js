@@ -7,8 +7,8 @@ const router = express.Router();
 
 /* GET all users. */
 router.get('/', isLoggedIn, checkRole.isAdmin, (req, res) => {
-  const startAt = req.query.startAt || 0;
-  const max = Math.min(25, req.query.max || 25);
+  const startAt = parseInt(req.query.startAt) || 0;
+  const max = parseInt(req.query.max) || 25;
   models.users
     .findAndCountAll({
       offset: startAt,
