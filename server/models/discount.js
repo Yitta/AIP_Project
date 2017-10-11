@@ -56,6 +56,16 @@ module.exports = (sequelize, DataTypes) => {
     },
     category: {
       type: DataTypes.STRING
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      field: "created_at"
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      field: "updated_at"
     }
   }, {
     underscored: true
