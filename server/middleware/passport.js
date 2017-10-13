@@ -49,7 +49,8 @@ module.exports = function(passport, user) {
                 email: email,
                 password: '',
                 username: req.body.username,
-                accountType: req.body.accountType
+                accountType: req.body.accountType,
+                businessName: req.body.businessName || ""
               });
 
               // Hash that password
