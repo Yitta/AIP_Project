@@ -56,7 +56,7 @@ To contribute to this project we should abide by some coding and contributing pr
 
 ## CheapCheep API Documentation
 
-Swagger used to document CheapCheep APIs
+Swagger is used to document CheapCheep APIs
 
 ### Installing dependencies
 
@@ -66,7 +66,7 @@ This will install swagger globally.
 
 ### How to view and/or edit
 
-  Open `cheapcheep-api` in terminal and run
+Open `cheapcheep-api` in terminal and run
 
   `swagger project edit`
 

@@ -25,7 +25,7 @@ router.get('/', isLoggedIn, checkRole.isAdmin, (req, res) => {
     }));
 });
 
-/* GET all discounts that match the search criteria */
+/* GET all users that match the search criteria */
 router.get('/search', (req, res) => {
   const startAt = req.query.startAt || 0;
   const max = Math.min(25, req.query.max || 25);
@@ -55,6 +55,13 @@ router.get('/search', (req, res) => {
       max: max,
       users: results.rows
     }));
+});
+
+/* GET a user */
+router.get('/:id', (req, res) => {
+  models.user
+    .findById(req.params.id)
+    .then((user) => res.json(user));
 });
 
 /* DELETE a user */
