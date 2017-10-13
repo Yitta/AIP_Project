@@ -14,7 +14,8 @@
       "username": "testBusiness1",
       "email": "business1@test.com",
       "password": "password",
-      "accountType": "business"
+      "accountType": "business",
+      "businessName": "Business 1"
     }
   },
   {
@@ -23,7 +24,8 @@
       "username": "testBusiness2",
       "email": "business2@test.com",
       "password": "password",
-      "accountType": "business"
+      "accountType": "business",
+      "businessName": "Business 2"
     }
   },
   {
