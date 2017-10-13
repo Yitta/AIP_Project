@@ -80,6 +80,38 @@ paths:
             $ref: "#/definitions/DiscountRes"
         500:
           description: "Internal server error"
+  /discounts/search:
+    get:
+      tags:
+      - "discount"
+      - "public"
+      summary: "Get all discounts per search criteria"
+      operationId: "getDiscountsByQuery"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "query"
+        in: "query"
+        type: "string"
+        required: false
+      - name: "startAt"
+        in: "query"
+        type: "integer"
+        required: false
+      - name: "max"
+        description: "max number of results to return"
+        in: "query"
+        type: "integer"
+        required: false
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/ListOfDiscounts"
+        500:
+          description: "Internal server error"
   /discount/{discountId}:
     get:
       tags:
@@ -229,25 +261,115 @@ paths:
       tags:
       - "user"
       - "admin"
-      summary: "Create user"
-      description: "This is called when signing up a new user"
-      operationId: "createUser"
+      summary: "Get all user"
+      operationId: "getUsers"
       produces:
       - "application/json"
       parameters:
-      - in: "body"
-        name: "body"
-        description: "User object"
-        required: true
-        schema:
-          $ref: "#/definitions/User"
+      - name: "startAt"
+        in: "query"
+        type: "integer"
+        required: false
+      - name: "max"
+        description: "max number of results to return"
+        in: "query"
+        type: "integer"
+        required: false
       responses:
         200:
           description: "successful operation"
+          schema:
+            $ref: "#/definitions/ListOfUsers"
+        500:
+          description: "Internal server error"
+  /users/search:
+    get:
+      tags:
+      - "user"
+      - "admin"
+      summary: "Get all users per search criteria"
+      operationId: "getUsersByQuery"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "query"
+        in: "query"
+        type: "string"
+        required: false
+      - name: "startAt"
+        in: "query"
+        type: "integer"
+        required: false
+      - name: "max"
+        description: "max number of results to return"
+        in: "query"
+        type: "integer"
+        required: false
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/ListOfUsers"
+        500:
+          description: "Internal server error"
+  /users/{userId}:
+    get:
+      tags:
+      - "user"
+      - "admin"
+      summary: "Find user by id"
+      operationId: "getUserById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "Id of user"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        400:
+          description: "Invalid id supplied"
+        404:
+          description: "User not found"
+        500:
+          description: "Internal server error"
+    delete:
+      tags:
+      - "user"
+      - "admin"
+      summary: "Delete user by id"
+      operationId: "deleteUserById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "Id of user"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        400:
+          description: "Invalid id supplied"
+        404:
+          description: "User not found"
+        500:
+          description: "Internal server error"
   /auth/login:
     post:
       tags:
       - "auth"
+      - "public"
       summary: "Logs user into the system"
       operationId: "login"
       produces:
@@ -258,16 +380,19 @@ paths:
         description: "User object"
         required: true
         schema:
-          $ref: "#/definitions/User"
+          $ref: "#/definitions/Login"
       responses:
         200:
           description: "Successful operation"
+          schema:
+            $ref: "#/definitions/User"
         400:
           description: "Invalid username/password supplied"
   /auth/signup:
     post:
       tags:
       - "auth"
+      - "public"
       summary: "Logs user into the system"
       operationId: "signup"
       produces:
@@ -278,16 +403,19 @@ paths:
         description: "User object"
         required: true
         schema:
-          $ref: "#/definitions/User"
+          $ref: "#/definitions/Signup"
       responses:
-        200:
+        201:
           description: "Successful operation"
+          schema:
+            $ref: "#/definitions/User"
         400:
           description: "Invalid username/password supplied"
   /auth/logout:
     get:
       tags:
       - "auth"
+      - "public"
       summary: "Logs out current logged in user session"
       operationId: "logout"
       produces:
@@ -299,21 +427,68 @@ paths:
         500:
           description: "Internal server error"
 definitions:
-  User:
+  ListOfUsers:
+    type: "object"
+    properties:
+      startAt:
+        type: "integer"
+        description: "Start index of search"
+      total:
+        type: "integer"
+        description: "Total results in db"
+      max:
+        type: "integer"
+        description: "Results returned"
+      discounts:
+        type: "array"
+        description: "Users for current page"
+        items:
+          $ref: "#/definitions/User"
+  Login:
+    type: "object"
+    required:
+    - "username"
+    - "password"
+    properties:
+      username:
+        type: "string"
+        example: "admin"
+      password:
+        type: "string"
+  Signup:
     type: "object"
     required:
     - "email"
-    - "passwordHash"
+    - "password"
     - "username"
     - "accountType"
+    properties:
+      email:
+        type: "string"
+        example: "admin@cheapcheep.life"
+      password:
+        type: "string"
+      username:
+        type: "string"
+        example: "admin"
+      accountType:
+        type: "string"
+        description: "account type"
+        enum:
+        - "student"
+        - "business"
+        - "admin"
+      businessName:
+        type: "string"
+        example: "Cheap Cheep"
+  User:
+    type: "object"
     properties:
       id:
         type: "integer"
       email:
         type: "string"
         example: "admin@cheapcheep.life"
-      passwordHash:
-        type: "string"
       username:
         type: "string"
         example: "admin"

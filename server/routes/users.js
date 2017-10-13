@@ -57,6 +57,13 @@ router.get('/search', (req, res) => {
     }));
 });
 
+/* GET a user */
+router.get('/:id', (req, res) => {
+  models.user
+    .findById(req.params.id)
+    .then((user) => res.json(user));
+});
+
 /* DELETE a user */
 // TODO: Delete associated data
 router.delete('/:id', isLoggedIn, checkRole.isAdmin, (req, res) => {

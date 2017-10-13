@@ -17,11 +17,4 @@ router.get('/logout', (req, res) => {
   });
 });
 
-/* GET a user */
-router.get('/:id', (req, res) => {
-  models.user
-    .findById(req.params.id)
-    .then((user) => res.json(user));
-});
-
 module.exports = router;
