@@ -40,6 +40,12 @@ module.exports = (sequelize, DataTypes) => {
     address: {
       type: DataTypes.STRING
     },
+    lat: {
+      type: DataTypes.DOUBLE
+    },
+    long: {
+      type: DataTypes.DOUBLE
+    },
     couponCodes: {
       type: DataTypes.STRING,
       field: 'coupon_codes'
