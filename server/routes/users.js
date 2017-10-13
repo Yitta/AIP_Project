@@ -9,10 +9,45 @@ const router = express.Router();
 router.get('/', isLoggedIn, checkRole.isAdmin, (req, res) => {
   const startAt = req.query.startAt || 0;
   const max = Math.min(25, req.query.max || 25);
-  models.users
+  models.user
     .findAndCountAll({
       offset: startAt,
-      limit: max
+      limit: max,
+      attributes: {
+        exclude: [ 'password' ]
+      }
+    })
+    .then((results) => res.json({
+      startAt: startAt,
+      total: results.count,
+      max: max,
+      users: results.rows
+    }));
+});
+
+/* GET all users that match the search criteria */
+router.get('/search', (req, res) => {
+  const startAt = req.query.startAt || 0;
+  const max = Math.min(25, req.query.max || 25);
+  models.user
+    .findAndCountAll({
+      where: {
+        $or: [{
+          username: {
+            $like: `%${req.query.query}%`
+          }
+        }, {
+          email: {
+            $like: `%${req.query.query}%`
+          }
+        }]
+      },
+      offset: startAt,
+      limit: max,
+      order: [['createdAt', 'DESC']],
+      attributes: {
+        exclude: [ 'password' ]
+      }
     })
     .then((results) => res.json({
       startAt: startAt,
@@ -25,7 +60,7 @@ router.get('/', isLoggedIn, checkRole.isAdmin, (req, res) => {
 /* DELETE a user */
 // TODO: Delete associated data
 router.delete('/:id', isLoggedIn, checkRole.isAdmin, (req, res) => {
-  models.users
+  models.user
     .destroy({
       where: { id: req.params.id }
     })
