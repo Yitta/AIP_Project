@@ -21,7 +21,8 @@ import { SignupFormComponent } from './signup-form/signup-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { AuthenticationStateComponent } from './components/authentication-state/authentication-state.component';
-import {MapComponent} from './components/map/map.component'
+import { MapComponent } from './components/map/map.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component'
 
 @NgModule({
   declarations: [
@@ -32,12 +33,12 @@ import {MapComponent} from './components/map/map.component'
     NgbdDatepickerRange,
     CommentFormComponent,
     AuthenticationStateComponent,
-    MapComponent
-,
+    MapComponent,
+    SearchBarComponent,
     SignupFormComponent,
     LoginFormComponent,
     AdminPageComponent
-],
+  ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
@@ -48,9 +49,9 @@ import {MapComponent} from './components/map/map.component'
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo'
     }),
-    AgmSnazzyInfoWindowModule 
+    AgmSnazzyInfoWindowModule
   ],
   providers: [DiscountsService, AuthenticationService, AuthGuard],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

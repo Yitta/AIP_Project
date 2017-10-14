@@ -29,7 +29,7 @@ export class AddFormsComponent implements OnInit {
     this.userForm = this.formBuilder.group({
       category: [null, [Validators.required, Validators.minLength(5)]],
       title: [null, [Validators.required, Validators.minLength(5)]],
-      discount: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(9)]],
+      discount: [null, [Validators.required]],
       description: [null, Validators.required],
       isOnline: [true, Validators.required],
       isInPerson: [true, Validators.required],
