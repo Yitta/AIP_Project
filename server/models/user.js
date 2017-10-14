@@ -23,6 +23,18 @@ module.exports = (sequelize, DataTypes) => {
       field: 'account_type',
       values: ['student', 'business', 'admin']
     },
+    businessName: {
+      type: DataTypes.STRING,
+      field: "business_name"
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      field: "created_at"
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      field: "updated_at"
+    }
   }, {
     underscored: true,
     validate: {

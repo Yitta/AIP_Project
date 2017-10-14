@@ -5,6 +5,35 @@ const checkRole = require('../middleware/checkRole');
 
 const router = express.Router();
 
+/* GET all discounts that match the search criteria */
+router.get('/search', (req, res) => {
+  const startAt = req.query.startAt || 0;
+  const max = Math.min(25, req.query.max || 25);
+  models.discount
+    .findAndCountAll({
+      where: {
+        $or: [{
+          title: {
+            $like: `%${req.query.query}%`
+          }
+        }, {
+          description: {
+            $like: `%${req.query.query}%`
+          }
+        }]
+      },
+      offset: startAt,
+      limit: max,
+      order: [['createdAt', 'DESC']]
+    })
+    .then((results) => res.json({
+      startAt: startAt,
+      total: results.count,
+      max: max,
+      discounts: results.rows
+    }));
+});
+
 /* GET all discounts */
 router.get('/', (req, res) => {
   const startAt = parseInt(req.query.startAt) || 0;
@@ -81,6 +110,7 @@ router.delete('/:id', isLoggedIn, (req, res) => {
   });
 });
 
+/* GET all ratings on a discount */
 router.get('/:id/ratings', (req, res) => {
   const startAt = req.query.startAt || 0;
   const max = Math.min(25, req.query.max || 25);
@@ -88,7 +118,8 @@ router.get('/:id/ratings', (req, res) => {
     .findAndCountAll({
       where: { discount_id: req.params.id },
       offset: startAt,
-      limit: max
+      limit: max,
+      order: [['createdAt', 'DESC']]
     })
     .then((results) => res.json({
       startAt: startAt,
@@ -98,7 +129,7 @@ router.get('/:id/ratings', (req, res) => {
     }));
 });
 
-/* POST a discount */
+/* POST a ratings on a discount */
 router.post('/:id/ratings', isLoggedIn, checkRole.isStudent, (req, res) => {
   models.rating
     .create({

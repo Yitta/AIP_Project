@@ -7,15 +7,21 @@ host: "localhost:3000"
 basePath: "/api"
 tags:
 - name: "discount"
-  description: "Discount operations"
+  description: "Discount endpoints"
+- name: "rating"
+  description: "Rating endpoints"
 - name: "user"
-  description: "User operations"
+  description: "User endpoints"
+- name: "auth"
+  description: "Authentication endpoints"
 - name: "student"
-  description: "Student operations"
+  description: "Use must have an user account to access this endpoint"
 - name: "business"
-  description: "Business operations"
+  description: "Use must have an business account to access this endpoint"
 - name: "admin"
-  description: "Admin operations"
+  description: "Use must have an admin account to access this endpoint"
+- name: "public"
+  description: "Endpoints that can be accessed by the public"
 - name: "coming soon"
   description: "Operations not yet implemented"
 schemes:
@@ -25,6 +31,7 @@ paths:
     get:
       tags:
       - "discount"
+      - "public"
       summary: "Get all discounts"
       operationId: "getDiscounts"
       consumes:
@@ -51,6 +58,8 @@ paths:
     post:
       tags:
       - "discount"
+      - "business"
+      - "admin"
       summary: "Add a new discount to the website"
       operationId: "addDiscount"
       consumes:
@@ -63,18 +72,51 @@ paths:
         description: "Discount object to be added"
         required: true
         schema:
-          $ref: "#/definitions/Discount"
+          $ref: "#/definitions/DiscountReq"
       responses:
         200:
           description: "Successful operation"
           schema:
-            $ref: "#/definitions/Discount"
+            $ref: "#/definitions/DiscountRes"
+        500:
+          description: "Internal server error"
+  /discounts/search:
+    get:
+      tags:
+      - "discount"
+      - "public"
+      summary: "Get all discounts per search criteria"
+      operationId: "getDiscountsByQuery"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "query"
+        in: "query"
+        type: "string"
+        required: false
+      - name: "startAt"
+        in: "query"
+        type: "integer"
+        required: false
+      - name: "max"
+        description: "max number of results to return"
+        in: "query"
+        type: "integer"
+        required: false
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/ListOfDiscounts"
         500:
           description: "Internal server error"
   /discount/{discountId}:
     get:
       tags:
       - "discount"
+      - "public"
       summary: "Find discount by id"
       operationId: "getDiscountById"
       produces:
@@ -89,7 +131,7 @@ paths:
         200:
           description: "successful operation"
           schema:
-            $ref: "#/definitions/Discount"
+            $ref: "#/definitions/DiscountRes"
         400:
           description: "Invalid id supplied"
         404:
@@ -99,6 +141,8 @@ paths:
     put:
       tags:
       - "discount"
+      - "business"
+      - "admin"
       summary: "Find discount by id"
       operationId: "editDiscountById"
       produces:
@@ -114,12 +158,12 @@ paths:
         description: "Discount object to be edited"
         required: true
         schema:
-          $ref: "#/definitions/Discount"
+          $ref: "#/definitions/DiscountReq"
       responses:
         200:
           description: "successful operation"
           schema:
-            $ref: "#/definitions/Discount"
+            $ref: "#/definitions/DiscountRes"
         400:
           description: "Invalid id supplied"
         404:
@@ -129,6 +173,8 @@ paths:
     delete:
       tags:
       - "discount"
+      - "business"
+      - "admin"
       summary: "Find discount by id"
       operationId: "deleteDiscountById"
       produces:
@@ -148,10 +194,11 @@ paths:
           description: "Discount not found"
         500:
           description: "Internal server error"
-  /discounts/{discountId}/comments:
+  /discounts/{discountId}/ratings:
     get:
       tags:
       - "discount"
+      - "rating"
       summary: "Find comments on a discount by id"
       operationId: "getDiscountComments"
       produces:
@@ -175,13 +222,14 @@ paths:
         200:
           description: "Successful operation"
           schema:
-            $ref: "#/definitions/ListOfComments"
+            $ref: "#/definitions/ListOfRatings"
         500:
           description: "Internal server error"
     post:
       tags:
       - "discount"
-      summary: "Find discount by id"
+      - "rating"
+      summary: "Create a rating on a discount by id"
       operationId: "createDiscountComment"
       produces:
       - "application/json"
@@ -196,26 +244,134 @@ paths:
         description: "Comment object to be added"
         required: true
         schema:
-          $ref: "#/definitions/Comment"
+          $ref: "#/definitions/RatingReq"
       responses:
         200:
           description: "successful operation"
           schema:
-            $ref: "#/definitions/Comment"
+            $ref: "#/definitions/RatingRes"
         400:
           description: "Invalid id supplied"
         404:
           description: "Discount not found"
         500:
           description: "Internal server error"
-  /user:
-    post:
+  /users:
+    get:
       tags:
       - "user"
-      - "coming soon"
-      summary: "Create user"
-      description: "This is called when signing up a new user"
-      operationId: "createUser"
+      - "admin"
+      summary: "Get all user"
+      operationId: "getUsers"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "startAt"
+        in: "query"
+        type: "integer"
+        required: false
+      - name: "max"
+        description: "max number of results to return"
+        in: "query"
+        type: "integer"
+        required: false
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ListOfUsers"
+        500:
+          description: "Internal server error"
+  /users/search:
+    get:
+      tags:
+      - "user"
+      - "admin"
+      summary: "Get all users per search criteria"
+      operationId: "getUsersByQuery"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "query"
+        in: "query"
+        type: "string"
+        required: false
+      - name: "startAt"
+        in: "query"
+        type: "integer"
+        required: false
+      - name: "max"
+        description: "max number of results to return"
+        in: "query"
+        type: "integer"
+        required: false
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/ListOfUsers"
+        500:
+          description: "Internal server error"
+  /users/{userId}:
+    get:
+      tags:
+      - "user"
+      - "admin"
+      summary: "Find user by id"
+      operationId: "getUserById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "Id of user"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        400:
+          description: "Invalid id supplied"
+        404:
+          description: "User not found"
+        500:
+          description: "Internal server error"
+    delete:
+      tags:
+      - "user"
+      - "admin"
+      summary: "Delete user by id"
+      operationId: "deleteUserById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "Id of user"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        400:
+          description: "Invalid id supplied"
+        404:
+          description: "User not found"
+        500:
+          description: "Internal server error"
+  /auth/login:
+    post:
+      tags:
+      - "auth"
+      - "public"
+      summary: "Logs user into the system"
+      operationId: "login"
       produces:
       - "application/json"
       parameters:
@@ -224,42 +380,44 @@ paths:
         description: "User object"
         required: true
         schema:
-          $ref: "#/definitions/User"
-      responses:
-        200:
-          description: "successful operation"
-  /user/login:
-    get:
-      tags:
-      - "user"
-      - "coming soon"
-      summary: "Logs user into the system"
-      operationId: "loginUser"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "username"
-        in: "query"
-        description: "The user name for login"
-        required: true
-        type: "string"
-      - name: "password"
-        in: "query"
-        description: "The password for login in clear text"
-        required: true
-        type: "string"
+          $ref: "#/definitions/Login"
       responses:
         200:
           description: "Successful operation"
+          schema:
+            $ref: "#/definitions/User"
         400:
           description: "Invalid username/password supplied"
-  /user/logout:
+  /auth/signup:
+    post:
+      tags:
+      - "auth"
+      - "public"
+      summary: "Logs user into the system"
+      operationId: "signup"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "User object"
+        required: true
+        schema:
+          $ref: "#/definitions/Signup"
+      responses:
+        201:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        400:
+          description: "Invalid username/password supplied"
+  /auth/logout:
     get:
       tags:
-      - "user"
-      - "coming soon"
+      - "auth"
+      - "public"
       summary: "Logs out current logged in user session"
-      operationId: "logoutUser"
+      operationId: "logout"
       produces:
       - "application/json"
       parameters: []
@@ -269,20 +427,46 @@ paths:
         500:
           description: "Internal server error"
 definitions:
-  User:
+  ListOfUsers:
+    type: "object"
+    properties:
+      startAt:
+        type: "integer"
+        description: "Start index of search"
+      total:
+        type: "integer"
+        description: "Total results in db"
+      max:
+        type: "integer"
+        description: "Results returned"
+      discounts:
+        type: "array"
+        description: "Users for current page"
+        items:
+          $ref: "#/definitions/User"
+  Login:
+    type: "object"
+    required:
+    - "username"
+    - "password"
+    properties:
+      username:
+        type: "string"
+        example: "admin"
+      password:
+        type: "string"
+  Signup:
     type: "object"
     required:
     - "email"
-    - "passwordHash"
+    - "password"
     - "username"
     - "accountType"
     properties:
-      id:
-        type: "integer"
       email:
         type: "string"
         example: "admin@cheapcheep.life"
-      passwordHash:
+      password:
         type: "string"
       username:
         type: "string"
@@ -294,6 +478,30 @@ definitions:
         - "student"
         - "business"
         - "admin"
+      businessName:
+        type: "string"
+        example: "Cheap Cheep"
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      email:
+        type: "string"
+        example: "admin@cheapcheep.life"
+      username:
+        type: "string"
+        example: "admin"
+      accountType:
+        type: "string"
+        description: "account type"
+        enum:
+        - "student"
+        - "business"
+        - "admin"
+      businessName:
+        type: "string"
+        example: "Cheap Cheep"
   ListOfDiscounts:
     type: "object"
     properties:
@@ -310,18 +518,15 @@ definitions:
         type: "array"
         description: "Discounts for current page"
         items:
-          $ref: "#/definitions/Discount"
-  Discount:
+          $ref: "#/definitions/DiscountRes"
+  DiscountReq:
     type: "object"
     required:
     - "title"
     - "isOnline"
     - "isInPerson"
     - "isCoupon"
-    - "start"
     properties:
-      id:
-        type: "integer"
       title:
         type: "string"
         example: "$0.50 Off Banh Mi"
@@ -346,6 +551,10 @@ definitions:
       address:
         type: "string"
         example: "123 Fake Street Sydney NSW 2000"
+      lat:
+        type: "integer"
+      long:
+        type: "integer"
       couponCodes:
         type: "string"
         example: "ABC123"
@@ -364,7 +573,60 @@ definitions:
       category:
         type: "string"
         example: "Food"
-  ListOfComments:
+  DiscountRes:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      creatorId:
+        type: "string"
+      title:
+        type: "string"
+        example: "$0.50 Off Banh Mi"
+      discount:
+        type: "string"
+        example: "$0.50 off"
+      isOnline:
+        type: "boolean"
+      isInPerson:
+        type: "boolean"
+      isCoupon:
+        type: "boolean"
+      start: 
+        type: "string"
+        format: "date"
+      end:
+        type: "string"
+        format: "date"
+      url:
+        type: "string"
+        example: "http://www.cheapcheep.life"
+      address:
+        type: "string"
+        example: "123 Fake Street Sydney NSW 2000"
+      lat:
+        type: "integer"
+      long:
+        type: "integer"
+      couponCodes:
+        type: "string"
+        example: "ABC123"
+      description:
+        type: "string"
+        example: "Present your valid student card to receive $0.50 off 1 roll."
+      finePrint:
+        type: "string"
+        example: "Valid for 1 roll per day."
+      status:
+        type: "string"
+        description: "Discount status"
+        enum:
+        - "active"
+        - "inactive"
+      category:
+        type: "string"
+        example: "Food"
+  ListOfRatings:
     type: "object"
     properties:
       startAt:
@@ -378,15 +640,20 @@ definitions:
         description: "Results returned"
       discounts:
         type: "array"
-        description: "Comments for current page"
+        description: "Ratings for current page"
         items:
-          $ref: "#/definitions/Comment"
-  Comment:
+          $ref: "#/definitions/RatingRes"
+  RatingReq:
     type: "object"
-    required:
-    - "discountId"
-    - "userId"
-    - "comment"
+    properties:
+      discountId:
+        type: "integer"
+      rating:
+        type: "integer"
+      comment:
+        type: "string"
+  RatingRes:
+    type: "object"
     properties:
       id:
         type: "integer"
@@ -394,5 +661,8 @@ definitions:
         type: "integer"
       userId:
         type: "integer"
+      rating:
+        type: "integer"
       comment:
         type: "string"
+        
