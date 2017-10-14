@@ -32,28 +32,12 @@
         </a>
         <a class="list-group-item list-group-item-action flex-column align-items-start">
           <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">Rate: 8</h5>
-            <small class="text-muted">Date</small>
-          </div>
-          <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit. [content]</p>
-          <small class="text-muted">User ID</small>
-        </a>
-        <a class="list-group-item list-group-item-action flex-column align-items-start">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">Rate: 9</h5>
-            <small class="text-muted">Date</small>
-          </div>
-          <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit. [content]</p>
-          <small class="text-muted">User ID</small>
-        </a>
-        <a class="list-group-item list-group-item-action flex-column align-items-start">
-          <div class="d-flex w-100 justify-content-between">
             <div class="btn-group-vertical">
               <button type="button" class="btn btn-info btn-sm" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
                 aria-controls="addCommentCollapse">
                 Add Your Comment
               </button>
-              <button type="button" class="btn btn-info btn-sm" (click)="test()">View all Comments</button>
+              <edit-modal></edit-modal>
             </div>
           </div>
         </a>

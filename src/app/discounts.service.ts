@@ -15,11 +15,6 @@ export class DiscountsService {
       .map(res => res.json());
   }
 
-  saveDiscounts(discount) {
-    return this.http.put(`/api/discounts`, discount)
-      .map(res => res.json());
-  }
-
   /* POST a new discount. */
   createDiscounts(discount) {
     return this.http.post(`/api/discounts`, discount, { headers: this.headers })
@@ -41,9 +36,8 @@ export class DiscountsService {
   }
 
   /* PUT edit a discount */
-  editDiscount(id: number) {
-    const url = `/api/discounts/${id}`;
-    return this.http.delete(url)
-      .map((res: Response) => res.json());
+  editDiscount(id, discount) {
+    return this.http.put(`/api/discounts/${id}`, discount)
+    .map(res => res.json());
   }
 }

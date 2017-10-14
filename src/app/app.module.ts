@@ -24,6 +24,7 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
 import { AuthenticationStateComponent } from './components/authentication-state/authentication-state.component';
 import { MapComponent } from './components/map/map.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component'
+import { EditModalComponent, NgbdModalContent } from './components/edit-modal/edit-modal.component';
 
 @NgModule({
   declarations: [
@@ -38,8 +39,10 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     SearchBarComponent,
     SignupFormComponent,
     LoginFormComponent,
-    AdminPageComponent
-  ],
+    AdminPageComponent,
+    EditModalComponent,
+    NgbdModalContent
+],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
@@ -53,6 +56,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     AgmSnazzyInfoWindowModule
   ],
   providers: [DiscountsService, AuthenticationService, AdminService, AuthGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [NgbdModalContent]
 })
 export class AppModule { }
