@@ -17,7 +17,8 @@ export class SignupFormComponent implements OnInit {
       username: '',
       password: '',
       accountType: '',
-      email: ''
+      email: '',
+      businessName:''
     }
   }
 

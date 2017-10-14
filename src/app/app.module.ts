@@ -17,6 +17,7 @@ import { NgbdDatepickerRange } from './components/datepicker-range/datepicker-ra
 import { CommentFormComponent } from './components/comment-form/comment-form.component'
 import { DiscountsService } from './discounts.service';
 import { AuthenticationService } from './authentication.service';
+import { AdminService } from './admin.service';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
@@ -51,7 +52,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     }),
     AgmSnazzyInfoWindowModule
   ],
-  providers: [DiscountsService, AuthenticationService, AuthGuard],
+  providers: [DiscountsService, AuthenticationService, AdminService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
