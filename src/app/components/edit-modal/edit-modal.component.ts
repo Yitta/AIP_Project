@@ -24,7 +24,9 @@ export class NgbdModalContent {
       console.log(id)
       this.discountsService.editDiscount(id, discount).subscribe(resDiscount => {
         alert(resDiscount);
-        this.router.navigate(['/home-page']);       
+        // var url = "/home-page/"+ id.toString();
+        // this.router.navigate([url]);
+        window.location.reload();       
       },
       resLoginError => alert(resLoginError));
     }
