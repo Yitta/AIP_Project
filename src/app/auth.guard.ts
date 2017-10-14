@@ -4,16 +4,16 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-    constructor(private router: Router) { }
+  constructor(private router: Router) { }
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        if (JSON.parse(localStorage.getItem('currentUser')).accountType == "admin") {
-            // logged in so return true
-            return true;
-        }
-
-        // not logged in so redirect to home page
-        this.router.navigate(['/home-page']);
-        return false;
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    if (JSON.parse(localStorage.getItem('currentUser')).accountType == "admin") {
+      // logged in so return true
+      return true;
     }
+
+    // not logged in so redirect to home page
+    this.router.navigate(['/home-page']);
+    return false;
+  }
 }
