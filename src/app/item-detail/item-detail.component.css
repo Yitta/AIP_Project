@@ -5,3 +5,7 @@
 .filled {
   color: #1e90ff;
 }
+.bgColor {
+  background-color: rgba(0,0,0,.03);
+  font-size: 1rem;
+}

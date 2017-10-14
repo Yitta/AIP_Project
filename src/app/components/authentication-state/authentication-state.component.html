@@ -1,0 +1,10 @@
+<span *ngIf="currentState">
+  <a href="/log-in" class="linkStyle">Login </a>
+  or
+  <a href="/sign-up" class="linkStyle"> Sign Up</a>
+</span>
+
+<span *ngIf="currentUser">
+  Welcome, {{currentUser.username}}! 
+  <a href="/home-page" class="linkStyle" (click)="logout()">Logout </a>
+</span>

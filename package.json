@@ -13,6 +13,8 @@
   },
   "private": true,
   "dependencies": {
+    "@agm/core": "^1.0.0-beta.1",
+    "@agm/snazzy-info-window": "^1.0.0-beta.1",
     "@angular/animations": "^4.0.0",
     "@angular/common": "^4.0.0",
     "@angular/compiler": "^4.0.0",
@@ -41,6 +43,7 @@
     "sequelize": "^4.4.2",
     "sequelize-cli": "^3.0.0",
     "sequelize-fixtures": "^0.6.0",
+    "snazzy-info-window": "^1.1.0",
     "url": "^0.11.0",
     "zone.js": "^0.8.14"
   },

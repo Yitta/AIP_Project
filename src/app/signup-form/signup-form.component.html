@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="cardBg">
+    <div class="form-inline">
+      <img src="../assets/user.svg" width="30" height="30" class="d-inline-block align-top img" alt="">
+      <h4>Sing Up</h4>
+    </div>
+    <form (ngSubmit)="handleSignup(signupForm)" #signupForm="ngForm">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="firstname" class="col-form-label">Username *</label>
+          <input type="text" class="form-control" id="firstname" placeholder="Username" name="username" required [(ngModel)]="signupForm.username"
+            #username="ngModel">
+          <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
+            <p *ngIf="username.errors?.required">Username is required</p>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputPassword4" class="col-form-label">Password *</label>
+          <input type="password" class="form-control" id="inputPassword4" placeholder="Password" name="password" required [(ngModel)]="signupForm.password" #password="ngModel">
+          <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+              <p *ngIf="password.errors?.required">Password is required</p>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputEmail4" class="col-form-label">Account Type *</label>
+          <select class="form-control" id="select" name="accountType" required [(ngModel)]="signupForm.accountType" #accountType="ngModel">
+            <option value="student">Student</option>
+            <option value="business">Business</option>
+          </select>
+          <div [hidden]="accountType.valid || accountType.pristine" class="alert alert-danger">
+              <p *ngIf="accountType.errors?.required">Account Type is required</p>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputEmail4" class="col-form-label">Email *</label>
+          <input type="email" class="form-control" id="inputEmail4" ngbTooltip="If you sign up as a student Account, you must use UTS email to register."
+            placement="bottom" placeholder="Email" name="email" required [(ngModel)]="signupForm.email" #email="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+          <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+            <p *ngIf="email.errors?.required">Email is required</p>
+            <p *ngIf="email.errors?.pattern">Invalid Email Address</p>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="businessName" class="col-form-label">Business Name *</label>
+            <input type="email" ng-show="isBusiness" class="form-control" id="businessName" ngbTooltip="If you sign up as a Business Account, you must fill in your Business Name."
+              placement="bottom" placeholder="Business Name" name="name" [(ngModel)]="signupForm.businessName" #businessName="ngModel">
+            <!-- <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+              <p *ngIf="email.errors?.required">Email is required</p>
+              <p *ngIf="email.errors?.pattern">Invalid Email Address</p>
+            </div> -->
+          </div>
+      </div>
+      <h6><a href="/log-in" class="linkStyle formStyle">Already have an account?<img width="20" height="20" class="d-inline-block align-top" src="../../assets/on.svg"/></a></h6>
+      <button [disabled]="!signupForm.valid" type="submit" class="btn btn-info btnStyle">Sign Up</button>
+    </form>
+  </div>
+</div>

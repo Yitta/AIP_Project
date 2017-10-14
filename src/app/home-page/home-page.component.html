@@ -1,32 +1,25 @@
 <section class="jumbotron text-center">
   <div class="container">
     <h1 class="jumbotron-heading">Find Discount For YOU</h1>
-    <p class="lead text-muted">Something short and leading about the collection below—its name, the content, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
+    <p class="lead text-muted">Something short and leading about the collection below—its name, the content, etc. Make it short and sweet, but not too
+      short so folks don't simply skip over it entirely.</p>
   </div>
 </section>
 
 <div class="container">
 
-  <nav class="navbar navbar-light" style="background-color: #e3f2fd; margin-bottom: 20px; padding: 20px 5%">
-    <form class="form-inline">
-      <input class="form-control mr-sm-2" type="text" placeholder="Keywords" aria-label="Search">
-      <input class="form-control mr-sm-2" type="text" placeholder="Category" aria-label="Search">
-      <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </nav>
+  <search-bar></search-bar>
 
   <div class="row row-offcanvas row-offcanvas-right">
 
     <div class="col-12 col-md-9">
       <div class="row" *ngIf="discounts">
-        <div class="col-6 col-lg-6" *ngFor="let discount of discounts" 
-                                    (click)="selectDiscount(discount)"
-                                    [class.active]="discount === activeDiscount">
+        <div class="col-6 col-lg-6" *ngFor="let discount of discounts" (click)="selectDiscount(discount)" [class.active]="discount === activeDiscount">
           <img class="card-img-top" src="https://lorempixel.com/900/500?r=1" alt="Card image cap">
           <h4 style="margin-top: 10px">{{ discount.title }}<span class="badge badge-pill badge-warning float-right">{{ discount.discount }}</span></h4>
           <h6 class="card-subtitle mb-2 text-muted">Start from {{ discount.start }}</h6>
           <p>{{ discount.description}}</p>
-          <p><a class="btn btn-info" routerLink='/item-detail' role="button">View details &raquo;</a></p>
+          <p><a class="btn btn-info" (click)="selectDiscount(discount)" role="button">View details &raquo;</a></p>
         </div>
       </div>
     </div>
@@ -35,10 +28,8 @@
       <div *ngIf="discounts">
         <ul class="list-group users-list">
           <li class="list-group-item" style="background-color: #e3f2fd;">Category</li>
-          <li class="list-group-item"  *ngFor="let discount of discounts" 
-                                       (click)="selectDiscount(discount)"
-                                       [class.active]="discount === activeDiscount">
-             {{ discount.title }}
+          <li class="list-group-item" *ngFor="let discount of discounts" (click)="selectDiscountCategory(discount)" [class.active]="discount === activeDiscount">
+            {{ discount.category }}
           </li>
           <li class="list-group-item">
             <button type="button" class="btn btn-outline-info float-right" routerLink='/add-form'>Add New Discount</button>
@@ -46,7 +37,9 @@
         </ul>
       </div>
     </div>
-
   </div>
-  
+</div>
+
+<div  class="mapDiv">
+  <app-map></app-map>
 </div>
