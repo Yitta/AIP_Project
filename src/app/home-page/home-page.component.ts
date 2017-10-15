@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 
 export class HomePageComponent {
   discounts = [];
+  searchQuery;
 
   activeDiscount;
 
@@ -26,8 +27,7 @@ export class HomePageComponent {
     this.router.navigate(['/home-page', discount.id]);
   }
 
-  search(query){
-    alert(query)
-    this.router.navigate(['/result'],query)
+  search(searchQuery){
+    this.router.navigate(['/result'], { queryParams: { query: searchQuery } })
   }
 }

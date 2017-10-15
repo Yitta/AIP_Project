@@ -9,9 +9,9 @@
 <div class="container">
 
   <nav class="navbar navbar-light" style="background-color: #e3f2fd; margin-bottom: 20px; padding: 20px 5%">
-    <form class="form-inline">
-      <input class="form-control mr-sm-2" type="text" placeholder="Keywords" aria-label="Search">
-      <button class="btn btn-info my-2 my-sm-0" (click)="search(query)">Search</button>
+    <form class="form-inline" name="searchForm">
+      <input class="form-control mr-sm-2" type="text" placeholder="Keywords" name="query" aria-label="Search" #query [(ngModel)]="searchQuery">
+      <button class="btn btn-info my-2 my-sm-0" (click)="search(query.value)">Search</button>
     </form>
   </nav>
 

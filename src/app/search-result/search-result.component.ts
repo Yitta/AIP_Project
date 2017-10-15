@@ -8,18 +8,30 @@ import { ActivatedRoute, Router, Params, ParamMap } from '@angular/router';
   styleUrls: ['./search-result.component.css']
 })
 export class SearchResultComponent implements OnInit {
-  discounts=[];
+  discounts = [];
+  searchQuery;
+  notFoundMessage: string;
 
   constructor(private discountsService: DiscountsService,
-              private activatedRoute: ActivatedRoute,
-              private router: Router) { }
+    private activatedRoute: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
-    this.activatedRoute.paramMap
-    .switchMap((params: ParamMap) => this.discountsService.searchDiscount(+params.get('query')))
-    .subscribe(discounts => {
-      this.discounts = discounts;
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.discountsService.searchDiscount(params['query']).subscribe(discounts => {
+        console.log("res:", discounts);
+        if (discounts.discounts.length == 0) {
+          this.discounts=[];
+          this.notFoundMessage = "Sorry, no related discount is found...";
+        } else {
+          this.discounts = discounts.discounts;
+        }
+      })
     });
+  }
+
+  search(searchQuery) {
+    this.router.navigate(['/result'], { queryParams: { query: searchQuery } })
   }
 
 }
