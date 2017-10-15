@@ -5,6 +5,13 @@
 </span>
 
 <span *ngIf="currentUser">
-  Welcome, {{currentUser.username}}! 
+  Welcome, {{currentUser.username}}!
   <a href="/home-page" class="linkStyle" (click)="logout()">Logout </a>
+  <div [hidden]="!isAdmin">
+    <button class="btn btn-outline-info btn-sm" (click)="clickUsersList()">Users List</button> & 
+    <button class="btn btn-outline-info btn-sm" (click)="clickDiscountsList()">Discounts List</button>
+  </div>
+  <div [hidden]="!isBusiness">
+      <a class="btn btn-outline-info btn-sm" routerLink='/add-form'>Add New Discount</a>
+  </div>
 </span>

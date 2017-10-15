@@ -6,28 +6,33 @@ import { DiscountsService } from '../discounts.service';
 import 'rxjs/add/operator/switchMap';
 
 @Component({
-    selector: 'item-detail',
-    templateUrl: './item-detail.component.html',
-    styleUrls: ['./item-detail.component.css']
+  selector: 'item-detail',
+  templateUrl: './item-detail.component.html',
+  styleUrls: ['./item-detail.component.css']
 })
 
 export class ItemDetailComponent implements OnInit {
   discount;
-  constructor(private activatedRoute: ActivatedRoute, 
-              private router: Router,
-              private discountsService:DiscountsService){}
-  
+  showEdit = false;
+
+  constructor(private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private discountsService: DiscountsService) { }
+
   /**
    * get discounet id from discount list
    * then give this id to local itemId
    */
-  ngOnInit(){
+  ngOnInit() {
     this.activatedRoute.paramMap
-    .switchMap((params: ParamMap) => this.discountsService.getDiscount(+params.get('id')))
-    .subscribe(discount => {
-      this.discount = discount;
-    });
-    
+      .switchMap((params: ParamMap) => this.discountsService.getDiscount(+params.get('id')))
+      .subscribe(discount => {
+        this.discount = discount;
+        if (this.discount.creatorId == JSON.parse(localStorage.getItem('currentUser')).id || JSON.parse(localStorage.getItem('currentUser')).accountType == 'admin'){
+          this.showEdit = true;
+        }
+      });
+
   }
 
   public isCollapsed = true;

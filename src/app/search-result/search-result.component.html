@@ -1,24 +1,36 @@
-<nav class="navbar navbar-light" style="background-color: #e3f2fd; margin-bottom: 20px; padding: 20px 5%">
-  <form class="form-inline" name="searchForm">
-    <input class="form-control mr-sm-2" type="text" placeholder="Keywords" aria-label="Search" #query [(ngModel)]="searchQuery">
-    <button class="btn btn-info my-2 my-sm-0" (click)="search(query.value)">Search</button>
-  </form>
-</nav>
-
-<div class="col-12 col-md-9">
-  <div class="row" *ngIf="discounts">
-    <div class="col-6 col-lg-6" *ngFor="let discount of discounts" (click)="selectDiscount(discount)" [class.active]="discount === activeDiscount">
-      <img class="card-img-top" src="https://lorempixel.com/900/500?r=1" alt="Card image cap">
-      <h4 style="margin-top: 10px">{{ discount.title }}
-        <span class="badge badge-pill badge-warning float-right">{{ discount.discount }}</span>
-      </h4>
-      <h6 class="card-subtitle mb-2 text-muted">Start from {{ discount.start }}</h6>
-      <p>{{ discount.description}}</p>
-      <p>
-        <a class="btn btn-info" (click)="selectDiscount(discount)" role="button">View details &raquo;</a>
-      </p>
+<div class="container">
+  <div class="header">Search</div>
+  <nav class="navbar navbar-light" style="background-color: #e3f2fd; margin-bottom: 20px; padding: 20px 5%">
+    <form class="form-inline" name="searchForm">
+      <input class="form-control mr-sm-2" type="text" placeholder="Keywords" aria-label="Search" #query [(ngModel)]="searchQuery">
+      <button class="btn btn-info my-2 my-sm-0" (click)="search(query.value)">Search</button>
+    </form>
+  </nav>
+  
+  <div class="col-12 col-md-9">
+    <div class="row" *ngIf="discounts">
+      <div class="col-6 col-lg-6" *ngFor="let discount of discounts" (click)="selectDiscount(discount)" [class.active]="discount === activeDiscount">
+        <img class="card-img-top" src="https://lorempixel.com/900/500?r=1" alt="Card image cap">
+        <h4 style="margin-top: 10px">{{ discount.title }}
+          <span class="badge badge-pill badge-warning float-right">{{ discount.discount }}</span>
+        </h4>
+        <h6 class="card-subtitle mb-2 text-muted">Start from {{ discount.start }}</h6>
+        <p>{{ discount.description}}</p>
+        <p>
+          <a class="btn btn-info" (click)="selectDiscount(discount)" role="button">View details &raquo;</a>
+        </p>
+      </div>
     </div>
   </div>
+  
+  <div class="divStyle">{{notFoundMessage}}</div>
+  <div class="jumbotron" [hidden]="!showPannel">
+      <h1 class="display-3">Tell us!</h1>
+      <p class="lead">Tell us what you want to get in our websit!</p>
+      <hr class="my-4">
+      <p>Cannot find what you want? See other great deal in our home page.</p>
+      <p class="lead">
+        <a class="btn btn-primary btn-lg buttonStyle" href="/home-page" role="button">Go get more</a>
+      </p>
+    </div>
 </div>
-
-<div class="divStyle">{{notFoundMessage}}</div>

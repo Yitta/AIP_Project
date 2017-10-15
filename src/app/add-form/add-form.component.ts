@@ -27,13 +27,17 @@ export class AddFormsComponent implements OnInit {
    */
   ngOnInit() {
     this.userForm = this.formBuilder.group({
-      category: [null, [Validators.required, Validators.minLength(5)]],
-      title: [null, [Validators.required, Validators.minLength(5)]],
+      category: [null, [Validators.required, Validators.minLength(2)]],
+      title: [null, [Validators.required, Validators.minLength(2)]],
       discount: [null, [Validators.required]],
       description: [null, Validators.required],
-      isOnline: [true, Validators.required],
-      isInPerson: [true, Validators.required],
-      isCoupon: [true, Validators.required],
+      isOnline: [false, Validators.required],
+      isInPerson: [false, Validators.required],
+      isCoupon: [false, Validators.required],
+      lat:[null],
+      long:[null],
+      start:[null,Validators.required],
+      end:[null,Validators.required]
     });
 
     this.userForm.valueChanges.subscribe(x => this.changeMsg = { event: 'Form DATA CHANGED', object: x });
@@ -51,11 +55,7 @@ export class AddFormsComponent implements OnInit {
         alert('Success!');
         this.router.navigate(['/home-page']);            
       },
-      resLoginError => alert(resLoginError));
+      resLoginError => alert("Please check if you have this access."));
     }
-  }
-
-  reset() {
-    this.userForm.reset();
   }
 }

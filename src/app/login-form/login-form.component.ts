@@ -29,14 +29,14 @@ export class LoginFormComponent implements OnInit {
       console.log("userInfo: ", resUserData);
       console.log("login data", theForm.value);
       if(resUserData.accountType == "admin") {
-        this.router.navigate(['/admin-page']);
+        this.router.navigate(['/admin-page'], { queryParams: { list: "user" } });
         window.location.reload();
       } else if(resUserData.accountType == "business" || resUserData.accountType == "student") {
         window.location.reload();
         this.router.navigate(['/home-page']);
       }       
     },
-    resLoginError => alert(resLoginError));
+    resLoginError => alert("The username or password you have entered are not correct. Please enter your UniKey details to sign in."));
   }
 
   getResetEmail(){

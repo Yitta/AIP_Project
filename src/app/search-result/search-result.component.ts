@@ -11,6 +11,7 @@ export class SearchResultComponent implements OnInit {
   discounts = [];
   searchQuery;
   notFoundMessage: string;
+  showPannel = true;
 
   constructor(private discountsService: DiscountsService,
     private activatedRoute: ActivatedRoute,
@@ -21,9 +22,16 @@ export class SearchResultComponent implements OnInit {
       this.discountsService.searchDiscount(params['query']).subscribe(discounts => {
         console.log("res:", discounts);
         if (discounts.discounts.length == 0) {
-          this.discounts=[];
-          this.notFoundMessage = "Sorry, no related discount is found...";
+          this.discounts = [];
+          if (params['query'] != "") {
+            this.notFoundMessage = "Sorry, no related discount is found...";
+          }else{
+            this.notFoundMessage = "";
+          }
+          this.showPannel = true;
         } else {
+          this.notFoundMessage = "";
+          this.showPannel = false;
           this.discounts = discounts.discounts;
         }
       })
@@ -32,6 +40,10 @@ export class SearchResultComponent implements OnInit {
 
   search(searchQuery) {
     this.router.navigate(['/result'], { queryParams: { query: searchQuery } })
+  }
+
+  selectDiscount(discount) {
+    this.router.navigate(['/home-page', discount.id]);
   }
 
 }

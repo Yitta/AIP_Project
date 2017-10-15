@@ -1,8 +1,9 @@
-<agm-map style="height: 400px" [latitude]="51.673858" [longitude]="7.815982">
-  <agm-marker [latitude]="51.673858" [longitude]="7.815982">
+<agm-map style="height: 400px" [latitude]="-33.8832376" [longitude]="151.1983055" [zoom]="15">
+  <agm-marker *ngFor="let discount of discounts" [latitude]="discount.lat" [longitude]="discount.long">
     <agm-snazzy-info-window [maxWidth]="200" [closeWhenOthersOpen]="true">
       <ng-template>
-        My first Snazzy Info Window!
+          <img src="../../../assets/shop.svg" width="22" height="22"> {{discount.title}}
+          <button class="btn btn-outline-info btn-sm" (click)="clickDetail(discount.id)">Detail</button>
       </ng-template>
     </agm-snazzy-info-window>
   </agm-marker>

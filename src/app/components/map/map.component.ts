@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DiscountsService } from '../../discounts.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-map',
@@ -6,13 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
+  discounts = [];
 
-  constructor() { }
+  constructor(private discountsService: DiscountsService,
+    private router: Router) { }
 
   ngOnInit() {
+    this.discountsService.getDiscountList().subscribe(discounts => {
+      this.discounts = discounts.discounts;
+    });
   }
-
-  lat: number = 51.678418;
-  lng: number = 7.809007;
+  clickDetail(id){
+    this.router.navigate(['/home-page', id]);
+  }
 
 }

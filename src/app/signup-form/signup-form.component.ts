@@ -30,16 +30,10 @@ export class SignupFormComponent implements OnInit {
     console.log("signup data", theForm.value);
     this.authenticationService.signup(userInfo).subscribe(resUserData => {
       console.log("userInfo: ", resUserData);
-      this.router.navigate(['/log-in']);
-      // if(resUserData.accountType == "student") {
-      //   this.router.navigate(['/home-page']);
-      //   window.location.reload();
-      // } else if(resUserData.accountType == "business") {
-      //   window.location.reload();
-      //   this.router.navigate(['/home-page']);
-      // }       
+      alert('success!');
+      this.router.navigate(['/log-in']);      
     },
-    resLoginError => alert(resLoginError));
+    resLoginError => alert("Try another username, or make sure you use a valid Email."));
   }
 
 }

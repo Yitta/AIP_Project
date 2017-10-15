@@ -10,22 +10,38 @@ import { Router } from '@angular/router';
 export class AuthenticationStateComponent implements OnInit {
   currentState;
   currentUser;
+  isAdmin: boolean;
+  isBusiness: boolean;
 
   constructor(private authenticationService: AuthenticationService,
-              private router: Router,) { }
+    private router: Router, ) { }
 
   ngOnInit() {
-    if(localStorage.getItem('currentUser')){
+    if (localStorage.getItem('currentUser')) {
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
       console.log("user：", this.currentUser);
-    }else {
+      if (this.currentUser.accountType == "admin") {
+        this.isAdmin = true;
+      }
+      if (this.currentUser.accountType == "business") {
+        this.isBusiness = true;
+      }
+    } else {
       this.currentState = true;
     }
   }
 
   logout() {
-    this.authenticationService.logout().subscribe(resUserData => {});
+    this.authenticationService.logout().subscribe(resUserData => { });
     window.location.reload();
+  }
+
+  clickUsersList() {
+    this.router.navigate(['/admin-page'], { queryParams: { list: "user" } })
+  }
+
+  clickDiscountsList() {
+    this.router.navigate(['/admin-page'], { queryParams: { list: "discount" } })
   }
 
 }
