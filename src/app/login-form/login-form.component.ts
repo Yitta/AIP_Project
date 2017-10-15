@@ -39,4 +39,8 @@ export class LoginFormComponent implements OnInit {
     resLoginError => alert(resLoginError));
   }
 
+  getResetEmail(){
+    this.authenticationService.getResetEmail().subscribe(res=>alert(res));
+  }
+
 }

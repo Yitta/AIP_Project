@@ -40,4 +40,10 @@ export class DiscountsService {
     return this.http.put(`/api/discounts/${id}`, discount)
     .map(res => res.json());
   }
+
+  searchDiscount(query) {
+    const url = `/api/discounts/search?query=${query}`;
+    return this.http.get(url)
+      .map((res: Response) => res.json());
+  }
 }

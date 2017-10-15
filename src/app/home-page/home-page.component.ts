@@ -25,4 +25,9 @@ export class HomePageComponent {
   selectDiscount(discount) {
     this.router.navigate(['/home-page', discount.id]);
   }
+
+  search(query){
+    alert(query)
+    this.router.navigate(['/result'],query)
+  }
 }

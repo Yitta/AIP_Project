@@ -47,9 +47,18 @@ export class AuthenticationService {
     return Observable.throw(error || "server error");
   }
 
-  /* sign up as different type account. (need confirm endpoint and data structure)*/
-  signupType(userInfo) {
-    return this.http.post(`/api/users/signup`, userInfo, { headers: this.headers })
+  /* User Logout function. */
+  getResetEmail() {
+    return this.http.get(`/api/auth/forgotpassword`, { headers: this.headers })
+      .map(res => {
+        alert('Request Success! Please check your Email!');
+      })
+      .catch(this._errorHandler);
+  }
+
+  /* Reset Password*/
+  resetPassword(passwordInfo) {
+    return this.http.post(`api/auth/setpassword`, passwordInfo, { headers: this.headers })
       .map(res => res.json())
       .catch(this._errorHandler);
   }

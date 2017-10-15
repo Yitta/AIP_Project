@@ -23,8 +23,9 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { AuthenticationStateComponent } from './components/authentication-state/authentication-state.component';
 import { MapComponent } from './components/map/map.component';
-import { SearchBarComponent } from './components/search-bar/search-bar.component'
 import { EditModalComponent, NgbdModalContent } from './components/edit-modal/edit-modal.component';
+import { SearchResultComponent } from './search-result/search-result.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 @NgModule({
   declarations: [
@@ -36,12 +37,13 @@ import { EditModalComponent, NgbdModalContent } from './components/edit-modal/ed
     CommentFormComponent,
     AuthenticationStateComponent,
     MapComponent,
-    SearchBarComponent,
     SignupFormComponent,
     LoginFormComponent,
     AdminPageComponent,
     EditModalComponent,
-    NgbdModalContent
+    NgbdModalContent,
+    SearchResultComponent,
+    PasswordResetComponent
 ],
   imports: [
     BrowserModule,

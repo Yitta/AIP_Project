@@ -1,10 +1,12 @@
+import { PasswordResetRoute } from './password-reset/password-reset.routes';
+import { SearchResultRoutes } from './search-result/search-result.routes';
 import { AdminPageRoute } from './admin-page/admin-page.routes';
 import { Routes } from '@angular/router';
 import { ItemDetailRoutes } from './item-detail/item-detail.routes';
 import { HomePageRoutes } from './home-page/home-page.routes';
 import { AddFormsRoutes } from './add-form/add-form.routes';
 import { SignupFormRoute } from './signup-form/signup-form.routes';
-import { LoginFormRoute } from './login-form/login-form.routes'
+import { LoginFormRoute } from './login-form/login-form.routes';
 
 export const routes: Routes = [
     ...HomePageRoutes,
@@ -13,6 +15,8 @@ export const routes: Routes = [
     ...SignupFormRoute,
     ...LoginFormRoute,
     ...AdminPageRoute,
+    ...SearchResultRoutes,
+    ...PasswordResetRoute,
     {
         path: '**',
         redirectTo: '/home-page',
