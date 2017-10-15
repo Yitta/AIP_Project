@@ -36,7 +36,7 @@ If you are solely editing the front-end, run `ng serve` to enable auto refresh.
 
 `npm run build` 
 - The project would typically run at http://localhost:3000.
->>>>>>> comment-login
+
 
 ## Project principles
 
