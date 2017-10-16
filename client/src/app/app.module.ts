@@ -46,8 +46,7 @@ import { AdminService } from './services/admin.service';
     AdminPageComponent,
     EditModalComponent,
     NgbdModalContent,
-    SearchResultComponent
-,
+    SearchResultComponent,
     PasswordResetComponent
 ],
   imports: [
