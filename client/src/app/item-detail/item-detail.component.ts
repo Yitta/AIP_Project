@@ -14,13 +14,14 @@ import 'rxjs/add/operator/switchMap';
 export class ItemDetailComponent implements OnInit {
   discount;
   showEdit = false;
-  
+  showComment = false;
+
   //collapese state
   public isCollapsed = true;
 
   constructor(private activatedRoute: ActivatedRoute,
-              private router: Router,
-              private discountsService: DiscountsService) { }
+    private router: Router,
+    private discountsService: DiscountsService) { }
 
   /**
    * get discounet id from discount list
@@ -31,13 +32,15 @@ export class ItemDetailComponent implements OnInit {
       .switchMap((params: ParamMap) => this.discountsService.getDiscount(+params.get('id')))
       .subscribe(discount => {
         this.discount = discount;
-        if (this.discount.creatorId == JSON.parse(localStorage.getItem('currentUser')).id || JSON.parse(localStorage.getItem('currentUser')).accountType == 'admin'){
+        if (this.discount.creatorId == JSON.parse(localStorage.getItem('currentUser')).id || JSON.parse(localStorage.getItem('currentUser')).accountType == 'admin') {
           this.showEdit = true;
+        }else if (JSON.parse(localStorage.getItem('currentUser')).accountType == 'student') {
+          this.showComment = true;
         }
       });
 
   }
 
-  
+
 
 }

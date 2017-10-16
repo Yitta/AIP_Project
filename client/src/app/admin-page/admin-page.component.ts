@@ -25,7 +25,6 @@ export class AdminPageComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(
       params => {
-        console.log(params['list'])
         if (params['list'] == "user") {
           this.showUser = true;
           this.showDiscount = false;
@@ -40,7 +39,6 @@ export class AdminPageComponent implements OnInit {
           this.users = [];
           this.discountsService.getDiscountList().subscribe(discounts => {
             this.discounts = discounts.discounts;
-            console.log(this.discounts)
           },
           resLoginError => alert("There is something wrong with your permission. Please try login again."));
         }

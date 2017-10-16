@@ -28,8 +28,6 @@ export class LoginFormComponent implements OnInit {
   handleLogin(theForm: NgForm) {
     var userInfo = JSON.stringify(theForm.value);
     this.authenticationService.login(userInfo).subscribe(resUserData => {
-      console.log("userInfo: ", resUserData);
-      console.log("login data", theForm.value);
       if (resUserData.accountType == "admin") {
         this.router.navigate(['/admin-page'], { queryParams: { list: "user" } });
         window.location.reload();

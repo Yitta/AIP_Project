@@ -1,3 +1,4 @@
+import { CommentListComponent } from './components/comment-list/comment-list.component';
 
 //import required modules
 import { AuthGuard } from './auth.guard';
@@ -47,6 +48,8 @@ import { AdminService } from './services/admin.service';
     EditModalComponent,
     NgbdModalContent,
     SearchResultComponent,
+    CommentListComponent
+,
     PasswordResetComponent
 ],
   imports: [

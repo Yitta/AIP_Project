@@ -24,15 +24,8 @@
             <p class="mb-1">Recently Comments</p>
           </div>
         </a>
-        <a class="list-group-item list-group-item-action flex-column align-items-start">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">Rate: 7</h5>
-            <small>Date</small>
-          </div>
-          <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit. [content]</p>
-          <small>User ID</small>
-        </a>
-        <a class="list-group-item list-group-item-action flex-column align-items-start">
+        <comment-list></comment-list>
+        <a class="list-group-item list-group-item-action flex-column align-items-start" [hidden]="!showComment">
           <div class="d-flex w-100 justify-content-between">
             <button type="button" class="btn btn-info btn-sm" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
               aria-controls="addCommentCollapse">
