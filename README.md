@@ -6,7 +6,8 @@ You will need:
 - MySQL
 - Node.js: https://nodejs.org/en/
 - angular-cli: https://github.com/angular/angular-cli
-- Nodemon: (https://nodemon.io/)
+- Nodemon: https://nodemon.io/
+- Docker: https://www.docker.com/
 
 ## Before you start
 
@@ -14,13 +15,15 @@ Make sure you have MySQL running on port `3306`.
 
 ## How to run
 
-To set up the database and seed some data, run `npm run seed`. It is recommended to do this when the model has been changed.
+To serve the application, run `docker-compose up` from the root directory.
+
+To set up the database and seed some data, be in the `server` directory and run `npm run seed`. It is recommended to do this when the model has been changed.
 
  **WARNING:** If you have already created a database of the same name eg. `cheapcheep_dev`, this will delete that database and all data contained. You have been warned.
 
-Run  `npm run build` to serve the project, typically at http://localhost:3000. This will refresh when there are changes to the API layer, however you will need to restart it for front-end changes.
+Run  `npm run build` from the `server` directory to serve the API, typically at http://localhost:3000. This will refresh when there are changes to the API layer.
 
-If you are solely editing the front-end, run `ng serve` to enable auto refresh.
+Run  `ng serve` from the `client` directory to serve the front-end, typically at http://localhost:4200. This will refresh when there are changes to the front-end.
 
 ### Detail Instruction
 - Clone this repository using this command in terminal (Git):
