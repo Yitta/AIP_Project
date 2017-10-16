@@ -1,0 +1,9 @@
+<a class="list-group-item list-group-item-action flex-column align-items-start" *ngFor="let commnet of comments">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">Rate: {{comment.rating}}</h5>
+    <small>Date</small>
+  </div>
+  <p class="mb-1">{{comment.comment}}</p>
+  <small>User ID: {{comment.userId}}</small>
+  <small style="float:right">{{comment.created_at.slice(0,10)}}</small>
+</a>

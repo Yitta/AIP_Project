@@ -47,4 +47,17 @@ export class DiscountsService {
     return this.http.get(url)
       .map((res: Response) => res.json());
   }
+
+  /* POST a comment to discount. */
+  createComment(id,comment) {
+    return this.http.post(`/api/discounts/${id}/ratings`, comment, { headers: this.headers })
+      .map(res => res.json());
+  }
+
+  /* GET all comments */
+  getCommentList(id) {
+    const getUrl = `/api/discounts/${id}/ratings`
+    return this.http.get(getUrl)
+      .map(res => res.json());
+  }
 }
