@@ -11,7 +11,7 @@
   <nav class="navbar navbar-light" style="background-color: #e3f2fd; margin-bottom: 20px; padding: 20px 5%">
     <form class="form-inline" name="searchForm">
       <input class="form-control mr-sm-2" type="text" placeholder="Keywords" name="query" aria-label="Search" #query [(ngModel)]="searchQuery">
-      <button class="btn btn-info my-2 my-sm-0" (click)="search(query.value)" >Search</button>
+      <button class="btn btn-info my-2 my-sm-0" (click)="search(query.value)" [disabled]="query.value == ''">Search</button>
     </form>
   </nav>
 
@@ -32,8 +32,8 @@
     <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
       <div *ngIf="discounts">
         <ul class="list-group users-list">
-          <li class="list-group-item" style="background-color: #e3f2fd;">Category</li>
-          <li class="list-group-item" *ngFor="let discount of discounts" (click)="selectDiscountCategory(discount)" [class.active]="discount === activeDiscount">
+          <li class="list-group-item" style="background-color: #e3f2fd;">Category List</li>
+          <li class="list-group-item" *ngFor="let discount of discounts" (click)="selectDiscount(discount)" [class.active]="discount === activeDiscount">
             {{ discount.category }}
           </li>
         </ul>

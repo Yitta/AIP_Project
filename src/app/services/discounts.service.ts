@@ -35,12 +35,13 @@ export class DiscountsService {
       .map((res: Response) => res.json());
   }
 
-  /* PUT edit a discount */
+  /* Edit a discount */
   editDiscount(id, discount) {
     return this.http.put(`/api/discounts/${id}`, discount)
     .map(res => res.json());
   }
 
+  /* Search discounts based on query */
   searchDiscount(query) {
     const url = `/api/discounts/search?query=${query}`;
     return this.http.get(url)

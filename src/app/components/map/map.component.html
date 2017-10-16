@@ -2,7 +2,7 @@
   <agm-marker *ngFor="let discount of discounts" [latitude]="discount.lat" [longitude]="discount.long">
     <agm-snazzy-info-window [maxWidth]="200" [closeWhenOthersOpen]="true">
       <ng-template>
-          <img src="../../../assets/shop.svg" width="22" height="22"> {{discount.title}}
+          <img src="../../../assets/shop.svg" width="22" height="22"> {{discount.title}}<br>
           <button class="btn btn-outline-info btn-sm" (click)="clickDetail(discount.id)">Detail</button>
       </ng-template>
     </agm-snazzy-info-window>

@@ -55,15 +55,17 @@
       "isOnline": true,
       "isInPerson": false,
       "isCoupon": true,
-      "start": null,
-      "end": null,
+      "start": "2017-10-20",
+      "end": "2017-12-20",
       "url": "http://business1.com.au",
       "address": null,
       "couponCodes": "ABC123",
       "description": "$1 off any purchase with coupon",
       "finePrint": "Can only be used once per day",
       "status": "active",
-      "category": "Clothes"
+      "category": "Clothes",
+      "lat": -33.881495,
+      "long": 151.200958
     }
   },
   {
@@ -75,15 +77,17 @@
       "isOnline": false,
       "isInPerson": true,
       "isCoupon": false,
-      "start": null,
-      "end": null,
+      "start": "2017-10-21",
+      "end": "2017-11-20",
       "url": null,
       "address": "200 George Street Sydney NSW 2000",
       "couponCodes": null,
       "description": "25% off selected dishes. See in store for details.",
       "finePrint": "Must present student ID",
       "status": "active",
-      "category": "Food"
+      "category": "Food",
+      "lat": -33.8816956,
+      "long": 151.1992609
     }
   }
 ]

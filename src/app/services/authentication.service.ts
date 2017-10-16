@@ -47,7 +47,7 @@ export class AuthenticationService {
     return Observable.throw(error || "server error");
   }
 
-  /* User Logout function. */
+  /* Get reset password email function. */
   getResetEmail() {
     return this.http.get(`/api/auth/forgotpassword`, { headers: this.headers })
       .map(res => {

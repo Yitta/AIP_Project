@@ -1,4 +1,4 @@
-import { DiscountsService } from './../../discounts.service';
+import { DiscountsService } from '../../services/discounts.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -8,12 +8,14 @@ import { ActivatedRoute, Router, Params, ParamMap } from '@angular/router';
   selector: 'edit-modal-content',
   templateUrl: '../../add-form/add-form.component.html',
 })
+
+//Modal Content Component
 export class NgbdModalContent {
   @Input() userForm;
 
   constructor(public activeModal: NgbActiveModal,
-    private discountsService: DiscountsService,
-    private router: Router) { }
+              private discountsService: DiscountsService,
+              private router: Router) { }
 
   submitForm(discount) {
     if (this.userForm.invalid) {
@@ -22,8 +24,10 @@ export class NgbdModalContent {
       discount = JSON.stringify(this.userForm.value);
       var id = JSON.parse(discount).id;
       this.discountsService.editDiscount(id, discount).subscribe(resDiscount => {
+        console.log("before: ",discount);
+        console.log("after: ",JSON.stringify(resDiscount))
         alert('success!')
-        window.location.reload();       
+        window.location.reload();
       },
         resLoginError => alert("Please make sure you have the right permission."));
     }
@@ -35,13 +39,15 @@ export class NgbdModalContent {
   templateUrl: './edit-modal.component.html',
   styleUrls: ['./edit-modal.component.css']
 })
+
+//Modal component - the button with trigger method
 export class EditModalComponent implements OnInit {
   discount;
-  size:"lg";
+
   constructor(private modalService: NgbModal,
-    private formBuilder: FormBuilder,
-    private activatedRoute: ActivatedRoute,
-    private discountsService: DiscountsService) { }
+              private formBuilder: FormBuilder,
+              private activatedRoute: ActivatedRoute,
+              private discountsService: DiscountsService) { }
 
   ngOnInit() {
     this.activatedRoute.paramMap
@@ -50,7 +56,11 @@ export class EditModalComponent implements OnInit {
         this.discount = discount;
       });
   }
-
+  
+  /**
+   *  Open method of this edit modal
+   *     GET current item detail in initialization and pass to edit form
+   */
   open() {
     const modalRef = this.modalService.open(NgbdModalContent);
     modalRef.componentInstance.userForm = this.formBuilder.group({
@@ -62,10 +72,10 @@ export class EditModalComponent implements OnInit {
       isOnline: [this.discount.isOnline, Validators.required],
       isInPerson: [this.discount.isInPerson, Validators.required],
       isCoupon: [this.discount.isCoupon, Validators.required],
-      lat:[this.discount.lat],
-      long:[this.discount.long],
-      start:[this.discount.start,Validators.required],
-      end:[this.discount.end,Validators.required]
+      lat: [this.discount.lat],
+      long: [this.discount.long],
+      start: [this.discount.start, Validators.required],
+      end: [this.discount.end, Validators.required]
     });
   }
 }

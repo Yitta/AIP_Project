@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CommentFormComponent } from '../components/comment-form/comment-form.component';
 import { ActivatedRoute, Router, Params, ParamMap } from '@angular/router';
-import { DiscountsService } from '../discounts.service';
+import { DiscountsService } from '../services/discounts.service';
 import 'rxjs/add/operator/switchMap';
 
 @Component({
@@ -14,10 +14,13 @@ import 'rxjs/add/operator/switchMap';
 export class ItemDetailComponent implements OnInit {
   discount;
   showEdit = false;
+  
+  //collapese state
+  public isCollapsed = true;
 
   constructor(private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private discountsService: DiscountsService) { }
+              private router: Router,
+              private discountsService: DiscountsService) { }
 
   /**
    * get discounet id from discount list
@@ -35,8 +38,6 @@ export class ItemDetailComponent implements OnInit {
 
   }
 
-  public isCollapsed = true;
-
-  activeMovie;
+  
 
 }

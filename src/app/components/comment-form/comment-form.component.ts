@@ -11,6 +11,7 @@ export class CommentFormComponent implements OnInit {
   public isCollapsed = false;
 
   constructor() {
+    //Build form use ngForm
     this.commentForm = {
       currentRate: 5,
       comment: ''
