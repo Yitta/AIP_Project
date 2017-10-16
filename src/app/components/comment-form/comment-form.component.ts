@@ -26,7 +26,6 @@ export class CommentFormComponent implements OnInit {
   }
 
   submitComment(theForm: NgForm) {
-    console.log(theForm.value);
     this.activatedRoute.paramMap
     .switchMap((params: ParamMap) => this.discountsService.createComment(+params.get('id'),theForm.value))
     .subscribe(comments => {

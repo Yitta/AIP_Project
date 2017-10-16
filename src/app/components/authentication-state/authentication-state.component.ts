@@ -22,7 +22,6 @@ export class AuthenticationStateComponent implements OnInit {
   ngOnInit() {
     if (localStorage.getItem('currentUser')) {
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-      console.log("user：", this.currentUser);
       if (this.currentUser.accountType == "admin") {
         this.isAdmin = true;
       }

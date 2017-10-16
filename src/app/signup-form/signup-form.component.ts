@@ -26,9 +26,7 @@ export class SignupFormComponent implements OnInit {
 
   handleSignup(theForm:NgForm){
     var userInfo = JSON.stringify(theForm.value);
-    console.log("signup data", theForm.value);
     this.authenticationService.signup(userInfo).subscribe(resUserData => {
-      console.log("userInfo: ", resUserData);
       alert('success!');
       this.router.navigate(['/log-in']);      
     },

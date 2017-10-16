@@ -24,8 +24,6 @@ export class NgbdModalContent {
       discount = JSON.stringify(this.userForm.value);
       var id = JSON.parse(discount).id;
       this.discountsService.editDiscount(id, discount).subscribe(resDiscount => {
-        console.log("before: ",discount);
-        console.log("after: ",JSON.stringify(resDiscount))
         alert('success!')
         window.location.reload();
       },
