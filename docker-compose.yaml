@@ -1,0 +1,17 @@
+version: '2'
+
+# Define the services/containers to be run
+services:
+  angular:
+    build: client
+    ports:
+      - "4200:4200"
+    depends_on:
+      - express
+    links:
+      - express
+
+  express:
+    build: server
+    ports:
+      - "3000:3000"

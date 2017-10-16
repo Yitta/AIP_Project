@@ -26,14 +26,6 @@ module.exports = (sequelize, DataTypes) => {
     businessName: {
       type: DataTypes.STRING,
       field: "business_name"
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-      field: "created_at"
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      field: "updated_at"
     }
   }, {
     underscored: true,

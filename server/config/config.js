@@ -1,15 +1,15 @@
 module.exports = {
   development: {
     username: 'root',
-    password: null,
+    password: '',
     database: 'cheapcheep_dev',
     host: 'localhost',
     dialect: 'mysql'
   },
   production: {
-    username: '',
+    username: 'root',
     password: null,
-    database: '',
+    database: 'cheapcheep',
     host: '',
     dialect: 'mysql'
   },

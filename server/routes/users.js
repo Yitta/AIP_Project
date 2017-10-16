@@ -44,7 +44,7 @@ router.get('/search', (req, res) => {
       },
       offset: startAt,
       limit: max,
-      order: [['createdAt', 'DESC']],
+      order: [['created_at', 'DESC']],
       attributes: {
         exclude: [ 'password' ]
       }
@@ -65,13 +65,12 @@ router.get('/:id', (req, res) => {
 });
 
 /* DELETE a user */
-// TODO: Delete associated data
 router.delete('/:id', isLoggedIn, checkRole.isAdmin, (req, res) => {
   models.user
     .destroy({
       where: { id: req.params.id }
     })
-    .then((result) => res.status(204));
+    .then((result) => res.status(204).json({ message: 'User deleted '}));
 });
 
 module.exports = router;
