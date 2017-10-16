@@ -2,12 +2,12 @@
   <div class="header">Search</div>
   <nav class="navbar navbar-light" style="background-color: #e3f2fd; margin-bottom: 20px; padding: 20px 5%">
     <form class="form-inline" name="searchForm">
-      <input class="form-control mr-sm-2" type="text" placeholder="Keywords" aria-label="Search" #query [(ngModel)]="searchQuery">
-      <button class="btn btn-info my-2 my-sm-0" (click)="search(query.value)">Search</button>
+      <input class="form-control mr-sm-2" type="text" placeholder="Keywords" aria-label="Search" #query [(ngModel)]="searchQuery" name="queryInput">
+      <button class="btn btn-info my-2 my-sm-0" (click)="search(query.value)" [disabled]="query.value == ''">Search</button>
     </form>
   </nav>
   
-  <div class="col-12 col-md-9">
+  <div class="col-12">
     <div class="row" *ngIf="discounts">
       <div class="col-6 col-lg-6" *ngFor="let discount of discounts" (click)="selectDiscount(discount)" [class.active]="discount === activeDiscount">
         <img class="card-img-top" src="https://lorempixel.com/900/500?r=1" alt="Card image cap">

@@ -1,13 +1,14 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'password-reset',
   templateUrl: './password-reset.component.html',
   styleUrls: ['./password-reset.component.css']
 })
+
 export class PasswordResetComponent implements OnInit {
   resetForm: any;
   errorMsg: string;

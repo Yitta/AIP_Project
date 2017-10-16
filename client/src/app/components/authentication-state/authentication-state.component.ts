@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from './../../authentication.service';
+import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,8 +14,11 @@ export class AuthenticationStateComponent implements OnInit {
   isBusiness: boolean;
 
   constructor(private authenticationService: AuthenticationService,
-    private router: Router, ) { }
-
+              private router: Router) { }
+  
+    /**
+   * Show different user state based on authentication state
+   */
   ngOnInit() {
     if (localStorage.getItem('currentUser')) {
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));

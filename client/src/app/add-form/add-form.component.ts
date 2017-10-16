@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { NgbdDatepickerRange } from '../components/datepicker-range/datepicker-range.component';
-import { DiscountsService } from '../discounts.service';
+import { DiscountsService } from '../services/discounts.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 

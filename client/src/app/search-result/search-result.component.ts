@@ -1,4 +1,4 @@
-import { DiscountsService } from './../discounts.service';
+import { DiscountsService } from '../services/discounts.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params, ParamMap } from '@angular/router';
 
@@ -14,18 +14,20 @@ export class SearchResultComponent implements OnInit {
   showPannel = true;
 
   constructor(private discountsService: DiscountsService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router) { }
-
+              private activatedRoute: ActivatedRoute,
+              private router: Router) { }
+              
+  /**
+   * Search result based on different query params
+   */
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
       this.discountsService.searchDiscount(params['query']).subscribe(discounts => {
-        console.log("res:", discounts);
         if (discounts.discounts.length == 0) {
           this.discounts = [];
           if (params['query'] != "") {
             this.notFoundMessage = "Sorry, no related discount is found...";
-          }else{
+          } else {
             this.notFoundMessage = "";
           }
           this.showPannel = true;

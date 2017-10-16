@@ -16,9 +16,10 @@
         </div>
         <div class="form-group col-md-6">
           <label for="inputPassword4" class="col-form-label">Password *</label>
-          <input type="password" class="form-control" id="inputPassword4" placeholder="Password" name="password" required [(ngModel)]="signupForm.password" #password="ngModel">
+          <input type="password" class="form-control" id="inputPassword4" placeholder="Password" name="password" required [(ngModel)]="signupForm.password"
+            #password="ngModel">
           <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
-              <p *ngIf="password.errors?.required">Password is required</p>
+            <p *ngIf="password.errors?.required">Password is required</p>
           </div>
         </div>
       </div>
@@ -30,7 +31,7 @@
             <option value="business">Business</option>
           </select>
           <div [hidden]="accountType.valid || accountType.pristine" class="alert alert-danger">
-              <p *ngIf="accountType.errors?.required">Account Type is required</p>
+            <p *ngIf="accountType.errors?.required">Account Type is required</p>
           </div>
         </div>
         <div class="form-group col-md-6">
@@ -42,17 +43,12 @@
             <p *ngIf="email.errors?.pattern">Invalid Email Address</p>
           </div>
         </div>
-        <div class="form-group col-md-6">
-            <label for="businessName" class="col-form-label">Business Name *</label>
-            <input type="email" ng-show="isBusiness" class="form-control" id="businessName" ngbTooltip="If you sign up as a Business Account, you must fill in your Business Name."
-              placement="bottom" placeholder="Business Name" name="name" [(ngModel)]="signupForm.businessName" #businessName="ngModel">
-            <!-- <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
-              <p *ngIf="email.errors?.required">Email is required</p>
-              <p *ngIf="email.errors?.pattern">Invalid Email Address</p>
-            </div> -->
-          </div>
       </div>
-      <h6><a href="/log-in" class="linkStyle formStyle">Already have an account?<img width="20" height="20" class="d-inline-block align-top" src="../../assets/on.svg"/></a></h6>
+      <h6>
+        <a href="/log-in" class="linkStyle formStyle">Already have an account?
+          <img width="20" height="20" class="d-inline-block align-top" src="../../assets/on.svg" />
+        </a>
+      </h6>
       <button [disabled]="!signupForm.valid" type="submit" class="btn btn-info btnStyle">Sign Up</button>
     </form>
   </div>

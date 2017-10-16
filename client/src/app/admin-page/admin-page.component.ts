@@ -1,5 +1,5 @@
-import { DiscountsService } from './../discounts.service';
-import { AdminService } from './../admin.service';
+import { DiscountsService } from '../services/discounts.service';
+import { AdminService } from '../services/admin.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params, ParamMap } from '@angular/router';
 
@@ -18,7 +18,10 @@ export class AdminPageComponent implements OnInit {
     private discountsService: DiscountsService,
     private activatedRoute: ActivatedRoute,
     private router: Router) { }
-
+  
+    /**
+   *  Initialize users or discounts list based on query param
+   */
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(
       params => {
@@ -29,7 +32,8 @@ export class AdminPageComponent implements OnInit {
           this.discounts = [];
           this.adminService.getUsersList().subscribe(users => {
             this.users = users.users;
-          });
+          },
+          resLoginError => alert("There is something wrong with your permission. Please try login again."));
         } else {
           this.showDiscount = true;
           this.showUser = false;
@@ -37,7 +41,8 @@ export class AdminPageComponent implements OnInit {
           this.discountsService.getDiscountList().subscribe(discounts => {
             this.discounts = discounts.discounts;
             console.log(this.discounts)
-          });
+          },
+          resLoginError => alert("There is something wrong with your permission. Please try login again."));
         }
       }
     )
@@ -55,14 +60,16 @@ export class AdminPageComponent implements OnInit {
     this.adminService.deleteUser(id).subscribe(res => {
       alert("success!");
       this.users.splice(i, 1);
-    })
+    },
+    resLoginError => alert("Something went wrong, please try later"));
   }
 
   deleteDiscount(id, i){
     this.discountsService.deleteDiscount(id).subscribe(res=>{
       alert("success!");
       this.discounts.splice(i, 1);
-    })
+    },
+    resLoginError => alert("Something went wrong, please try later"));
   }
 
 }
