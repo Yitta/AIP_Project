@@ -33,6 +33,8 @@ export class PasswordResetComponent implements OnInit {
       this.resetForm.reset();
     }
     this.authenticationService.resetPassword(resetInfo).subscribe(resUserData => {
+      console.log("userInfo: ", resUserData);
+      console.log("reset data", theForm.value);
       alert('Reset Success!')
       this.router.navigate(['/log-in']);      
     },

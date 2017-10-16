@@ -24,7 +24,7 @@ router.get('/search', (req, res) => {
       },
       offset: startAt,
       limit: max,
-      order: [['createdAt', 'DESC']]
+      order: [['created_at', 'DESC']]
     })
     .then((results) => res.json({
       startAt: startAt,
@@ -119,7 +119,7 @@ router.get('/:id/ratings', (req, res) => {
       where: { discount_id: req.params.id },
       offset: startAt,
       limit: max,
-      order: [['createdAt', 'DESC']]
+      order: [['created_at', 'DESC']]
     })
     .then((results) => res.json({
       startAt: startAt,
@@ -133,8 +133,8 @@ router.get('/:id/ratings', (req, res) => {
 router.post('/:id/ratings', isLoggedIn, checkRole.isStudent, (req, res) => {
   models.rating
     .create({
-      discount_id: req.params.id,
-      user_id: req.user.id,
+      discountId: req.params.id,
+      userId: req.user.id,
       rating: req.body.rating,
       comment: req.body.comment
     })

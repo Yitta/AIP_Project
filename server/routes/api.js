@@ -7,7 +7,6 @@ const router = express.Router();
 const endpoints = [
   { name: 'auth' },
   { name: 'discounts' },
-  { name: 'students' },
   { name: 'users' }
 ]
 

@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthenticationService {
@@ -13,7 +14,7 @@ export class AuthenticationService {
 
   /* User Login function. */
   login(userInfo) {
-    return this.http.post(`/api/auth/login`, userInfo, { headers: this.headers })
+    return this.http.post(`${environment.apiBaseUrl}/auth/login`, userInfo, { headers: this.headers })
       .map(res => {
         let user = res.json();
         if (user) {
@@ -27,7 +28,7 @@ export class AuthenticationService {
 
   /* User Logout function. */
   logout() {
-    return this.http.get(`/api/auth/logout`, { headers: this.headers })
+    return this.http.get(`${environment.apiBaseUrl}/auth/logout`, { headers: this.headers })
       .map(res => {
         localStorage.removeItem('currentUser');
       })
@@ -36,7 +37,7 @@ export class AuthenticationService {
 
   /* User sign up function. */
   signup(userInfo) {
-    return this.http.post(`/api/auth/signup`, userInfo, { headers: this.headers })
+    return this.http.post(`${environment.apiBaseUrl}/auth/signup`, userInfo, { headers: this.headers })
       .map(res => res.json())
       .catch(this._errorHandler);
   }
@@ -49,7 +50,7 @@ export class AuthenticationService {
 
   /* Get reset password email function. */
   getResetEmail() {
-    return this.http.get(`/api/auth/forgotpassword`, { headers: this.headers })
+    return this.http.get(`${environment.apiBaseUrl}/auth/forgotpassword`, { headers: this.headers })
       .map(res => {
         alert('Request Success! Please check your Email!');
       })
@@ -58,7 +59,7 @@ export class AuthenticationService {
 
   /* Reset Password*/
   resetPassword(passwordInfo) {
-    return this.http.post(`api/auth/setpassword`, passwordInfo, { headers: this.headers })
+    return this.http.post(`${environment.apiBaseUrl}/auth/setpassword`, passwordInfo, { headers: this.headers })
       .map(res => res.json())
       .catch(this._errorHandler);
   }

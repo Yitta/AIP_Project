@@ -1,5 +1,5 @@
 function isStudent(req, res, next) {
-  if (req.user.accountType !== 'student') {
+  if (req.user.accountType === 'student') {
     return next();
   }
 
