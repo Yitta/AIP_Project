@@ -16,7 +16,7 @@ const app = express();
 
 // Setting up cross origin calls
 app.use(cors({
-  origin: [new RegExp('http://127.0.0.1:*')]
+  origin: [new RegExp('http://127.0.0.1:*'), new RegExp('http://localhost:*')]
 }));
 
 // Set up cookies
