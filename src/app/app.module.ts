@@ -1,3 +1,5 @@
+
+//import required modules
 import { AuthGuard } from './auth.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -10,14 +12,12 @@ import { HttpModule } from '@angular/http';
 import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 
+//import all the components
 import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { AddFormsComponent } from './add-form/add-form.component';
 import { NgbdDatepickerRange } from './components/datepicker-range/datepicker-range.component';
 import { CommentFormComponent } from './components/comment-form/comment-form.component'
-import { DiscountsService } from './discounts.service';
-import { AuthenticationService } from './authentication.service';
-import { AdminService } from './admin.service';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
@@ -26,6 +26,12 @@ import { MapComponent } from './components/map/map.component';
 import { EditModalComponent, NgbdModalContent } from './components/edit-modal/edit-modal.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
+
+//import all the services
+import { DiscountsService } from './discounts.service';
+import { AuthenticationService } from './authentication.service';
+import { AdminService } from './admin.service';
+
 
 @NgModule({
   declarations: [
@@ -42,7 +48,8 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
     AdminPageComponent,
     EditModalComponent,
     NgbdModalContent,
-    SearchResultComponent,
+    SearchResultComponent
+,
     PasswordResetComponent
 ],
   imports: [

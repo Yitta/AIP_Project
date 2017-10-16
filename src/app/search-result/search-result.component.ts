@@ -20,12 +20,11 @@ export class SearchResultComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
       this.discountsService.searchDiscount(params['query']).subscribe(discounts => {
-        console.log("res:", discounts);
         if (discounts.discounts.length == 0) {
           this.discounts = [];
           if (params['query'] != "") {
             this.notFoundMessage = "Sorry, no related discount is found...";
-          }else{
+          } else {
             this.notFoundMessage = "";
           }
           this.showPannel = true;
