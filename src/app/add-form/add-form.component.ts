@@ -3,6 +3,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { DiscountsService } from '../services/discounts.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'add-form',
@@ -42,16 +43,14 @@ export class AddFormsComponent implements OnInit {
     this.userForm.valueChanges.subscribe(x => this.changeMsg = { event: 'Form DATA CHANGED', object: x });
   }
 
-  submitForm(discount) {
+  submitForm(discount:NgForm) {
     if (this.userForm.invalid) {
       this.msg = 'validation errors!';
       alert('Validation errors!')
     } else {
       this.msg = null;
-      discount = JSON.stringify(this.userForm.value);
-      this.discountsService.createDiscounts(discount).subscribe(resDiscount => {
-        alert('Success!');
-        this.router.navigate(['/home-page']);            
+      this.discountsService.createDiscounts(discount.value).subscribe(resDiscount => {
+        this.router.navigate(['/home-page/' + resDiscount.id]);            
       },
       resLoginError => alert("You must be logged in as a business to create discounts."));
     }

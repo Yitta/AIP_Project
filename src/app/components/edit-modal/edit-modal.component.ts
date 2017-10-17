@@ -22,7 +22,6 @@ export class NgbdModalContent {
       alert('Validation errors!')
     } else {
       discount = this.userForm.value;
-      alert(JSON.stringify(discount));
       var id = this.userForm.value.id;
       this.discountsService.editDiscount(id, discount).subscribe(resDiscount => {
         window.location.reload();
@@ -41,6 +40,7 @@ export class NgbdModalContent {
 //Modal component - the button with trigger method
 export class EditModalComponent implements OnInit {
   discount;
+  content: any;
 
   constructor(private modalService: NgbModal,
               private formBuilder: FormBuilder,

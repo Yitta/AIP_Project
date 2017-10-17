@@ -3,7 +3,7 @@ import { Route } from '@angular/router';
 
 export const PasswordResetRoute: Route[] = [
     {
-        path: 'password-reset',
+        path: 'password-reset/:token',
         component: PasswordResetComponent
     }
 ];

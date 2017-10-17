@@ -35,7 +35,7 @@ export class LoginFormComponent implements OnInit {
         this.router.navigate(['/home-page']);
       }
     },
-      resLoginError => alert("The username or password you have entered are not correct. Please enter your UniKey details to sign in."));
+      resLoginError => alert("The username or password you have entered is incorrect."));
   }
 
 

@@ -20,20 +20,14 @@ export class EmailFormComponent implements OnInit {
     }
   }
 
-  handleReset(theForm:NgForm){
-    var resetInfo = JSON.stringify(theForm.value);
-    var password = JSON.parse(resetInfo).password;
-    var confirmation = JSON.parse(resetInfo).confirmation;
-    if(password != confirmation) {
-      alert("Password should match");
-    }
+  handleReset(userInput:NgForm){
+    var resetInfo = userInput.value;
     this.authenticationService.getResetEmail(resetInfo).subscribe(resUserData => {
-      alert('Already send you an email, please check!')
+      alert('Please check your email!')
       this.router.navigate(['/log-in']);      
     },
-    resLoginError => alert("Make sure you enter the correct login Email"));
+    resLoginError => alert("Make sure you enter the correct email."));
   }
-
 }
 
 
