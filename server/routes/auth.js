@@ -17,7 +17,7 @@ router.get('/logout', (req, res) => {
   });
 });
 
-/* GET user accountType */
+/* GET current user */
 router.get('/current', (req, res) => {
   if (req.user) {
     res.json(req.user);

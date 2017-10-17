@@ -50,8 +50,8 @@ export class EditModalComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.paramMap
       .switchMap((params: ParamMap) => this.discountsService.getDiscount(+params.get('id')))
-      .subscribe(discount => {
-        this.discount = discount;
+      .subscribe(response => {
+        this.discount = response.discount;
       });
   }
   
