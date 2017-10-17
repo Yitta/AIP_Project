@@ -23,9 +23,9 @@ module.exports = function(passport, user) {
       passwordField: 'password',
       passReqToCallback: true
     }, (req, email, password, done) => {
-      // if (req.body.accountType === 'admin') {
-      //   done(null, false, { message: 'You are unauthorized to make an admin account' });
-      // } else {
+      if (req.body.accountType === 'admin') {
+        done(null, false, { message: 'You are unauthorized to make an admin account' });
+      } else {
         models.user
           .findOne({
             where: { 
@@ -70,7 +70,7 @@ module.exports = function(passport, user) {
             }
           });
       }
-    // }
+    }
   ));
 
   passport.use('local-login', new LocalStrategy(
