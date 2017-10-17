@@ -17,4 +17,13 @@ router.get('/logout', (req, res) => {
   });
 });
 
+/* GET user accountType */
+router.get('/current', (req, res) => {
+  if (req.user) {
+    res.json(req.user);
+  } else {
+    res.json({ accountType: 'anon' });
+  }
+});
+
 module.exports = router;

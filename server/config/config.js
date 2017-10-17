@@ -1,23 +1,18 @@
 module.exports = {
   development: {
-    username: 'root',
-    password: '',
-    database: 'cheapcheep_dev',
-    host: 'localhost',
-    dialect: 'mysql'
+    username: "postgres",
+    password: "postgres",
+    database: "cheapcheep_dev",
+    host: "127.0.0.1",
+    port: 5432,
+    dialect: "postgres"
   },
   production: {
-    username: 'root',
-    password: null,
-    database: 'cheapcheep',
-    host: '',
-    dialect: 'mysql'
-  },
-  test: {
-    username: '',
-    password: null,
-    database: '',
-    host: '',
-    dialect: 'mysql'
+    username: process.env.DB_USER || "",
+    password: process.env.DB_PASS || "",
+    database: process.env.DB_NAME || "",
+    host: process.env.DB_HOST || "",
+    port: process.env.DB_PORT || 5432,
+    dialect: "postgres"
   }
-};
+}

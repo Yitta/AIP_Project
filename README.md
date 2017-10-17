@@ -3,27 +3,26 @@
 ## What you need
 
 You will need:
-- MySQL
+- PostGRES
 - Node.js: https://nodejs.org/en/
 - angular-cli: https://github.com/angular/angular-cli
 - Nodemon: https://nodemon.io/
-- Docker: https://www.docker.com/
 
 ## Before you start
 
-Make sure you have MySQL running on port `3306`.
+Make sure you have PostGRES running on port `5432`.
 
 ## How to run
 
-To serve the application, run `docker-compose up` from the root directory.
-
 To set up the database and seed some data, be in the `server` directory and run `npm run seed`. It is recommended to do this when the model has been changed.
 
- **WARNING:** If you have already created a database of the same name eg. `cheapcheep_dev`, this will delete that database and all data contained. You have been warned.
+**WARNING:**  This will delete all data you currently have. You have been warned.
 
-Run  `npm run build` from the `server` directory to serve the API, typically at http://localhost:3000. This will refresh when there are changes to the API layer.
+Run `npm install` to generate all of the dependencies.
 
-Run  `ng serve` from the `client` directory to serve the front-end, typically at http://localhost:4200. This will refresh when there are changes to the front-end.
+Run  `npm run build` to serve the application, typically at http://localhost:3000. This will refresh when there are changes to the API layer.
+
+Run  `ng serve` directory to serve only the front-end, typically at http://localhost:4200. This will refresh when there are changes to the front-end.
 
 ### Detail Instruction
 - Clone this repository using this command in terminal (Git):
