@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthenticationService } from '../services/authentication.service';
@@ -11,33 +11,41 @@ import { AuthenticationService } from '../services/authentication.service';
 
 export class PasswordResetComponent implements OnInit {
   resetForm: any;
+  confirm: any;
   errorMsg: string;
 
-  constructor(private router: Router,
-              private authenticationService: AuthenticationService) {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private authenticationService: AuthenticationService
+  ) {
     this.resetForm = {
       password: '',
-      confirmation: ''
+      confirm: ''
     }
   }
 
   ngOnInit() {}
 
-  handleReset(theForm:NgForm){
-    var resetInfo = JSON.stringify(theForm.value);
-    var password = JSON.parse(resetInfo).password;
-    var confirmation = JSON.parse(resetInfo).confirmation;
-    if(password != confirmation) {
-      alert("Password should match");
-      this.resetForm.reset();
-    }
-    this.authenticationService.resetPassword(resetInfo).subscribe(resUserData => {
-      console.log("userInfo: ", resUserData);
-      console.log("reset data", theForm.value);
-      alert('Reset Success!')
-      this.router.navigate(['/log-in']);      
-    },
-    resLoginError => alert(resLoginError));
+  handleReset(userInput:NgForm){
+    this.activatedRoute.params
+      .subscribe((params: Params) => {
+        var resetBody = userInput.value;
+        if(resetBody.password != resetBody.confirm) {
+          alert("Passwords do not match.");
+          userInput.reset();
+        }
+        resetBody.token = params.token;
+        this.authenticationService.resetPassword(resetBody).subscribe(res => {
+          if (res.message !== "Password reset.") {
+            alert(res.message)
+            userInput.reset();
+          }
+          alert('Your password has been changed successfully.')
+          this.router.navigate(['/log-in']);      
+        },
+        resLoginError => alert(resLoginError));
+      });
   }
 
 }

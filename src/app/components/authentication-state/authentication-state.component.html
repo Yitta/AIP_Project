@@ -1,17 +1,17 @@
-<span *ngIf="(currentUser.accountType === 'anon')">
+<span *ngIf="(currentUser?.accountType === 'anon')">
   <a href="/log-in" class="linkStyle">Login</a>
   or
   <a href="/sign-up" class="linkStyle"> Sign Up</a>
 </span>
 
-<span *ngIf="currentUser.username">
+<span *ngIf="currentUser?.username">
   Welcome, {{currentUser.username}}!
   <a href="/home-page" class="linkStyle" (click)="logout()">Logout </a>
-  <div *ngIf="(currentUser.accountType === 'admin')">
+  <div *ngIf="(currentUser?.accountType === 'admin')">
     <button class="btn btn-outline-info btn-sm" (click)="clickUsersList()">Users</button>
     <button class="btn btn-outline-info btn-sm" (click)="clickDiscountsList()">Discounts</button>
   </div>
-  <div *ngIf="(currentUser.accountType === 'business')">
+  <div *ngIf="(currentUser?.accountType === 'business')">
       <a class="btn btn-outline-info btn-sm" routerLink='/add-form'>Add New Discount</a>
   </div>
 </span>

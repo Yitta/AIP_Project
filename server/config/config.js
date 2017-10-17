@@ -5,7 +5,8 @@ module.exports = {
     database: "cheapcheep_dev",
     host: "127.0.0.1",
     port: 5432,
-    dialect: "postgres"
+    dialect: "postgres",
+    sendgrid: process.env.SENDGRID_API_KEY || ""
   },
   production: {
     username: process.env.DB_USER || "",
@@ -13,6 +14,7 @@ module.exports = {
     database: process.env.DB_NAME || "",
     host: process.env.DB_HOST || "",
     port: process.env.DB_PORT || 5432,
-    dialect: "postgres"
+    dialect: "postgres",
+    sendgrid: process.env.SENDGRID_API_KEY || ""
   }
 }

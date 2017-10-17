@@ -26,7 +26,15 @@ module.exports = (sequelize, DataTypes) => {
     businessName: {
       type: DataTypes.STRING,
       field: "business_name"
-    }
+    },
+    resetToken: {
+      type: DataTypes.STRING,
+      field: "reset_token"
+    },
+    resetExpiry: {
+      type: DataTypes.DATE,
+      field: "reset_expiry"
+    },
   }, {
     underscored: true,
     validate: {
@@ -45,7 +53,7 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   user.prototype.generateHash = function(password) {
-    this.password = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+    this.password = bcrypt.hashSync(password, bcrypt.genSaltSync(12), null);
     return this;
   };
 
@@ -54,7 +62,8 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   user.associate = function(models) {
-    models.user.hasMany(models.rating);
+    models.user.hasMany(models.rating, { onDelete: 'CASCADE' });
+    models.user.hasMany(models.discount, { onDelete: 'CASCADE' });
   };
 
   return user;

@@ -36,7 +36,7 @@ export class DiscountsService {
   /* Edit a discount */
   editDiscount(id, discount) {
     return this.http.put(`api/discounts/${id}`, discount)
-    .map(res => res.json());
+      .map(res => res.json());
   }
 
   /* Search discounts based on query */

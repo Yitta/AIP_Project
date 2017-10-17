@@ -27,8 +27,8 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   rating.associate = function(models) {
-    models.rating.belongsTo(models.discount);
-    models.rating.belongsTo(models.user);
+    models.rating.belongsTo(models.discount, { onDelete: 'CASCADE' });
+    models.rating.belongsTo(models.user, { onDelete: 'CASCADE' });
   };
 
   return rating;

@@ -2,16 +2,16 @@
   <div class="cardBg">
     <div class="form-inline">
       <img src="../assets/user.svg" width="30" height="30" class="d-inline-block align-top img" alt="">
-      <h4>Get Reset Email</h4>
+      <h4>Send Reset Email</h4>
     </div>
-    <p>Enter your login Email to get reset Email, or use old password to <a href="/log-in" class="linkStyle">login</a>.</p>
+    <p>Enter the email address you signed up with to get a reset link, or use your current password to <a href="/log-in" class="linkStyle">login</a>.</p>
     <form class="formStyle" (ngSubmit)="handleReset(emailForm)" #emailForm="ngForm">
         <div class="form-group row">
             <label for="email" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" id="email" name="email" required placeholder="Login Email" [(ngModel)]="emailForm.email"  #email="ngModel">
               <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
-                  <p *ngIf="email.errors?.required">Login Email is required</p>
+                  <p *ngIf="email.errors?.required">Email is required</p>
               </div>
             </div>
           </div>
