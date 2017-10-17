@@ -1,94 +1,27 @@
-# AIP Assignment 3
+# Cheapcheep
 
-## What you need
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.7.
 
-You will need:
-- MySQL
-- Node.js: https://nodejs.org/en/
-- angular-cli: https://github.com/angular/angular-cli
-- Nodemon: https://nodemon.io/
-- Docker: https://www.docker.com/
+## Development server
 
-## Before you start
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-Make sure you have MySQL running on port `3306`.
+## Code scaffolding
 
-## How to run
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-To serve the application, run `docker-compose up` from the root directory.
+## Build
 
-To set up the database and seed some data, be in the `server` directory and run `npm run seed`. It is recommended to do this when the model has been changed.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
- **WARNING:** If you have already created a database of the same name eg. `cheapcheep_dev`, this will delete that database and all data contained. You have been warned.
+## Running unit tests
 
-Run  `npm run build` from the `server` directory to serve the API, typically at http://localhost:3000. This will refresh when there are changes to the API layer.
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-Run  `ng serve` from the `client` directory to serve the front-end, typically at http://localhost:4200. This will refresh when there are changes to the front-end.
+## Running end-to-end tests
 
-### Detail Instruction
-- Clone this repository using this command in terminal (Git):
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-`git clone https://github.com/Yitta/AIP_Project.git`
-- Change the current directory to the file repository using this command in terminal (Node):
+## Further help
 
-`cd AIP_Project`
-- Install the required node modules using this command in terminal (Node):
-
-`npm install`
--  serve the project using this command in terminal (Node):
-
-`npm run build` 
-- The project would typically run at http://localhost:3000.
-
-
-## Project principles
-
-To contribute to this project we should abide by some coding and contributing principles
-
-### In general
-
-- Use 2 spaces for indentation
-- Use inbuilt functionality: No need to re-invent the wheel
-- Abstract code where possible: Reusable code is handy and keeps the project easy to read and maintain
-- Use meaningful names: You should have a sense of what something’s purpose is by it’s name
-- Provide meaningful comments: If some code is not clear (and can’t be refactored to be clearer) pop in a comment. Not everything needs a comment - a function called getDiscountById() should be clear enough
-- Complicated function or function with long code should have comment (/** format )
-- Use camelCase: e.g. likeThis, not like_this (with the exception of in the database)
-- Don't abbreviate local variables (e.g., 'total' not 'tot')
-- No console.logs in master: This includes other debugging that may be needed for development
-
-### Front-end
-- Put all pictures needed in /assets
-- Put reusable or small components in /components
-- All routes would be put in one route file
-- Give every single view a folder which would contain all the files needed in same name follow by different type name（all lower case）
-- Selector would be the same name with the folder (contain -)
-- Component would use camelCase with same name of folder （remove -）
-- Instance would be the same name as dependency but first chapter use lower case（e.g. router : Router rather than _router : Router)
-- Format javascript method and long variable list in different lines for better understanding and clear structure
-- Separate CSS in template CSS files 
-
-### Back-end
-- Separate routes by object: Don’t forget to identify it in routes/api.js!
-- Document your APIs! (In progress)
-- Avoid using raw queries if possible
-
-## CheapCheep API Documentation
-
-Swagger is used to document CheapCheep APIs
-
-### Installing dependencies
-
-  `npm install -g swagger`
-
-This will install swagger globally.
-
-### How to view and/or edit
-
-Open `cheapcheep-api` in terminal and run
-
-  `swagger project edit`
-
-This will start an express server and open the editor in your browser.
-
-The documentation will be loaded from `api/swagger/swagger.yaml` and changes are saved instantly.
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

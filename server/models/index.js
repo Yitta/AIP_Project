@@ -24,8 +24,20 @@ Object.keys(db).forEach(function(modelName) {
   }
 });
 
+function checkDatabase() {
+  return sequelize
+    .authenticate()
+    .then(() => {
+      console.log("Connected to the database");
+    })
+    .catch((err) => {
+      console.log("Can't connect to the database.");
+    });
+}
+
 // Export the db Object
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+db.checkDatabase = checkDatabase;
 
 module.exports = db;

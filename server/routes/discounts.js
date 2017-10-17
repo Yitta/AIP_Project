@@ -67,7 +67,18 @@ router.post('/', isLoggedIn, checkRole.isNotStudent, (req, res) => {
 router.get('/:id', (req, res) => {
   models.discount
     .findById(req.params.id)
-    .then((discount) => res.json(discount));
+    .then((discount) => {
+      let response = {
+        discount: discount,
+        canEdit: false
+      }
+
+      if (req.user && (req.user.id === discount.creatorId || req.user.accountType === 'admin')) {
+        response.canEdit = true;
+      }
+
+      res.json(response);
+    });
 });
 
 /* PUT edit a discount */
