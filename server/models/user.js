@@ -54,7 +54,8 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   user.associate = function(models) {
-    models.user.hasMany(models.rating);
+    models.user.hasMany(models.rating, { onDelete: 'CASCADE' });
+    models.user.hasMany(models.discount, { onDelete: 'CASCADE' });
   };
 
   return user;

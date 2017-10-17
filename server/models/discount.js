@@ -68,8 +68,8 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   discount.associate = function(models) {
-    models.discount.hasMany(models.rating);
-    models.discount.belongsTo(models.user, { foreignKey: 'creatorId' });
+    models.discount.hasMany(models.rating, { onDelete: 'CASCADE' });
+    models.discount.belongsTo(models.user, { foreignKey: 'creatorId', onDelete: 'CASCADE' });
   };
 
   return discount;

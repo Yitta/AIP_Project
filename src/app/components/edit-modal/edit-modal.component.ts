@@ -21,10 +21,10 @@ export class NgbdModalContent {
     if (this.userForm.invalid) {
       alert('Validation errors!')
     } else {
-      discount = JSON.stringify(this.userForm.value);
-      var id = JSON.parse(discount).id;
+      discount = this.userForm.value;
+      alert(JSON.stringify(discount));
+      var id = this.userForm.value.id;
       this.discountsService.editDiscount(id, discount).subscribe(resDiscount => {
-        alert('success!')
         window.location.reload();
       },
         resLoginError => alert("Please make sure you have the right permission."));
