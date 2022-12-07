@@ -37,7 +37,7 @@
     "cookie-parser": "^1.4.3",
     "core-js": "^2.4.1",
     "cors": "^2.8.4",
-    "express": "^4.16.2",
+    "express": "^4.17.3",
     "express-session": "^1.15.6",
     "forwarded-http": "^0.3.0",
     "mysql2": "^1.4.2",
